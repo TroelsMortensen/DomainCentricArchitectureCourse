@@ -2,7 +2,7 @@
 
 This is an elective course available at VIA University College, Horsens, Denmark, for Software Technology Engineering students.
 
-## Course Overview
+# Course Overview
 The course focuses on various approaches to organize an application. We will throughout the course develop a Web Service, but the theories can be applied to all kinds of systems.
 
 We will introduce:
@@ -14,79 +14,79 @@ We will introduce:
 The course theories will be applied to create a complete Web Service. Each week a new topic will be introduced and then applied to the course-spanning project. We will apply a "big-bang" development approach (inside-out when considering hexagonal, onion, clean), due to the nature of the course, and the order of the topics.
 
 
-## Session Schedule
+# Session Schedule
 
-### [Session 1](Session1/Session%201%20overview.md)
+## [Session 1](Session1/Session%201%20overview.md)
 
-#### Topics
+### Topics
 * Course introduction
 * Domain Driven Development
 * Architectural styles
 * Markdown
 * Course project introduction
 
-#### Assignment:
+### Assignment:
 You will be given analysis artifacts of a system to be developed.
 * Develop domain model
 * Setup project for git
 
 <hr/>
 
-### [Session 2]()
+## [Session 2]()
 
 How to create a richer domain model in the spirit of DDD.
 
-#### Topics
+### Topics
 * Various tactical patterns from DDD
     * Value Objects
     * Entities
     * Aggregates
 
-#### Assignment:
+### Assignment:
 Develop "exploded domain model".\
 Define test cases.
 
 <hr/>
 
-### [Session 3]()
+## [Session 3]()
 
-#### Topics
+### Topics
 Introduction to Operation Result pattern
 
-#### Assignment
+### Assignment
 Implement the Operation Result pattern, to be used throughout the course project.
 
 <hr/>
 
-### [Session 4]()
+## [Session 4]()
 Test/Behaviour driven design.
 
-#### Topics
+### Topics
 * TDD
 * BDD
 * Introduction to NUnit test framework in .NET
 
-#### Assignment
+### Assignment
 Implement the domain model using TDD.
 
 <hr/>
 
-### [Session 5]()
+## [Session 5]()
 Mainly project work.
 
-#### Topics
+### Topics
 * What is a service
 * Domain services
 
-#### Assignment
+### Assignment
 Continue work on assignment from previous session. Some things needs a domain service to be implemented.
 
 <hr/>
 
-### [Session 6]()
+## [Session 6]()
 stuff..
 
-## Sources
+# Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
 
 
