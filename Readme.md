@@ -15,3 +15,41 @@ The course theories will be applied to create a complete Web Service. Each week 
 
 
 ## Session Schedule
+
+### [Session 1](Session1/Session%201%20overview.md)
+
+Topics
+* Course introduction
+* Domain Driven Development
+* Architectural styles
+* Markdown
+* Course project introduction
+
+### [Session 2]()
+
+
+
+## Sources
+This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
+
+Below I have attempted to collect all of it in one large collection. Each session will also include sources relevant to that session.
+
+
+### Books
+Patterns of Enterprices Application Architecture - by Martin Fowler
+
+Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu\
+Implementing Domain-Driven Design - by Vaugn Vernon\
+Hands-on Domain-Driven Design with .NET Core - Alexey Zimarev
+
+Designing Hexagonal Architecture with Java - by Davi Vieria\
+Get Your Hands Dirty On Clean Architecture - by Tom Hombergs\
+Clean Architecture - by Robert C. Martin
+
+Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
+
+
+### Articles
+
+
+### Videos
