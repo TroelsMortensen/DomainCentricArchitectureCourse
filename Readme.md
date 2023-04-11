@@ -16,7 +16,7 @@ The course theories will be applied to create a complete Web Service. Each week 
 
 # Session Schedule
 
-## [Session 1 - Course introduction](Session1/Session%201%20overview.md)
+## [Session 1 - Course introduction](Session1)
 
 ### Goal
 Get an introduction to the course, an overview of architectural styles, and domain driven development.
@@ -87,7 +87,7 @@ Mainly project work.
 Continue work on assignment from previous session. Some things needs a domain service to be implemented.
 
 
-## [Session 6 - The application layer]()
+## [Session 6 - Implementing use cases]()
 
 ### Goal
 Implementing use cases with command objects/handlers and repositories.
@@ -108,12 +108,12 @@ Mock data storage for now.
 Work on assignment from previous session
 
 ### Topics
-Nothing new
+* Nothing new
 
 ### Assignment
-Nothing new
+* Nothing new
 
-## [Session 8 - Data access]()
+## [Session 8 - Persiting data]()
 
 ### Goal
 Adding persistent data storage
@@ -128,10 +128,10 @@ Adding persistent data storage
 ### Assignment
 Implement persistent data storage with EFC and SQLite.
 
-## [Session 9 - Reading data]
+## [Session 9 - Retrieving data]()
 
 ### Goal
-Introduction of the Command Query Responsibility Separation pattern.
+Introduction of the Command Query Responsibility Separation (CQRS) pattern.
 
 ### Topics
 * CQRS overview
@@ -147,12 +147,12 @@ Implement read data use cases based on the generated read model.
 Work on assignment from previous session
 
 ### Topics
-Nothing new
+* Nothing new
 
 ### Assignment
-Nothing new
+* Nothing new
 
-## [Session 11 - Dispatching commands]
+## [Session 11 - Activating use cases]()
 
 ### Goal
 Implement the command dispatcher pattern as a way to interact with the application layer.
@@ -168,7 +168,7 @@ Implement the command dispatcher pattern as a way to interact with the applicati
 ### Assignment
 Implement the dispatcher pattern, at least for command handlers. Could be extended to query handlers.
 
-## [Session 12 - Doorway into the application]
+## [Session 12 - Presentation layer]() 
 
 ### Goal
 Implement a Web API, using the REPR pattern.
