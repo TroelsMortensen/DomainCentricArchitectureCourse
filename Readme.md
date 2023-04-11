@@ -32,7 +32,9 @@ Topics
 ## Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
 
-Below I have attempted to collect all of it in one large collection. Each session will also include sources relevant to that session.
+
+Below I have attempted to collect all of it in one large collection. Each session will also include sources relevant to that session.\
+The sources are not considered course curriculum, but instead a list of information revelant to the student interested in knowing more.
 
 
 ### Books
