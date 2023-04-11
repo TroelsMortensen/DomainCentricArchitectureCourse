@@ -6,7 +6,7 @@ All assignments will be handed in through git, and you must follow the structure
 ## Domain Model
 In this folder you will find various documents describing the project case:
 * [The description from the customer](Project%20description%20from%20customer.md), a textual description of the customer, and what they need.
-* [The analysis artefacts](Project%20analysis%20artefacts.md), i.e. use cases
+* [The analysis artefacts](), i.e. use cases _update link_
     
 Based on this information you must create a domain model, it must be exported as an .svg file.
 
