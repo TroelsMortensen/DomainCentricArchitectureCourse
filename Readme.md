@@ -28,7 +28,7 @@ Get an introduction to the course, an overview of architectural styles, and doma
 * Markdown
 * Course project introduction
 
-### Assignment:
+### [Assignment](Session1/Assignment%201):
 You will be given analysis artifacts of a system to be developed.
 * Develop domain model
 * Setup project for git
