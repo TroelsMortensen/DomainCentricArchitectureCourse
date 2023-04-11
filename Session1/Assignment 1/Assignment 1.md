@@ -21,7 +21,7 @@ Create a new empty .NET solution. Give it a name, and check the "create git repo
 
 The following screenshot is from Rider (spring 2023), but you may use whichever IDE you like. However, the solution structure must follow the guidelines given throughout the assignments.
 
-![](CreateSolutionWithGit.png)
+![](Resources/CreateSolutionWithGit.png)
 
 ### 2. New branch
 Create a new git-branch, call it ”Assignment-1”.
@@ -36,7 +36,7 @@ We put it in a class library, so that it is available in the ”solution view”
 
 You may instead create just a directory, and put the same things in here, if you like. Other IDEs may show this better than Rider.
 
-![](CreateClassLib.png)
+![](Resources/CreateClassLib.png)
 
 You may delete the dummy ”Class1.cs” file.
 
@@ -48,12 +48,12 @@ In this folder, you will put whatever documentation is needed for the first assi
 
 Shortly, the solution of assignment 1 will look like this:
 
-![](SolutionStructure.png)
+![](Resources/SolutionStructure.png)
 
 ### 5. Create markdown file.
 Create a new markdown file:
 
-![](CreateMdFile.png)
+![](Resources/CreateMdFile.png)
 
 In this file, you just put the names and student numbers of the group members.
 
