@@ -16,7 +16,10 @@ The course theories will be applied to create a complete Web Service. Each week 
 
 # Session Schedule
 
-## [Session 1](Session1/Session%201%20overview.md)
+## [Session 1 - Course introduction](Session1/Session%201%20overview.md)
+
+### Goal
+Get an introduction to the course, an overview of architectural styles, and domain driven development.
 
 ### Topics
 * Course introduction
@@ -31,9 +34,10 @@ You will be given analysis artifacts of a system to be developed.
 * Setup project for git
 
 
-## [Session 2]()
+## [Session 2 - The domain model]()
 
-How to create a richer domain model in the spirit of DDD.
+### Goal
+Designing a richer domain model using elements of DDD.
 
 ### Topics
 * Various tactical patterns from DDD
@@ -46,7 +50,8 @@ Develop "exploded domain model".\
 Define test cases.
 
 
-## [Session 3]()
+## [Session 3 - Controlled success/failure flow]()
+Implementing Operation Result pattern
 
 ### Topics
 Introduction to Operation Result pattern
@@ -55,8 +60,10 @@ Introduction to Operation Result pattern
 Implement the Operation Result pattern, to be used throughout the course project.
 
 
-## [Session 4]()
-Test/Behaviour driven design.
+## [Session 4 - Implementing the domain model]()
+
+### Goal
+Use TDD and BDD to implement the domain.
 
 ### Topics
 * TDD
@@ -67,7 +74,9 @@ Test/Behaviour driven design.
 Implement the domain model using TDD.
 
 
-## [Session 5]()
+## [Session 5 - Project work]()
+
+### Goal
 Mainly project work.
 
 ### Topics
@@ -78,8 +87,100 @@ Mainly project work.
 Continue work on assignment from previous session. Some things needs a domain service to be implemented.
 
 
-## [Session 6]()
-stuff..
+## [Session 6 - The application layer]()
+
+### Goal
+Implementing use cases with command objects/handlers and repositories.
+
+### Topics
+* Command objects
+* Command handler pattern
+* Repository pattern lite
+
+### Assignment
+Implement use cases as application services using TDD.\
+Implement/expand on domain model behaviour if needed.\
+Mock data storage for now.
+
+## [Session 7 - Assignment work]()
+
+### Goal
+Work on assignment from previous session
+
+### Topics
+Nothing new
+
+### Assignment
+Nothing new
+
+## [Session 8 - Data access]()
+
+### Goal
+Adding persistent data storage
+
+### Topics
+* Repository pattern from DDD point of view
+    * With abstract repository
+* Unit of work
+* Entity Framework Core brushup
+* Handling Value Objects
+
+### Assignment
+Implement persistent data storage with EFC and SQLite.
+
+## [Session 9 - Reading data]
+
+### Goal
+Introduction of the Command Query Responsibility Separation pattern.
+
+### Topics
+* CQRS overview
+* The read model
+    * Generating the read model from existing storage with EFC
+
+### Assignment
+Implement read data use cases based on the generated read model.
+
+## [Session 10 - Assignment work]()
+
+### Goal
+Work on assignment from previous session
+
+### Topics
+Nothing new
+
+### Assignment
+Nothing new
+
+## [Session 11 - Dispatching commands]
+
+### Goal
+Implement the command dispatcher pattern as a way to interact with the application layer.
+
+### Topics
+* Command Dispatcher pattern
+* Various implementation strategies
+    * Simple, overloaded methods
+    * Switch-statement based, manually managing dependincies
+    * Map based approach, registering handlers
+    * Using .NET's IoC container
+
+### Assignment
+Implement the dispatcher pattern, at least for command handlers. Could be extended to query handlers.
+
+## [Session 12 - Doorway into the application]
+
+### Goal
+Implement a Web API, using the REPR pattern.
+
+### Topics
+* The REPR pattern
+* Web API refresh
+* Bending the Web API standard, i.e. diverting from REST
+* Exam info
+
+### Assignment
+Implement the Web API, applying the REPR pattern.
 
 # Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
