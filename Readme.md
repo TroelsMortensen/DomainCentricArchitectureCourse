@@ -30,6 +30,7 @@ You will be given analysis artifacts of a system to be developed.
 * Develop domain model
 * Setup project for git
 
+<hr/>
 ### [Session 2]()
 
 How to create a richer domain model in the spirit of DDD.
@@ -44,6 +45,7 @@ How to create a richer domain model in the spirit of DDD.
 Develop "exploded domain model".\
 Define test cases.
 
+<hr/>
 ### [Session 3]()
 
 #### Topics
@@ -52,6 +54,7 @@ Introduction to Operation Result pattern
 #### Assignment
 Implement the Operation Result pattern, to be used throughout the course project.
 
+<hr/>
 ### [Session 4]()
 Test/Behaviour driven design.
 
@@ -63,6 +66,7 @@ Test/Behaviour driven design.
 #### Assignment
 Implement the domain model using TDD.
 
+<hr/>
 ### [Session 5]()
 Mainly project work.
 
@@ -73,6 +77,9 @@ Mainly project work.
 #### Assignment
 Continue work on assignment from previous session. Some things needs a domain service to be implemented.
 
+<hr/>
+### [Session 6]()
+stuff..
 
 ## Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
