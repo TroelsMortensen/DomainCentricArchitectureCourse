@@ -6,7 +6,7 @@ This is an elective course available at VIA University College, Horsens, Denmark
 The course focuses on various approaches to organize an application. We will focus on a Web Service, but the theories can be applied to all kinds of systems.
 
 We will introduce:
-* Domain Driven Development
+* Domain Driven Development (DDD)
 * Test/Behaviour Driven Development
 * Various architectural styles
 * Various architectural patterns
@@ -18,14 +18,29 @@ The course theories will be applied to create a complete Web Service. Each week 
 
 ### [Session 1](Session1/Session%201%20overview.md)
 
-Topics
+#### Topics
 * Course introduction
 * Domain Driven Development
 * Architectural styles
 * Markdown
 * Course project introduction
 
+#### Assignment:
+You will be given analysis artifacts of a system to be developed.
+* Develop domain model
+* Setup project for git
+
 ### [Session 2]()
+
+#### Topics
+* Various tactical patterns from DDD
+    * Value Objects
+    * Entities
+    * Aggregates
+
+#### Assignment:
+Develop "exploded domain model".\
+Define test cases.
 
 
 
