@@ -190,7 +190,7 @@ Below I have attempted to collect all of it in one large list. Each session will
 The sources below are not considered course curriculum, but instead a list of information revelant to the student interested in knowing more.
 
 
-### Books
+## Books
 Patterns of Enterprices Application Architecture - by Martin Fowler
 
 Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu\
@@ -204,12 +204,16 @@ Clean Architecture - by Robert C. Martin
 Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
 BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 
-### Articles
+## Articles
+
+#### Clean Architecture
+
+https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
 
-### Videos
-
-Vertical slices: https://www.youtube.com/watch?v=SUiWfhAhgQw
+## Videos
+#### Vertical slice 
+https://www.youtube.com/watch?v=SUiWfhAhgQw
 
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture
