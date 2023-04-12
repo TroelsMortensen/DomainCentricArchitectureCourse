@@ -208,3 +208,9 @@ BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 
 
 ### Videos
+
+Vertical slices: https://www.youtube.com/watch?v=SUiWfhAhgQw
+
+### Sample projects
+https://github.com/jasontaylordev/CleanArchitecture
+https://github.com/RaythaHQ/raytha
