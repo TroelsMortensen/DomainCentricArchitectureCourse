@@ -206,10 +206,16 @@ BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 
 ## Articles
 
+#### Hexagonal
+https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
+
 #### Clean Architecture
 
 https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
+
+#### Reaper pattern (REPR)
+https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 
 ## Videos
 #### Vertical slice 

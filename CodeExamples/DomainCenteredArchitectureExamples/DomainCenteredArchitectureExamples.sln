@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbiquitousLanguageExamples", "UbiquitousLanguageExamples\UbiquitousLanguageExamples.csproj", "{DCCCDC8A-8FA1-4341-AD5C-C829CB2DD3AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCCCDC8A-8FA1-4341-AD5C-C829CB2DD3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCCDC8A-8FA1-4341-AD5C-C829CB2DD3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCCDC8A-8FA1-4341-AD5C-C829CB2DD3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCCDC8A-8FA1-4341-AD5C-C829CB2DD3AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
