@@ -41,13 +41,14 @@ Designing a richer domain model using elements of DDD.
 
 ### Topics
 * Various tactical patterns from DDD
+    * Ubiquitous language
     * Value Objects
     * Entities
     * Aggregates
 
 ### Assignment:
 Develop "exploded domain model".\
-Define test cases.
+Define test cases/rules for value objects.
 
 
 ## [Session 3 - Controlled success/failure flow]()
