@@ -16,16 +16,6 @@ public class DddTodo
     private string? assignee;
     private List<SubTask> subTasks = new List<SubTask>();
 
-    public void Complete()
-    {
-        if (subTasks.Any(task => !task.IsCompleted))
-        {
-            throw new Exception("Cannot complete Todo item before all sub-tasks are completed");
-        }
-
-        isCompleted = true;
-    }
-
     public void AssignTo(string userName)
     {
         if (!string.IsNullOrEmpty(assignee))
@@ -34,6 +24,16 @@ public class DddTodo
         }
 
         assignee = userName;
+    }
+
+    public void Complete()
+    {
+        if (subTasks.Any(task => !task.IsCompleted))
+        {
+            throw new Exception("Cannot complete Todo item before all sub-tasks are completed");
+        }
+
+        isCompleted = true;
     }
 
     public void UpdateDescription(string desc)

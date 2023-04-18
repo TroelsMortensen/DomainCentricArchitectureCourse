@@ -46,6 +46,10 @@ Designing a richer domain model using elements of DDD.
     * Entities
     * Aggregates
 
+### Preparation before class
+* [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
+* [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class
+
 ### Assignment:
 Develop "exploded domain model".\
 Define test cases/rules for value objects.
