@@ -16,7 +16,7 @@ The course theories will be applied to create a complete Web Service. Each week 
 
 # Session Schedule
 
-## [Session 1 - Course introduction](Session1)
+## [Session 1 - Architectures](Session1)
 
 ### Goal
 Get an introduction to the course, an overview of architectural styles, and domain driven development.
@@ -34,13 +34,13 @@ You will be given analysis artifacts of a system to be developed.
 * Setup project for git
 
 
-## [Session 2 - The domain model]()
+## [Session 2 - Domain Driven Design]()
 
 ### Goal
 Designing a richer domain model using elements of DDD.
 
 ### Topics
-* Various tactical patterns from DDD
+* Introduction to DDD
     * Ubiquitous language
     * Value Objects
     * Entities
@@ -55,8 +55,8 @@ Develop "exploded domain model".\
 Define test cases/rules for value objects.
 
 
-## [Session 3 - Controlled success/failure flow]()
-Implementing Operation Result pattern
+## [Session 3 - Operation Result Pattern]()
+Implementing Operation Result pattern.
 
 ### Topics
 Introduction to Operation Result pattern
@@ -65,7 +65,7 @@ Introduction to Operation Result pattern
 Implement the Operation Result pattern, to be used throughout the course project.
 
 
-## [Session 4 - Implementing the domain model]()
+## [Session 4 - Test Driven Developmen]()
 
 ### Goal
 Use TDD and BDD to implement the domain.
@@ -92,7 +92,7 @@ Mainly project work.
 Continue work on assignment from previous session. Some things needs a domain service to be implemented.
 
 
-## [Session 6 - Implementing use cases]()
+## [Session 6 - Commands and handlers]()
 
 ### Goal
 Implementing use cases with command objects/handlers and repositories.
