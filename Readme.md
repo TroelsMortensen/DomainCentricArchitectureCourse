@@ -41,10 +41,11 @@ Designing a richer domain model using elements of DDD.
 
 ### Topics
 * Introduction to DDD
-    * Ubiquitous language
-    * Value Objects
-    * Entities
-    * Aggregates
+* Ubiquitous language
+* Value Objects
+* Entities
+* Aggregates
+* Rich Domain Model
 
 ### Preparation before class
 * [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
@@ -52,10 +53,12 @@ Designing a richer domain model using elements of DDD.
 
 ### Assignment:
 Develop "exploded domain model".\
-Define test cases/rules for value objects.
+Define rules and test cases for value objects.
 
 
 ## [Session 3 - Operation Result Pattern]()
+
+### Goal
 Implementing Operation Result pattern.
 
 ### Topics
@@ -65,7 +68,7 @@ Introduction to Operation Result pattern
 Implement the Operation Result pattern, to be used throughout the course project.
 
 
-## [Session 4 - Test Driven Developmen]()
+## [Session 4 - Test/Behaviour Driven Development]()
 
 ### Goal
 Use TDD and BDD to implement the domain.
