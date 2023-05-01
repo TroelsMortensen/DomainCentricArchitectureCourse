@@ -23,7 +23,6 @@ Get an introduction to the course, an overview of architectural styles, and doma
 
 ### Topics
 * Course introduction
-* Domain Driven Development
 * Architectural styles
 * Markdown
 * Course project introduction
@@ -64,10 +63,11 @@ Define rules and test cases for value objects.
 Implementing Operation Result pattern.
 
 ### Topics
-Introduction to Operation Result pattern
+* Introduction to Operation Result pattern
+* Factory method pattern
 
 ### Preparation before class
-Again, we'll need to use generics, so make sure you know the basics.
+Again, we'll need to use generics, so make sure you know the basics, see previous session.
 
 ### Assignment
 Implement the Operation Result pattern, to be used throughout the course project.
@@ -81,7 +81,7 @@ Use TDD and BDD to implement the domain.
 ### Topics
 * TDD
 * BDD
-* Introduction to xUnit test framework in .NET
+* Introduction to xUnit.NET test framework
 
 
 ### Assignment
@@ -130,7 +130,7 @@ Work on assignment from previous session
 ## [Session 8 - Persiting data]()
 
 ### Goal
-Adding persistent data storage
+Adding persistent data storage with Entity Framework
 
 ### Topics
 * Repository pattern from DDD point of view
@@ -140,7 +140,7 @@ Adding persistent data storage
 * Handling Value Objects
 
 ### Assignment
-Implement persistent data storage with EFC and SQLite.
+Implement persistent data storage with EFC and SQLite (or in-memory).
 
 ## [Session 9 - Retrieving data]()
 
@@ -178,6 +178,7 @@ Implement the command dispatcher pattern as a way to interact with the applicati
     * Switch-statement based, manually managing dependincies
     * Map based approach, registering handlers
     * Using .NET's IoC container
+* Pipelines
 
 ### Assignment
 Implement the dispatcher pattern, at least for command handlers. Could be extended to query handlers.
@@ -185,7 +186,7 @@ Implement the dispatcher pattern, at least for command handlers. Could be extend
 ## [Session 12 - Presentation layer]() 
 
 ### Goal
-Implement a Web API, using the REPR pattern.
+Implement a Web API (using the REPR pattern?).
 
 ### Topics
 * The REPR pattern
@@ -200,23 +201,33 @@ Implement the Web API, applying the REPR pattern.
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
 
 
-Below I have attempted to collect all of it in one large list. Each session will also include sources relevant to that session.\
+Below I have attempted to collect all of it in one large list. Each session will also include a subset of sources relevant to that session.\
 The sources below are not considered course curriculum, but instead a list of information revelant to the student interested in knowing more.
 
 
 ## Books
+
+### Un-categorized
 Patterns of Enterprices Application Architecture - by Martin Fowler
+An Atypical ASP.NET Core 5 Design Patterns Guide - by Carl-Hubo Marcotte
+
+### Domain Driven Design
 
 Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu\
 Implementing Domain-Driven Design - by Vaugn Vernon\
 Hands-on Domain-Driven Design with .NET Core - Alexey Zimarev
 
+### Architecture
 Designing Hexagonal Architecture with Java - by Davi Vieria\
 Get Your Hands Dirty On Clean Architecture - by Tom Hombergs\
 Clean Architecture - by Robert C. Martin
 
+### Test
 Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
 BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
+
+
+
 
 ## Articles
 
@@ -235,7 +246,7 @@ https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 #### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
 
-#### Repository
+#### Repository pattern
 https://www.youtube.com/watch?v=Bz5JCbWnaHo
 
 
