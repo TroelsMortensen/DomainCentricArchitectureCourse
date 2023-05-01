@@ -5,3 +5,5 @@
 /CodeExamples/DomainCenteredArchitectureExamples/ValueObjectExamples/bin/
 /CodeExamples/DomainCenteredArchitectureExamples/UbiquitousLanguageExamples/obj/
 /CodeExamples/DomainCenteredArchitectureExamples/UbiquitousLanguageExamples/bin/
+/CodeExamples/DomainCenteredArchitectureExamples/*/obj/
+/CodeExamples/DomainCenteredArchitectureExamples/*/bin/

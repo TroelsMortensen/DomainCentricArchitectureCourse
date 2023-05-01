@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbiquitousLanguageExamples"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueObjectExamples", "ValueObjectExamples\ValueObjectExamples.csproj", "{0F31B044-BB31-418C-AEBB-321F3256A809}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationResult", "OperationResult\OperationResult.csproj", "{C487250D-4965-4FFD-812F-768FF6B4DE88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{0F31B044-BB31-418C-AEBB-321F3256A809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F31B044-BB31-418C-AEBB-321F3256A809}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F31B044-BB31-418C-AEBB-321F3256A809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

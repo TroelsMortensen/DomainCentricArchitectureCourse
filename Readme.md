@@ -64,6 +64,9 @@ Implementing Operation Result pattern.
 ### Topics
 Introduction to Operation Result pattern
 
+### Preparation before class
+Again, we'll need to use generics, so make sure you know the basics.
+
 ### Assignment
 Implement the Operation Result pattern, to be used throughout the course project.
 
@@ -76,7 +79,8 @@ Use TDD and BDD to implement the domain.
 ### Topics
 * TDD
 * BDD
-* Introduction to NUnit test framework in .NET
+* Introduction to xUnit test framework in .NET
+
 
 ### Assignment
 Implement the domain model using TDD.
@@ -85,7 +89,7 @@ Implement the domain model using TDD.
 ## [Session 5 - Project work]()
 
 ### Goal
-Mainly project work.
+Mainly project work, a bit about domain services.
 
 ### Topics
 * What is a service
@@ -228,6 +232,10 @@ https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 ## Videos
 #### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
+
+#### Repository
+https://www.youtube.com/watch?v=Bz5JCbWnaHo
+
 
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture

@@ -40,10 +40,15 @@ public class Email
     }
 }
 
-internal class InvalidArgumentException : Exception
+public class InvalidArgumentException : Exception
 {
-    public InvalidArgumentException(string isNotCorrect)
+    public InvalidArgumentException(string message) : base(message)
     {
-        throw new NotImplementedException();
+    }
+}
+public class SystemFailure : Exception
+{
+    public SystemFailure(string message) : base(message)
+    {
     }
 }

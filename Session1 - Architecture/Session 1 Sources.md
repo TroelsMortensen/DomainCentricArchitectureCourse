@@ -2,8 +2,7 @@
 
 ## Domain Driven Development
 
-### Ubiquitous language
-https://www.lullabot.com/articles/naming-content-types-using-ubiquitous-language
+[Ubiquitous language](https://www.lullabot.com/articles/naming-content-types-using-ubiquitous-language)
 
 ## Architectural styles
 
