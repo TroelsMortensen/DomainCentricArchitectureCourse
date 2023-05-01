@@ -28,6 +28,8 @@ Get an introduction to the course, an overview of architectural styles, and doma
 * Markdown
 * Course project introduction
 
+### [Sources](/Session1%20-%20Architecture/Session%201%20Sources.md)
+
 ### [Assignment](Session1/Assignment%201):
 You will be given analysis artifacts of a system to be developed.
 * Develop domain model
