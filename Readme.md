@@ -242,6 +242,10 @@ https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 #### Reaper pattern (REPR)
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 
+
+#### Command Dispatcher
+https://buildplease.com/pages/fpc-10/
+
 ## Videos
 #### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
