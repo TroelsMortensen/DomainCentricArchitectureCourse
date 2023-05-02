@@ -5,7 +5,7 @@ namespace ValueObjectExamples;
 
 public class Email
 {
-    public string Value { get; private set; }
+    public string Value { get; init; }
 
     public Email(string value)
     {

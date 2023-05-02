@@ -241,6 +241,7 @@ https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
 #### Reaper pattern (REPR)
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
+https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 
 
 #### Command Dispatcher
@@ -257,3 +258,7 @@ https://www.youtube.com/watch?v=Bz5JCbWnaHo
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture
 https://github.com/RaythaHQ/raytha
+
+
+### Domain Driven Design
+[Domain Driven Design example](https://www.youtube.com/watch?v=fO2T5tRu3DE)
