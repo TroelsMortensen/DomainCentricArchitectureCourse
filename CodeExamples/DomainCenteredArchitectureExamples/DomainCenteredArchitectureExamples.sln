@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueObjectExamples", "Valu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationResult", "OperationResult\OperationResult.csproj", "{C487250D-4965-4FFD-812F-768FF6B4DE88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mocking", "Mocking\Mocking.csproj", "{527500B7-C707-49A9-8756-5D00BA91B387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C487250D-4965-4FFD-812F-768FF6B4DE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527500B7-C707-49A9-8756-5D00BA91B387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527500B7-C707-49A9-8756-5D00BA91B387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527500B7-C707-49A9-8756-5D00BA91B387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527500B7-C707-49A9-8756-5D00BA91B387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

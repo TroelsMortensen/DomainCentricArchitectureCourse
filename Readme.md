@@ -19,7 +19,7 @@ The course theories will be applied to create a complete Web Service. Each week 
 ## [Session 1 - Architectures](Session1)
 
 ### Goal
-Get an introduction to the course, an overview of architectural styles, and domain driven development.
+Get an introduction to the course, and an overview of architectural styles.
 
 ### Topics
 * Course introduction
@@ -50,7 +50,7 @@ Designing a richer domain model using elements of DDD.
 
 ### Preparation before class
 * [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
-* [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class
+* [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challange-part of assignment.
 
 ### Assignment:
 Develop "exploded domain model".\
@@ -229,13 +229,13 @@ BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 
 
 
-## Articles
+## Articles and Videos
+
 
 #### Hexagonal
 https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
 
 #### Clean Architecture
-
 https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
 
@@ -247,7 +247,6 @@ https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 #### Command Dispatcher
 https://buildplease.com/pages/fpc-10/
 
-## Videos
 #### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
 
@@ -255,10 +254,23 @@ https://www.youtube.com/watch?v=SUiWfhAhgQw
 https://www.youtube.com/watch?v=Bz5JCbWnaHo
 
 
+### Domain Driven Design
+[Domain Driven Design example](https://www.youtube.com/watch?v=fO2T5tRu3DE)
+
+
+### Test Driven Development
+https://www.youtube.com/watch?v=H4Hf3pji7Fw
+http://blog.wingman-sw.com/tdd-guided-by-zombies
+https://brightsec.com/blog/unit-testing-best-practices/
+https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+
+
+### Behaviour Driven Design
+https://www.youtube.com/watch?v=VS6EEUVZGLE
+https://www.youtube.com/watch?v=JwLhR9RI3ew
+
+
+
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture
 https://github.com/RaythaHQ/raytha
-
-
-### Domain Driven Design
-[Domain Driven Design example](https://www.youtube.com/watch?v=fO2T5tRu3DE)
