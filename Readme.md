@@ -116,57 +116,7 @@ Implement use cases as application services using TDD.\
 Implement/expand on domain model behaviour if needed.\
 Mock data storage for now.
 
-## [Session 7 - Assignment work]()
-
-### Goal
-Work on assignment from previous session
-
-### Topics
-* Nothing new
-
-### Assignment
-* Nothing new
-
-## [Session 8 - Persiting data]()
-
-### Goal
-Adding persistent data storage with Entity Framework
-
-### Topics
-* Repository pattern from DDD point of view
-    * With abstract repository
-* Unit of work
-* Entity Framework Core brushup
-* Handling Value Objects
-
-### Assignment
-Implement persistent data storage with EFC and SQLite (or in-memory).
-
-## [Session 9 - Retrieving data]()
-
-### Goal
-Introduction of the Command Query Responsibility Separation (CQRS) pattern.
-
-### Topics
-* CQRS overview
-* The read model
-    * Generating the read model from existing storage with EFC
-
-### Assignment
-Implement read data use cases based on the generated read model.
-
-## [Session 10 - Assignment work]()
-
-### Goal
-Work on assignment from previous session
-
-### Topics
-* Nothing new
-
-### Assignment
-* Nothing new
-
-## [Session 11 - Activating use cases]()
+## [Session 7 - Command Dispatcher]()
 
 ### Goal
 Implement the command dispatcher pattern as a way to interact with the application layer.
@@ -183,6 +133,58 @@ Implement the command dispatcher pattern as a way to interact with the applicati
 ### Assignment
 Implement the dispatcher pattern, at least for command handlers. Could be extended to query handlers.
 
+## [Session 8 - Assignment work]()
+
+### Goal
+Work on assignment from previous session
+
+### Topics
+* Nothing new
+
+### Assignment
+* Nothing new
+
+## [Session 9 - Persiting data]()
+
+### Goal
+Adding persistent data storage with Entity Framework
+
+### Topics
+* Repository pattern from DDD point of view
+    * With abstract repository
+* Unit of work
+* Entity Framework Core brushup
+* Handling Value Objects
+
+### Assignment
+Implement persistent data storage with EFC and SQLite (or in-memory).
+
+## [Session 10 - Retrieving data]()
+
+### Goal
+Introduction of the Command Query Responsibility Separation (CQRS) pattern.
+
+### Topics
+* CQRS overview
+* The read model
+    * Generating the read model from existing storage with EFC
+
+### Assignment
+Implement read data use cases based on the generated read model.
+
+## [Session 11 - Assignment work]()
+
+### Goal
+Work on assignment from previous session
+
+### Topics
+* Nothing new
+
+### Assignment
+* Nothing new
+
+
+
 ## [Session 12 - Presentation layer]() 
 
 ### Goal
@@ -196,6 +198,7 @@ Implement a Web API (using the REPR pattern?).
 
 ### Assignment
 Implement the Web API, applying the REPR pattern.
+
 
 # Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
@@ -232,12 +235,17 @@ BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 ## Articles and Videos
 
 
-#### Hexagonal
+#### Hexagonal Architecture
 https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
 
 #### Clean Architecture
 https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
+#### Onion Architecture
+https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
+
+#### Transaction Script
+https://java-design-patterns.com/patterns/transaction-script/
 
 #### Reaper pattern (REPR)
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/

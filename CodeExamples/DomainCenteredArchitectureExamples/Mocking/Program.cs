@@ -20,16 +20,16 @@ ICurrentTime currentTime = null;
 bool IsLeapYear()
 {
     DateTime rightNow = currentTime.GetCurrentTime();
-    if (rightNow.Year % 100 == 0) // is end of century
+    if (rightNow.Year % 100 == 0) // is end of century?
     {
-        if (rightNow.Year % 400 == 0) // divisible by 400
+        if (rightNow.Year % 400 == 0) // divisible by 400?
         {
             return true;
         }
 
         return false;
     }
-    if (rightNow.Year % 4 == 0)
+    if (rightNow.Year % 4 == 0) // divisible by 4?
     {
         return true;
     }
