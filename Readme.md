@@ -212,21 +212,27 @@ The sources below are not considered course curriculum, but instead a list of in
 
 ### Un-categorized
 Patterns of Enterprices Application Architecture - by Martin Fowler
+
 An Atypical ASP.NET Core 5 Design Patterns Guide - by Carl-Hubo Marcotte
 
 ### Domain Driven Design
 
-Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu\
-Implementing Domain-Driven Design - by Vaugn Vernon\
+Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu
+
+Implementing Domain-Driven Design - by Vaugn Vernon
+
 Hands-on Domain-Driven Design with .NET Core - Alexey Zimarev
 
 ### Architecture
-Designing Hexagonal Architecture with Java - by Davi Vieria\
-Get Your Hands Dirty On Clean Architecture - by Tom Hombergs\
+Designing Hexagonal Architecture with Java - by Davi Vieria
+
+Get Your Hands Dirty On Clean Architecture - by Tom Hombergs
+
 Clean Architecture - by Robert C. Martin
 
 ### Test
 Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
+
 BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 
 
@@ -249,6 +255,7 @@ https://java-design-patterns.com/patterns/transaction-script/
 
 #### Reaper pattern (REPR)
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
+
 https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 
 
@@ -268,17 +275,24 @@ https://www.youtube.com/watch?v=Bz5JCbWnaHo
 
 ### Test Driven Development
 https://www.youtube.com/watch?v=H4Hf3pji7Fw
+
 http://blog.wingman-sw.com/tdd-guided-by-zombies
+
 https://brightsec.com/blog/unit-testing-best-practices/
+
 https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
 
 
 ### Behaviour Driven Design
 https://www.youtube.com/watch?v=VS6EEUVZGLE
+
 https://www.youtube.com/watch?v=JwLhR9RI3ew
+
+https://www.youtube.com/watch?v=zYj70EsD7uI
 
 
 
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture
+
 https://github.com/RaythaHQ/raytha

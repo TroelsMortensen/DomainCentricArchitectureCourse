@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationResult", "Operatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mocking", "Mocking\Mocking.csproj", "{527500B7-C707-49A9-8756-5D00BA91B387}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTestProject", "xUnitTestProject\xUnitTestProject.csproj", "{71712CE9-BE62-47A3-AAA0-16C69DF181F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{527500B7-C707-49A9-8756-5D00BA91B387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{527500B7-C707-49A9-8756-5D00BA91B387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{527500B7-C707-49A9-8756-5D00BA91B387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71712CE9-BE62-47A3-AAA0-16C69DF181F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71712CE9-BE62-47A3-AAA0-16C69DF181F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71712CE9-BE62-47A3-AAA0-16C69DF181F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71712CE9-BE62-47A3-AAA0-16C69DF181F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
