@@ -241,32 +241,36 @@ BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
 ## Articles and Videos
 
 
-#### Hexagonal Architecture
+### Hexagonal Architecture
 https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
 
-#### Clean Architecture
+### Clean Architecture
 https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
-#### Onion Architecture
+### Onion Architecture
 https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
-#### Transaction Script
+### Transaction Script
 https://java-design-patterns.com/patterns/transaction-script/
 
-#### Reaper pattern (REPR)
+### Reaper pattern (REPR)
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 
 https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 
 
-#### Command Dispatcher
+### Command Dispatcher
 https://buildplease.com/pages/fpc-10/
 
-#### Vertical slice 
+### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
 
-#### Repository pattern
+### Repository pattern
 https://www.youtube.com/watch?v=Bz5JCbWnaHo
+
+
+### CQRS
+https://www.youtube.com/watch?v=F3xNCfP3Xew
 
 
 ### Domain Driven Design

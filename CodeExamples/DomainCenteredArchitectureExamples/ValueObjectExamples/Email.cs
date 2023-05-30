@@ -10,10 +10,10 @@ public class Email
     public Email(string value)
     {
         Value = value;
-        validate();
+        Validate();
     }
 
-    private void validate()
+    private void Validate()
     {
         Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         Match match = regex.Match(Value);
