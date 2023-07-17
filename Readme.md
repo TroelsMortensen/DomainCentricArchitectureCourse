@@ -278,13 +278,15 @@ https://www.youtube.com/watch?v=F3xNCfP3Xew
 
 
 ### Test Driven Development
-https://www.youtube.com/watch?v=H4Hf3pji7Fw
+[What is TDD? What is Test Driven Development?](https://www.youtube.com/watch?v=H4Hf3pji7Fw)
 
-http://blog.wingman-sw.com/tdd-guided-by-zombies
+[ZOMBIES](http://blog.wingman-sw.com/tdd-guided-by-zombies)
 
-https://brightsec.com/blog/unit-testing-best-practices/
+[Unit testing best practices](https://brightsec.com/blog/unit-testing-best-practices/)
 
-https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+[MSDN - Unit testing best practices](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices)
+
+[TDD, Where Did It All Go Wrong - Ian Cooper](https://www.youtube.com/watch?v=EZ05e7EMOLM)
 
 
 ### Behaviour Driven Design
