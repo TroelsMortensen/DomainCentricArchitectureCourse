@@ -276,6 +276,8 @@ https://www.youtube.com/watch?v=F3xNCfP3Xew
 ### Domain Driven Design
 [Domain Driven Design example](https://www.youtube.com/watch?v=fO2T5tRu3DE)
 
+[Effective Aggregate Design, part 1](https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf)
+
 
 ### Test Driven Development
 [What is TDD? What is Test Driven Development?](https://www.youtube.com/watch?v=H4Hf3pji7Fw)
