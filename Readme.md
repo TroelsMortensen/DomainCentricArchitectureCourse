@@ -188,7 +188,7 @@ Work on assignment from previous session
 ## [Session 12 - Presentation layer]() 
 
 ### Goal
-Implement a Web API (using the REPR pattern?).
+Implement a Web API. Task/Process/Operation oriented.
 
 ### Topics
 * The REPR pattern
@@ -196,11 +196,18 @@ Implement a Web API (using the REPR pattern?).
 * Bending the Web API standard, i.e. diverting from REST
 * Exam info
 
+### Sources
+* [Watch 10 minutes video](https://www.youtube.com/watch?v=DjZepWrAKzM)
+* [Task based Web API](https://www.youtube.com/watch?v=6XO6vSiioWE)
+* [Task based Web API design](https://www.linkedin.com/advice/0/what-some-best-practices-using-restful)
+* [Task based better than CRUD](https://betterprogramming.pub/is-task-based-ui-a-better-solution-than-crud-apis-768648fc5161)
+* [Task based UI](https://cqrs.wordpress.com/documents/task-based-ui/)
+
 ### Assignment
-Implement the Web API, applying the REPR pattern.
+Implement the Web API.
 
 
-# Sources
+# Course Sources
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
 
 
