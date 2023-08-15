@@ -50,6 +50,8 @@ Designing a richer domain model using elements of DDD.
 
 ### Preparation before class
 * [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
+
+### Extra optional preparation
 * [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challange-part of assignment.
 
 ### Assignment:
@@ -172,20 +174,11 @@ Introduction of the Command Query Responsibility Separation (CQRS) pattern.
 ### Assignment
 Implement read data use cases based on the generated read model.
 
-## [Session 11 - Assignment work]()
-
-### Goal
-Work on assignment from previous session
-
-### Topics
-* Nothing new
-
-### Assignment
-* Nothing new
 
 
 
-## [Session 12 - Presentation layer]() 
+
+## [Session 11 - Presentation layer]() 
 
 ### Goal
 Implement a Web API. Task/Process/Operation oriented.
@@ -202,9 +195,22 @@ Implement a Web API. Task/Process/Operation oriented.
 * [Task based Web API design](https://www.linkedin.com/advice/0/what-some-best-practices-using-restful)
 * [Task based better than CRUD](https://betterprogramming.pub/is-task-based-ui-a-better-solution-than-crud-apis-768648fc5161)
 * [Task based UI](https://cqrs.wordpress.com/documents/task-based-ui/)
+* [Focus on behaviour rather than CRUD entities](https://www.youtube.com/watch?v=v5Fss4fCl8c)
 
 ### Assignment
 Implement the Web API.
+
+
+## [Session 12 - Assignment work / Exam]()
+
+### Goal
+Work on assignment from previous session
+
+### Topics
+* Some exam info
+
+### Assignment
+* Nothing new
 
 
 # Course Sources
