@@ -260,6 +260,8 @@ https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onio
 ### Clean Architecture
 https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
+[A decent code example of Clean Architecture](https://github.com/aspnetrun/run-aspnetcore-realworld/blob/master/src/AspnetRun.Core/Entities/Product.cs)
+
 ### Onion Architecture
 https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
@@ -311,7 +313,8 @@ https://www.youtube.com/watch?v=JwLhR9RI3ew
 
 https://www.youtube.com/watch?v=zYj70EsD7uI
 
-
+### Task-Based Web API Design
+...
 
 ### Sample projects
 https://github.com/jasontaylordev/CleanArchitecture
