@@ -8,6 +8,12 @@ public class Result<T>
     
     public Result(T value) => Value = value;
     public Result(string error) => ErrorMessage = error;
+
+    public Result(List<string> errors)
+    {
+
+    }
+
     public bool IsSuccess => string.IsNullOrEmpty(ErrorMessage);
     
 

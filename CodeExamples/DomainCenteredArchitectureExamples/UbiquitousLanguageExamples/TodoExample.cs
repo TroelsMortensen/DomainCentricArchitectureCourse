@@ -10,30 +10,30 @@ public class Todo
 
 public class DddTodo
 {
-    private int id;
-    private string description;
-    private bool isCompleted;
-    private string? assignee;
-    private List<SubTask> subTasks = new List<SubTask>();
- 
+    public int Id { get; internal set; }
+    private string Description { get; set; }
+    private bool IsCompleted { get; set; }
+    private string? Assignee { get; set; }
+    private List<SubTask> SubTasks { get; set; } = new List<SubTask>();
+
     public void Complete()
     {
-        if (subTasks.Any(task => !task.IsCompleted))
+        if (SubTasks.Any(task => !task.IsCompleted))
         {
             throw new Exception("Cannot complete Todo item before all sub-tasks are completed");
         }
 
-        isCompleted = true;
+        IsCompleted = true;
     }
 
     public void AssignTo(string userName)
     {
-        if (!string.IsNullOrEmpty(assignee))
+        if (!string.IsNullOrEmpty(Assignee))
         {
             throw new Exception("Todo already assigned");
         }
 
-        assignee = userName;
+        Assignee = userName;
     }
 
     public void UpdateDescription(string desc)
@@ -47,7 +47,8 @@ public class DddTodo
         {
             throw new Exception("Description must be less than 150 characters");
         }
-        description = desc;
+
+        Description = desc;
     }
 }
 
@@ -61,7 +62,7 @@ public class SubTask
 public class Usage
 {
     private ITodoRepository todoRepository;
-    
+
     public void AssignTodoToUser(int todoId, string username)
     {
         Todo todo = todoRepository.GetById(todoId);
@@ -69,6 +70,7 @@ public class Usage
         {
             throw new Exception("Todo already assigned");
         }
+
         todo.Assignee = username;
 
         todoRepository.Save(todo);
@@ -86,7 +88,7 @@ public class Usage
     {
         Todo todo = todoRepository.GetById(todoId);
         todo.IsCompleted = true;
-        
+
         DddTodo todo2 = todoRepository.Find(todoId);
         todo2.Complete();
     }
