@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\DCAExamples.Core.Domain\DCAExamples.Core.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common" />
+      <Folder Include="UseCases\Projects\AddProjectTask" />
+      <Folder Include="UseCases\Projects\Create" />
+      <Folder Include="UseCases\Projects\UpdateDeadline" />
+      <Folder Include="UseCases\Teams\AddMember" />
+      <Folder Include="UseCases\Teams\Dispand" />
+    </ItemGroup>
+
+</Project>

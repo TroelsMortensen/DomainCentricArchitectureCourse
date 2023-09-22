@@ -4,4 +4,3 @@ using ValueObjectExamples;
 
 Console.WriteLine("Hello, World!");
 
-Email email = new Email(""){};
