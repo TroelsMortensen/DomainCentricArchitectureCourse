@@ -12,8 +12,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\Contracts\ProjectTasks" />
-      <Folder Include="Controllers\Contracts\Teams" />
+      <ProjectReference Include="..\..\Core\DCAExamples.Core.Application\DCAExamples.Core.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Endpoints\Teams" />
     </ItemGroup>
 
 </Project>

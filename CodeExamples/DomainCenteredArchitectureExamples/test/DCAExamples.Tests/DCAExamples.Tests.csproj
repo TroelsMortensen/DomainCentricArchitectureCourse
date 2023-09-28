@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Core\DCAExamples.Core.Application\DCAExamples.Core.Application.csproj" />
+      <ProjectReference Include="..\..\src\Core\DCAExamples.Core.Domain\DCAExamples.Core.Domain.csproj" />
       <ProjectReference Include="..\..\src\Core\Domain\DCAExamples.Core.Domain\DCAExamples.Core.Domain.csproj" />
     </ItemGroup>
 

@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DCAExamples.Core.Domain\DCAExamples.Core.Domain.csproj" />
       <ProjectReference Include="..\Domain\DCAExamples.Core.Domain\DCAExamples.Core.Domain.csproj" />
     </ItemGroup>
 

@@ -1,16 +1,16 @@
 ﻿namespace DCAExamples.Core.Domain.Common.Bases;
 
-public abstract class Entity
+public abstract class Entity<TId>
 {
-    public Guid Id { get;  }
+    public TId Id { get; }
 
-    protected Entity(Guid id)
+    protected Entity(TId id)
     {
         Id = id;
     }
 
-    protected Entity() { }
-    
+    protected Entity() {}
+
     public override bool Equals(object? obj)
     {
         if (obj is null || obj.GetType() != GetType())
@@ -18,7 +18,8 @@ public abstract class Entity
             return false;
         }
 
-        return ((Entity)obj).Id == Id;
+        Entity<TId> entity = (Entity<TId>)obj;
+        return entity.Id.Equals(Id);
     }
 
     public override int GetHashCode()
