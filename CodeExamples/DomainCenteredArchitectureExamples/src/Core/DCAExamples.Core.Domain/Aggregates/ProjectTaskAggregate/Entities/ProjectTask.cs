@@ -1,10 +1,11 @@
 ﻿using DCAExamples.Core.Domain.Aggregates.ProjectTaskAggregate.Values;
+using DCAExamples.Core.Domain.Common.Bases;
 using DCAExamples.Core.Domain.Common.Exceptions;
 using DCAExamples.Core.Domain.Common.OperationResult;
 
 namespace DCAExamples.Core.Domain.Aggregates.ProjectTaskAggregate.Entities;
 
-public class ProjectTask
+public class ProjectTask : AggregateRoot
 {
     private TaskId id;
     private TaskDescription description;

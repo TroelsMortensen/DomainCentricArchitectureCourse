@@ -1,6 +1,7 @@
-﻿using DCAExamples.Core.Domain.Common.OperationResult;
+﻿using DCAExamples.Core.Domain.Common.Bases;
+using DCAExamples.Core.Domain.Common.OperationResult;
 
-namespace DCAExamples.Core.Domain.Common.Values;
+namespace Examples;
 
 public class User : Entity
 {
@@ -34,12 +35,3 @@ public interface IProfanityChecker
     bool ContainsProfanity(string text);
 }
 
-public class Entity
-{
-    private User user;
-
-    public void method()
-    {
-        User.Create(new(""), null);
-    }
-}

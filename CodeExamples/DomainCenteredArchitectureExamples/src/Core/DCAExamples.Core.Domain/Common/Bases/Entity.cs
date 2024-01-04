@@ -1,10 +1,10 @@
 ﻿namespace DCAExamples.Core.Domain.Common.Bases;
 
-public abstract class Entity<TId>
+public abstract class Entity
 {
-    public TId Id { get; }
+    public Guid Id { get; }
 
-    protected Entity(TId id)
+    protected Entity(Guid id)
     {
         Id = id;
     }
@@ -18,7 +18,7 @@ public abstract class Entity<TId>
             return false;
         }
 
-        Entity<TId> entity = (Entity<TId>)obj;
+        Entity entity = (Entity)obj;
         return entity.Id.Equals(Id);
     }
 

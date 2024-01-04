@@ -2,9 +2,9 @@
 
 namespace DCAExamples.Core.Domain.Aggregates.ProjectTaskAggregate.Entities;
 
-public class SubTask : Entity<SubTaskId>
+public class SubTask : Entity
 {
-    public SubTask(SubTaskId id) : base(id)
+    public SubTask(Guid id) : base(id)
     {
         
     }

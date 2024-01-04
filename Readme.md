@@ -236,6 +236,8 @@ Implementing Domain-Driven Design - by Vaugn Vernon
 
 Hands-on Domain-Driven Design with .NET Core - Alexey Zimarev
 
+Learning Domain-Driven Design - by Vlad Khononov
+
 ### Architecture
 Designing Hexagonal Architecture with Java - by Davi Vieria
 
@@ -246,9 +248,19 @@ Clean Architecture - by Robert C. Martin
 ### Test
 Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
 
-BDD in Action, Second Edition - by, John Ferguson Smart, Jan Molak
+BDD in Action, Second Edition - by John Ferguson Smart, Jan Molak
 
+The art of unit testing, second edition - by Roy Osherove
 
+Unit testing. Principles, practices, and patterns - by Vladimir Khorikov
+
+### Entity Framework Core
+Entity Framework Core IN ACTION, 2nd edition - by Jon P Smith
+
+### Web API
+Building Web APIs with ASP.NET Core - by Valerio de Sanctis
+
+API Design Patterns - By JJ Geewax
 
 
 ## Articles and Videos
@@ -262,6 +274,8 @@ https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 
 [A decent code example of Clean Architecture](https://github.com/aspnetrun/run-aspnetcore-realworld/blob/master/src/AspnetRun.Core/Entities/Product.cs)
 
+[.NET Conf talk on Clean Architecture](https://www.youtube.com/watch?v=yF9SwL0p0Y0)
+
 ### Onion Architecture
 https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
@@ -273,6 +287,7 @@ https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 
 https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 
+https://deviq.com/design-patterns/repr-design-pattern
 
 ### Command Dispatcher
 https://buildplease.com/pages/fpc-10/
@@ -283,6 +298,8 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my
 
 ### Vertical slice 
 https://www.youtube.com/watch?v=SUiWfhAhgQw
+
+https://garywoodfine.com/implementing-vertical-slice-architecture/
 
 ### Repository pattern
 https://www.youtube.com/watch?v=Bz5JCbWnaHo
@@ -300,6 +317,11 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my
 
 [Bunch of free resources](https://github.com/ddd-crew)
 
+[Domain-Driven Design Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/fundamentals-domain-driven-design/table-of-contents)
+
+
+[Getting Started: Domain-Driven Design, Dometrain course](https://app.dometrain.com/courses/enrolled/2167078)
+
 ### Test Driven Development
 [What is TDD? What is Test Driven Development?](https://www.youtube.com/watch?v=H4Hf3pji7Fw)
 
@@ -311,6 +333,10 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my
 
 [TDD, Where Did It All Go Wrong - Ian Cooper](https://www.youtube.com/watch?v=EZ05e7EMOLM)
 
+### Testing
+[Writing Highly Maintainable Unit Tests, Pluralsight course](https://app.pluralsight.com/library/courses/writing-highly-maintainable-unit-tests/table-of-contents)
+
+[State vs interaction testing](https://thinkster.io/tutorials/blogs/interaction-vs-state-based-testing)
 
 ### Behaviour Driven Design
 https://www.youtube.com/watch?v=VS6EEUVZGLE
@@ -322,7 +348,18 @@ https://www.youtube.com/watch?v=zYj70EsD7uI
 ### Task-Based Web API Design
 ...
 
-### Sample projects
+### Entity Framework Core
+[EF Core 6 and Domain-Driven Design, Pluralsight course](https://app.pluralsight.com/library/courses/ef-core-6-domain-driven-design/table-of-contents)
+
+[EF Core 6 Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/ef-core-6-fundamentals/table-of-contents)
+
+[Documentation for LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
+
+[Good site for introduction to EFC](https://www.learnentityframeworkcore.com/)
+
+[Visualize the migration with SQL script](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
+
+## Sample projects (not mine, but for inspiration to myself)
 https://github.com/jasontaylordev/CleanArchitecture
 
 https://github.com/RaythaHQ/raytha

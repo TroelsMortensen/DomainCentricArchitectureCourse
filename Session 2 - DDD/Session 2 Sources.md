@@ -1,7 +1,9 @@
-# Session 2 Resources
+# Session 2 - Domain-Driven Design
 
-## Domain Driven Development
+## Resources
 
-[Ubiquitous language](https://www.lullabot.com/articles/naming-content-types-using-ubiquitous-language)
+[Ubiquitous language article](https://www.lullabot.com/articles/naming-content-types-using-ubiquitous-language)
+[Ubiquitous language video](https://youtu.be/_zWMjMUHinc?si=MXmy1VnDivOGWoQO)
 
 [Quick overview of DDD bounded context and aggregates](https://www.youtube.com/watch?v=vRVHdCbrHGA)
+

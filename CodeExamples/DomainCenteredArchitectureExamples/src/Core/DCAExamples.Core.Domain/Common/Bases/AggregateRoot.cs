@@ -2,9 +2,9 @@
 
 namespace DCAExamples.Core.Domain.Common.Bases;
 
-public abstract class AggregateRoot<TId> : Entity<TId>
+public abstract class AggregateRoot : Entity
 {
-    protected AggregateRoot(TId id) : base(id)
+    protected AggregateRoot(Guid id) : base(id)
     {
     }
     

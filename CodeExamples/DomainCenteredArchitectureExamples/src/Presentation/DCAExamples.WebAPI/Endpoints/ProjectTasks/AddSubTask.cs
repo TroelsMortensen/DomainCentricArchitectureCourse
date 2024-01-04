@@ -6,7 +6,7 @@ namespace DCAExamples.WebAPI.Endpoints.ProjectTasks;
 [ApiController]
 public class AddSubTask : ControllerBase
 {
-    [HttpPost("[autoroute]")]
+    [HttpPost("/tasks/AddSubTask")]
     public async Task<ActionResult> HandleAsync(
         AddSubTaskRequest request,
         [FromServices] ICommandDispatcher dispatcher)
@@ -14,6 +14,15 @@ public class AddSubTask : ControllerBase
         // convert request to command
         // verify valid command
         // dispatch
+        return Ok();
+    }
+
+    [HttpPost("/tasks/{id}/AddSubTask")]
+    public async Task<ActionResult> HandleAsync(
+        [FromRoute] Guid id,
+        [FromBody] AddSubTaskRequest request,
+        [FromServices] ICommandDispatcher dispatcher)
+    {
         return Ok();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DCAExamples.Core.Application.Common.CommandHandler;
 using DCAExamples.Core.Domain.Common.OperationResult;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DCAExamples.Core.Application.Common.CommandDispatcher;
 
@@ -12,15 +13,13 @@ public class Dispatcher : ICommandDispatcher
         this.serviceProvider = serviceProvider;
     }
 
-    public Task<Result> DispatchAsync<TCommand>(TCommand command) 
+
+    // I can use GetRequiredService because extension method, see using above
+    public Task<Result> DispatchAsync<TCommand>(TCommand command)
     {
-        Type handlerInterfaceType = typeof(ICommandHandler<>);
+        ICommandHandler<TCommand> service = serviceProvider
+                            .GetRequiredService<ICommandHandler<TCommand>>();
 
-        Type handlerInterfaceWithCommandType = handlerInterfaceType.MakeGenericType(command.GetType());
-
-        ICommandHandler<TCommand> commandHandler =
-            (ICommandHandler<TCommand>) serviceProvider.GetService(handlerInterfaceWithCommandType)!;
-
-        return commandHandler.HandleAsync(command);      
+        return service.HandleAsync(command);
     }
 }

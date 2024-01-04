@@ -23,7 +23,7 @@ public class UpdateRemainingEstimateHandlerTest
         Result handledResult = await handler.HandleAsync(command);
         
         // assert
-        ProjectTask updatedTask = await repo.FindAsync(taskId);
+        ProjectTask updatedTask = await repo.GetAsync(taskId.Value);
         Assert.True(handledResult.IsSuccess);
         Assert.Equal(command.RemainingEstimate, updatedTask.Estimate);
     }
@@ -65,10 +65,19 @@ public class DummyUoW : IUnitOfWork
 
 public class TaskRepositoryMock : IProjectTaskRepository
 {
-    public Task<ProjectTask> FindAsync(TaskId commandTaskId)
+    public ProjectTask Aggregate { get; set; }
+    public Task<ProjectTask> GetAsync(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public ProjectTask Aggregate { get; set; }
+    public Task RemoveAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task AddAsync(ProjectTask aggregate)
+    {
+        throw new NotImplementedException();
+    }
 }

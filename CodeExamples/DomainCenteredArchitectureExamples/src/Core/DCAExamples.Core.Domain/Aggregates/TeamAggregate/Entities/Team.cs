@@ -2,5 +2,5 @@
 
 public class Team
 {
-    
+    public Guid Id { get; set; }
 }

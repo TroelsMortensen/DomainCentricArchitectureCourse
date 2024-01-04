@@ -18,7 +18,7 @@ public class UpdateRemainingTaskEstimateHandler : ICommandHandler<UpdateRemainin
 
     public async Task<Result> HandleAsync(UpdateRemainingTaskEstimateCommand command)
     {
-        ProjectTask task = await taskRepo.FindAsync(command.TaskId);
+        ProjectTask task = await taskRepo.GetAsync(command.TaskId.Value);
         Result result = task.UpdateRemainingEstimate(command.RemainingEstimate);
         if (result.HasErrors)
         {
