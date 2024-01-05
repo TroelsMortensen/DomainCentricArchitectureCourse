@@ -2,9 +2,14 @@
 
 public class MyId
 {
-    public Guid Get { get; private set; }
+    public Guid Get { get; }
 
-    public MyId()
+    public static MyId Create()
+    {
+        return new MyId();
+    }
+    
+    private MyId()
     {
         Get = Guid.NewGuid();
     }
@@ -17,5 +22,23 @@ public class MyId
     private MyId(Guid id)
     {
         Get = id;
+    }
+
+    protected bool Equals(MyId other)
+    {
+        return Get.Equals(other.Get);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((MyId)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Get.GetHashCode();
     }
 }

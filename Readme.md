@@ -359,6 +359,13 @@ https://www.youtube.com/watch?v=zYj70EsD7uI
 
 [Visualize the migration with SQL script](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
 
+#### EFC Mapping
+https://david-masters.medium.com/entity-framework-core-7-strongly-typed-ids-together-with-auto-increment-columns-fd9715e331f3
+
+https://thomaslevesque.com/2020/12/23/csharp-9-records-as-strongly-typed-ids-part-4-entity-framework-core-integration/
+
+https://andrewlock.net/strongly-typed-ids-in-ef-core-using-strongly-typed-entity-ids-to-avoid-primitive-obsession-part-4/
+
 ## Sample projects (not mine, but for inspiration to myself)
 https://github.com/jasontaylordev/CleanArchitecture
 
