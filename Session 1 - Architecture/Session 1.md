@@ -19,6 +19,7 @@
 * [Link to markdown cheat sheet slides]()
 
 ## Project cases:
+(Currently only one)
 
 #### VIA Event Association
 * [Description](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EdMfAsHIhkFNro1NuY50bq8B6bbz2HHZxC9ME5vMde6A6Q?e=PQ7AeU)
@@ -53,4 +54,7 @@ https://www.c-sharpcorner.com/article/what-is-clean-architecture/
 #### Vertical Slice
 [Vertical slice article](https://blog.ndepend.com/vertical-slice-architecture-in-asp-net-core/)
 
-[Other Vertical Slice Article](https://blog.ndepend.com/vertical-slice-architecture-in-asp-net-core/)
+https://www.youtube.com/watch?v=SUiWfhAhgQw
+
+https://garywoodfine.com/implementing-vertical-slice-architecture/
+

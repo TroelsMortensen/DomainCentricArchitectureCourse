@@ -44,8 +44,7 @@ The PowerPoint got large, and annoying to work with. I split it into smaller pie
 
 [Bunch of free resources](https://github.com/ddd-crew)
 
-[Domain-Driven Design Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/fundamentals-domain-driven-design/table-of-contents)
+
 
 [Example of aggregate implementation](https://www.youtube.com/watch?v=weGLBPky43U)
 
-[Getting Started: Domain-Driven Design, Dometrain course](https://app.dometrain.com/courses/enrolled/2167078)

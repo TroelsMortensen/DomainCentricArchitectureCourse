@@ -25,121 +25,54 @@ The following is a session plan. Each header links to more details for that spec
 Get an introduction to the course, and an overview of architectural styles.
 
 
-## [Session 2 - Domain-Driven Design]()
+## [Session 2 - Domain-Driven Design](Session%202%20-%20DDD/Session%202.md)
 
 Lite introduction to DDD, focus on tactical patterns.\
 How to design a complex domain model.
 
 
-## [Session 3 - Operation Result Pattern]()
+## [Session 3 - Operation Result Pattern](Session%203%20-%20Operation%20Result%20Pattern/Session%203.md)
 
 Introduction to the Operation Result pattern.
 
 
-## [Session 4 - Test/Behaviour Driven Development]()
+## [Session 4 - Test Driven Development](Session%204%20-%20TDD/Session%204.md)
 
-### Goal
-Use TDD and BDD to implement the domain.
-
-### Topics
-* TDD
-* BDD
-* Introduction to xUnit.NET test framework
+Introduction to TDD, implement the domain model with TDD.
 
 
-### Assignment
-Implement the domain model using TDD.
+## [Session 5 - Domain Services and Contracts](Session%205%20-%20Domain%20services,%20contracts/Session%205.md)
+
+Mainly project work, a bit about domain services and contracts.
 
 
-## [Session 5 - Project work]()
+## [Session 6 - Commands and Handlers pattern](Session%206%20-%20Application%20ring/Session%206.md)
 
-### Goal
-Mainly project work, a bit about domain services.
-
-### Topics
-* What is a service
-* Domain services
-
-### Assignment
-Continue work on assignment from previous session. Some things needs a domain service to be implemented.
+Implement use cases (application ring/layer) with command objects/handlers (and "placeholder" repositories).
 
 
-## [Session 6 - Commands and handlers]()
+## [Session 7 - Command Dispatcher](Session%207%20-%20Command%20Dispatcher/Session%207.md)
 
-### Goal
-Implementing use cases with command objects/handlers and repositories.
-
-### Topics
-* Command objects
-* Command handler pattern
-* Repository pattern lite
-
-### Assignment
-Implement use cases as application services using TDD.\
-Implement/expand on domain model behaviour if needed.\
-Mock data storage for now.
-
-## [Session 7 - Command Dispatcher]()
-
-### Goal
 Implement the command dispatcher pattern as a way to interact with the application layer.
 
-### Topics
-* Command Dispatcher pattern
-* Various implementation strategies
-    * Simple, overloaded methods
-    * Switch-statement based, manually managing dependincies
-    * Map based approach, registering handlers
-    * Using .NET's IoC container
-* Pipelines
 
-### Assignment
-Implement the dispatcher pattern, at least for command handlers. Could be extended to query handlers.
 
-## [Session 8 - Assignment work]()
+## [Session 8 - EFC, Repository and Unit of Work pattern](Session%208%20-%20EFC,%20Repository,%20UoW/Session%208.md)
 
-### Goal
-Work on assignment from previous session
+Implement data storage, with Entity Framework Core.
 
-### Topics
-* Nothing new
 
-### Assignment
-* Nothing new
+## [Session 9 - Assignment work]()
 
-## [Session 9 - Persiting data]()
+Just keep working on persistence.
 
-### Goal
-Adding persistent data storage with Entity Framework
+## [Session 10 - CQRS](Session%2010%20-%20CQRS/Session%2010.md)
 
-### Topics
-* Repository pattern from DDD point of view
-    * With abstract repository
-* Unit of work
-* Entity Framework Core brushup
-* Handling Value Objects
-
-### Assignment
-Implement persistent data storage with EFC and SQLite (or in-memory).
-
-## [Session 10 - Retrieving data]()
-
-### Goal
-Introduction of the Command Query Responsibility Separation (CQRS) pattern.
-
-### Topics
-* CQRS overview
-* The read model
-    * Generating the read model from existing storage with EFC
-
-### Assignment
-Implement read data use cases based on the generated read model.
+Introducing the query side of the application. Now we can get data out of the Web Service.
 
 
 
-
-
-## [Session 11 - Presentation layer]() 
+## [Session 11 - Web API, Presentation ring]() 
 
 ### Goal
 Implement a Web API. Task/Process/Operation oriented.
@@ -178,9 +111,10 @@ Work on assignment from previous session
 This course has been developed based on a considerable collection of various sources, e.g. books, articles, videos.
 
 
-Below I have attempted to collect all of it in one large list. Each session will also include a subset of sources relevant to that session.\
-The sources below are not considered course curriculum, but instead a list of information revelant to the student interested in knowing more.
+For each session I have attempted to collect all sources relevant to that session. This may include books, articles, YouTube vidoes, online courses, and more.\
+These sources are not considered course curriculum, but instead a list of information revelant to the student interested in knowing more.
 
+Below are more general resources.
 
 ## Books
 
@@ -224,91 +158,15 @@ Building Web APIs with ASP.NET Core - by Valerio de Sanctis
 API Design Patterns - By JJ Geewax
 
 
-## Articles and Videos
-... I'm cleaning this up
+## Online courses
 
+### Domain-Driven Design
+[Domain-Driven Design Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/fundamentals-domain-driven-design/table-of-contents)
 
-
-
-### Transaction Script
-https://java-design-patterns.com/patterns/transaction-script/
-
-### Reaper pattern (REPR)
-https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
-
-https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
-
-https://deviq.com/design-patterns/repr-design-pattern
-
-https://www.youtube.com/watch?v=layTLQJ5xYw
-
-
-### Command Dispatcher
-https://buildplease.com/pages/fpc-10/
-
-https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-command-side-of-my-architecture/
-
-https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my-architecture/
-
-### Vertical slice 
-https://www.youtube.com/watch?v=SUiWfhAhgQw
-
-https://garywoodfine.com/implementing-vertical-slice-architecture/
-
-### Repository pattern
-https://www.youtube.com/watch?v=Bz5JCbWnaHo
-
-
-### CQRS
-https://www.youtube.com/watch?v=F3xNCfP3Xew
-
-https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my-architecture/
-
-### Test Driven Development
-[What is TDD? What is Test Driven Development?](https://www.youtube.com/watch?v=H4Hf3pji7Fw)
-
-[ZOMBIES](http://blog.wingman-sw.com/tdd-guided-by-zombies)
-
-[Unit testing best practices](https://brightsec.com/blog/unit-testing-best-practices/)
-
-[MSDN - Unit testing best practices](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices)
-
-[TDD, Where Did It All Go Wrong - Ian Cooper](https://www.youtube.com/watch?v=EZ05e7EMOLM)
-
-### Testing
-[Writing Highly Maintainable Unit Tests, Pluralsight course](https://app.pluralsight.com/library/courses/writing-highly-maintainable-unit-tests/table-of-contents)
-
-[State vs interaction testing](https://thinkster.io/tutorials/blogs/interaction-vs-state-based-testing)
-
-### Behaviour Driven Design
-https://www.youtube.com/watch?v=VS6EEUVZGLE
-
-https://www.youtube.com/watch?v=JwLhR9RI3ew
-
-https://www.youtube.com/watch?v=zYj70EsD7uI
-
-### Task-Based Web API Design
-...
+[Getting Started: Domain-Driven Design, Dometrain course](https://app.dometrain.com/courses/enrolled/2167078)
 
 ### Entity Framework Core
-[EF Core 6 and Domain-Driven Design, Pluralsight course](https://app.pluralsight.com/library/courses/ef-core-6-domain-driven-design/table-of-contents)
-
-[EF Core 6 Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/ef-core-6-fundamentals/table-of-contents)
-
-[Documentation for LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
-
-[Good site for introduction to EFC](https://www.learnentityframeworkcore.com/)
-
-[Visualize the migration with SQL script](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
-
-[Value objects and EFC](https://medium.com/c-sharp-progarmming/value-objects-and-their-usage-with-entity-framework-a434f1414103)
-
-#### EFC Mapping
-https://david-masters.medium.com/entity-framework-core-7-strongly-typed-ids-together-with-auto-increment-columns-fd9715e331f3
-
-https://thomaslevesque.com/2020/12/23/csharp-9-records-as-strongly-typed-ids-part-4-entity-framework-core-integration/
-
-https://andrewlock.net/strongly-typed-ids-in-ef-core-using-strongly-typed-entity-ids-to-avoid-primitive-obsession-part-4/
+[EF Core 6 and Domain-Driven Design Pluralsight Course](https://app.pluralsight.com/library/courses/ef-core-6-domain-driven-design/table-of-contents)
 
 ## Sample projects (not mine, but for inspiration to myself)
 https://github.com/jasontaylordev/CleanArchitecture
