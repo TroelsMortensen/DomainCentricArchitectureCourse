@@ -11,4 +11,27 @@ public class MyStringValueObject
     {
         return new MyStringValueObject(input);
     }
+
+    private MyStringValueObject() // EFC
+    {
+        
+    }
+
+    private bool Equals(MyStringValueObject other)
+    {
+        return Value == other.Value;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((MyStringValueObject)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Value.GetHashCode();
+    }
 }

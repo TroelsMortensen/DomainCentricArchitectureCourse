@@ -6,7 +6,7 @@ public class FirstAggregate
 
     internal string? someStringValue;
 
-    // private MyStringValueObject? firstVo;
+    internal MyStringValueObject? firstVo;
 
     public FirstAggregate(Guid id)
     {
@@ -19,5 +19,5 @@ public class FirstAggregate
 
     public void SetSomeStringValue(string value) => someStringValue = value;
 
-    // public void SetFirstVo(MyStringValueObject obj) => firstVo = obj;
+    public void SetFirstVo(MyStringValueObject obj) => firstVo = obj;
 }

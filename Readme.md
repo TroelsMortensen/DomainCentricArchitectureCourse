@@ -1,44 +1,30 @@
 # Domain Centered Architecture
 
-This is an elective course available at VIA University College, Horsens, Denmark, for Software Technology Engineering students.
+This is an elective course available at VIA University College, Horsens, Denmark, for Software Technology Engineering students. Taught by me.
 
 # Course Overview
-The course focuses on various approaches to organize an application. We will throughout the course develop a Web Service, but the theories can be applied to all kinds of systems.
+The course focuses on various approaches to organizing an application. We will throughout the course develop a Web Service, but the theories can be applied to all kinds of systems.
 
-We will introduce:
+I will introduce:
 * Domain Driven Development (DDD)
 * Test/Behaviour Driven Development (TDD/BDD)
 * Various architectural styles
 * Various architectural patterns
 
-The course theories will be applied to create a complete Web Service. Each week a new topic will be introduced and then applied to the course-spanning project. We will apply a "big-bang" development approach (inside-out when considering hexagonal, onion, clean), due to the nature of the course, and the order of the topics.
+The course theories will be applied to create a complete Web Service. Each week a new topic will be introduced and then applied to the course-spanning project.\
+We will use a "big-bang" development approach (inside-out when considering hexagonal, onion, clean), due to the nature of the course, and the order of the topics.
 
 
 # Session Schedule
 
-## [Session 1 - Architectures](Session1)
+## [Session 1 - Architectures](Session%201%20-%20Architecture/Session%201.md)
 
-### Goal
 Get an introduction to the course, and an overview of architectural styles.
 
-### Topics
-* Course introduction
-* Architectural styles
-* Markdown
-* Course project introduction
-
-### [Sources](/Session1%20-%20Architecture/Session%201%20Sources.md)
-
-### [Assignment](Session1/Assignment%201):
-You will be given analysis artifacts of a system to be developed.
-* Develop domain model
-* Setup project for git
 
 
-## [Session 2 - Domain Driven Design]()
 
-### Goal
-Designing a richer domain model using elements of DDD.
+## [Session 2 - Domain-Driven Design]()
 
 ### Topics
 * Introduction to DDD
@@ -264,20 +250,10 @@ API Design Patterns - By JJ Geewax
 
 
 ## Articles and Videos
+... I'm cleaning this up
 
 
-### Hexagonal Architecture
-https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
 
-### Clean Architecture
-https://www.c-sharpcorner.com/article/what-is-clean-architecture/
-
-[A decent code example of Clean Architecture](https://github.com/aspnetrun/run-aspnetcore-realworld/blob/master/src/AspnetRun.Core/Entities/Product.cs)
-
-[.NET Conf talk on Clean Architecture](https://www.youtube.com/watch?v=yF9SwL0p0Y0)
-
-### Onion Architecture
-https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
 ### Transaction Script
 https://java-design-patterns.com/patterns/transaction-script/
@@ -288,6 +264,9 @@ https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
 https://garywoodfine.com/implementing-vertical-slice-architecture/?amp
 
 https://deviq.com/design-patterns/repr-design-pattern
+
+https://www.youtube.com/watch?v=layTLQJ5xYw
+
 
 ### Command Dispatcher
 https://buildplease.com/pages/fpc-10/
@@ -309,18 +288,6 @@ https://www.youtube.com/watch?v=Bz5JCbWnaHo
 https://www.youtube.com/watch?v=F3xNCfP3Xew
 
 https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my-architecture/
-
-### Domain Driven Design
-[Domain Driven Design example](https://www.youtube.com/watch?v=fO2T5tRu3DE)
-
-[Effective Aggregate Design, part 1](https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf)
-
-[Bunch of free resources](https://github.com/ddd-crew)
-
-[Domain-Driven Design Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/fundamentals-domain-driven-design/table-of-contents)
-
-
-[Getting Started: Domain-Driven Design, Dometrain course](https://app.dometrain.com/courses/enrolled/2167078)
 
 ### Test Driven Development
 [What is TDD? What is Test Driven Development?](https://www.youtube.com/watch?v=H4Hf3pji7Fw)
@@ -358,6 +325,8 @@ https://www.youtube.com/watch?v=zYj70EsD7uI
 [Good site for introduction to EFC](https://www.learnentityframeworkcore.com/)
 
 [Visualize the migration with SQL script](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli)
+
+[Value objects and EFC](https://medium.com/c-sharp-progarmming/value-objects-and-their-usage-with-entity-framework-a434f1414103)
 
 #### EFC Mapping
 https://david-masters.medium.com/entity-framework-core-7-strongly-typed-ids-together-with-auto-increment-columns-fd9715e331f3

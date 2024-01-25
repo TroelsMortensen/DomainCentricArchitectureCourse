@@ -22,6 +22,7 @@ public class MyDbContext : DbContext
             {
                 builder.HasKey(m => m.Id); // setting primary key
                 builder.Property<string>("someStringValue"); // mapping private field
+                builder.OwnsOne<MyStringValueObject>("firstVo").Property(vo => vo.Value); // mapping value object
             }
         );
 
