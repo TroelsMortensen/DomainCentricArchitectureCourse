@@ -6,4 +6,12 @@
 /CodeExamples/DomainCenteredArchitectureExamples/UbiquitousLanguageExamples/obj/
 /CodeExamples/DomainCenteredArchitectureExamples/UbiquitousLanguageExamples/bin/
 /CodeExamples/DomainCenteredArchitectureExamples/*/obj/
-/CodeExamples/DomainCenteredArchitectureExamples/*/bin/
+CodeExamples/DomainCenteredArchitectureExamples/*/bin/
+/CodeExamples/DomainCenteredArchitectureExamples/doc/Documentation/obj
+CodeExamples/DomainCenteredArchitectureExamples/.dockerignore
+CodeExamples/DomainCenteredArchitectureExamples/DomainCenteredArchitectureExamples.sln.DotSettings.user
+CodeExamples/DomainCenteredArchitectureExamples/doc/Documentation/obj
+CodeExamples/DomainCenteredArchitectureExamples/src/Core/DCAExamples.Core.Application/bin
+CodeExamples/DomainCenteredArchitectureExamples/src/Core/DCAExamples.Core.Application/obj
+bin/
+obj/

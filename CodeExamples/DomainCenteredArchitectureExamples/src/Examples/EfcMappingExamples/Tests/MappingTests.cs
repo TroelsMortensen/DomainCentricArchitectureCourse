@@ -8,8 +8,22 @@ namespace EfcMappingExamples.Tests;
 
 public class MappingTests
 {
+    
+    /*
+      TODO:
+        Simple Foreign key.
+        Strongly typed Foreing Key 
+        Multi value vo. 
+        Nested entities. 
+        Enums. 
+        Class enums thingy 
+        List of simple FK references.
+        List of strongly typed FK references.
+        Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
+     */
+    
     [Fact]
-    public async Task CanMapGuidPk()
+    public async Task GuidPk()
     {
         await using MyDbContext context = SetupContext();
 
@@ -23,7 +37,7 @@ public class MappingTests
     }
 
     [Fact]
-    public async Task CanMapValueObjectAsId()
+    public async Task StronglyTypedId()
     {
         await using MyDbContext context = SetupContext();
         MyId id = MyId.Create();
@@ -35,15 +49,10 @@ public class MappingTests
         Assert.Equal(id.Get, retrieved.Id.Get);
     }
 
-    private async Task Save<T>(T obj, MyDbContext context) where T : class
-    {
-        await context.Set<T>().AddAsync(obj);
-        await context.SaveChangesAsync();
-        context.ChangeTracker.Clear(); // making sure nothing is tracked.
-    }
+
     
     [Fact]
-    public async Task CanMapPrivateField()
+    public async Task PrivateSimpleField()
     {
         await using MyDbContext context = SetupContext();
         Guid id = Guid.NewGuid();
@@ -59,7 +68,22 @@ public class MappingTests
     }
     
     [Fact]
-    public async Task CanMapPrivateValueObject()
+    public async Task PrivateValueObjectField()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid id = Guid.NewGuid();
+        FirstAggregate fa = new(id);
+        MyStringValueObject vo = MyStringValueObject.Create("Hello world");
+        fa.SetFirstVo(vo);
+
+        await Save(fa, context);
+        
+        FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
+        Assert.Equal(vo, retrieved.firstVo);
+    }
+
+    [Fact]
+    public async Task PrivateValueObjectFieldOfTwoProperties()
     {
         
     }
@@ -70,5 +94,12 @@ public class MappingTests
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
         return context;
+    }
+    
+    private async Task Save<T>(T obj, MyDbContext context) where T : class
+    {
+        await context.Set<T>().AddAsync(obj);
+        await context.SaveChangesAsync();
+        context.ChangeTracker.Clear(); // making sure nothing is tracked.
     }
 }
