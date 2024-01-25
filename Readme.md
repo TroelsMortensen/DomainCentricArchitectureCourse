@@ -74,37 +74,12 @@ Introducing the query side of the application. Now we can get data out of the We
 
 ## [Session 11 - Web API, Presentation ring]() 
 
-### Goal
-Implement a Web API. Task/Process/Operation oriented.
-
-### Topics
-* The REPR pattern
-* Web API refresh
-* Bending the Web API standard, i.e. diverting from REST
-* Exam info
-
-### Sources
-* [Watch 10 minutes video](https://www.youtube.com/watch?v=DjZepWrAKzM)
-* [Task based Web API](https://www.youtube.com/watch?v=6XO6vSiioWE)
-* [Task based Web API design](https://www.linkedin.com/advice/0/what-some-best-practices-using-restful)
-* [Task based better than CRUD](https://betterprogramming.pub/is-task-based-ui-a-better-solution-than-crud-apis-768648fc5161)
-* [Task based UI](https://cqrs.wordpress.com/documents/task-based-ui/)
-* [Focus on behaviour rather than CRUD entities](https://www.youtube.com/watch?v=v5Fss4fCl8c)
-
-### Assignment
-Implement the Web API.
+We apply the REPR pattern, implemented with Fluent Interface, and use Object Converter pattern for some convenience.
 
 
 ## [Session 12 - Assignment work / Exam]()
 
-### Goal
-Work on assignment from previous session
-
-### Topics
-* Some exam info
-
-### Assignment
-* Nothing new
+Exam info. Work on assignment from previous session
 
 
 # Course Sources
