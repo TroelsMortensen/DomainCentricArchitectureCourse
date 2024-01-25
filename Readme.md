@@ -20,49 +20,49 @@ Install the latest .NET version (.NET8 at the time of writing), along with your 
 # Session Schedule
 The following is a session plan. Each header links to more details for that specific session.
 
-## [Session 1 - Architectures](Session%201%20-%20Architecture/Session%201.md)
+## [Session 1 - Architectures](Session%2001%20-%20Architecture/Session%201.md)
 
 Get an introduction to the course, and an overview of architectural styles.
 
 
-## [Session 2 - Domain-Driven Design](Session%202%20-%20DDD/Session%202.md)
+## [Session 2 - Domain-Driven Design](Session%2002%20-%20DDD/Session%202.md)
 
 Lite introduction to DDD, focus on tactical patterns.\
 How to design a complex domain model.
 
 
-## [Session 3 - Operation Result Pattern](Session%203%20-%20Operation%20Result%20Pattern/Session%203.md)
+## [Session 3 - Operation Result Pattern](Session%2003%20-%20Operation%20Result%20Pattern/Session%203.md)
 
 Introduction to the Operation Result pattern.
 
 
-## [Session 4 - Test Driven Development](Session%204%20-%20TDD/Session%204.md)
+## [Session 4 - Test Driven Development](Session%2004%20-%20TDD/Session%204.md)
 
 Introduction to TDD, implement the domain model with TDD.
 
 
-## [Session 5 - Domain Services and Contracts](Session%205%20-%20Domain%20services,%20contracts/Session%205.md)
+## [Session 5 - Domain Services and Contracts](Session%2005%20-%20Domain%20services,%20contracts/Session%205.md)
 
 Mainly project work, a bit about domain services and contracts.
 
 
-## [Session 6 - Commands and Handlers pattern](Session%206%20-%20Application%20ring/Session%206.md)
+## [Session 6 - Commands and Handlers pattern](Session%2006%20-%20Application%20ring/Session%206.md)
 
 Implement use cases (application ring/layer) with command objects/handlers (and "placeholder" repositories).
 
 
-## [Session 7 - Command Dispatcher](Session%207%20-%20Command%20Dispatcher/Session%207.md)
+## [Session 7 - Command Dispatcher](Session%2007%20-%20Command%20Dispatcher/Session%207.md)
 
 Implement the command dispatcher pattern as a way to interact with the application layer.
 
 
 
-## [Session 8 - EFC, Repository and Unit of Work pattern](Session%208%20-%20EFC,%20Repository,%20UoW/Session%208.md)
+## [Session 8 - EFC, Repository and Unit of Work pattern](Session%2008%20-%20EFC,%20Repository,%20UoW/Session%208.md)
 
 Implement data storage, with Entity Framework Core.
 
 
-## [Session 9 - Assignment work]()
+## [Session 9 - Assignment work](Session%2009%20-%20Assignment%20work/Session%209.md)
 
 Just keep working on persistence.
 
