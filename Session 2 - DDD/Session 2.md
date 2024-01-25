@@ -8,8 +8,12 @@
 * Aggregates
 * Rich Domain Model
 
-## Preparation
-Not really anything today.
+## Preparation before class
+We're going to do implementation with generics, make sure you have a decent understanding of this topic:
+* [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
+
+Optional: You may choose to use reflection in part of your implementation, so here's an overview:
+* [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challenge-part of future assignment.
 
 ## Material
 The PowerPoint got large, and annoying to work with. I split it into smaller pieces:

@@ -14,6 +14,8 @@ I will introduce:
 The course theories will be applied to create a complete Web Service. Each week a new topic will be introduced and then applied to the course-spanning project.\
 We will use a "big-bang" development approach (inside-out when considering hexagonal, onion, clean), due to the nature of the course, and the order of the topics.
 
+# Before we start
+Install the latest .NET version (.NET8 at the time of writing), along with your preferred IDE.
 
 # Session Schedule
 
@@ -22,43 +24,15 @@ We will use a "big-bang" development approach (inside-out when considering hexag
 Get an introduction to the course, and an overview of architectural styles.
 
 
-
-
 ## [Session 2 - Domain-Driven Design]()
 
-### Topics
-* Introduction to DDD
-* Ubiquitous language
-* Value Objects
-* Entities
-* Aggregates
-* Rich Domain Model
-
-### Preparation before class
-* [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
-
-### Extra optional preparation
-* [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challange-part of assignment.
-
-### Assignment:
-Develop "exploded domain model".\
-Define rules and test cases for value objects.
+Lite introduction to DDD, focus on tactical patterns.\
+How to design a complex domain model.
 
 
 ## [Session 3 - Operation Result Pattern]()
 
-### Goal
-Implementing Operation Result pattern.
-
-### Topics
-* Introduction to Operation Result pattern
-* Factory method pattern
-
-### Preparation before class
-Again, we'll need to use generics, so make sure you know the basics, see previous session.
-
-### Assignment
-Implement the Operation Result pattern, to be used throughout the course project.
+Introduction to the Operation Result pattern.
 
 
 ## [Session 4 - Test/Behaviour Driven Development]()
