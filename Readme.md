@@ -18,6 +18,7 @@ We will use a "big-bang" development approach (inside-out when considering hexag
 Install the latest .NET version (.NET8 at the time of writing), along with your preferred IDE.
 
 # Session Schedule
+The following is a session plan. Each header links to more details for that specific session.
 
 ## [Session 1 - Architectures](Session%201%20-%20Architecture/Session%201.md)
 
