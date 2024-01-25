@@ -72,12 +72,12 @@ Introducing the query side of the application. Now we can get data out of the We
 
 
 
-## [Session 11 - Web API, Presentation ring]() 
+## [Session 11 - Web API, Presentation ring](Session%2011%20-%20Web%20API/Session%2011.md) 
 
 We apply the REPR pattern, implemented with Fluent Interface, and use Object Converter pattern for some convenience.
 
 
-## [Session 12 - Assignment work / Exam]()
+## [Session 12 - Assignment work / Exam](Session%2012%20-%20Exam/Session%2012.md)
 
 Exam info. Work on assignment from previous session
 
