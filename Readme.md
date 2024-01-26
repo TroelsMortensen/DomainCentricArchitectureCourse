@@ -2,6 +2,8 @@
 
 This is an elective course available at VIA University College, Horsens, Denmark, for Software Technology Engineering students. Taught by me.
 
+I'm still fleshing out the last details of stuff.
+
 # Course Overview
 The course focuses on various approaches to organizing an application. We will throughout the course develop a Web Service, but the theories can be applied to all kinds of systems.
 
