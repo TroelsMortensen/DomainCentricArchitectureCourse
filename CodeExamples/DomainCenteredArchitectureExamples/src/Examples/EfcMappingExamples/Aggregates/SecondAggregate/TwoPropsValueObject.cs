@@ -2,8 +2,8 @@
 
 public class TwoPropsValueObject
 {
-    public int Amount { get; }
-    public string Type { get; }
+    public int Amount { get;  }
+    public string Type { get;  }
 
     private TwoPropsValueObject(string type, int amount)
         => (Amount, Type) = (amount, type);

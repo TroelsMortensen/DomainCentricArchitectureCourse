@@ -2,18 +2,18 @@
 
 public class OtherTwoPropsValueObject
 {
-    public int Count { get; }
-    public string Unit { get; }
+    public int Count { get;  } // I need private setters because of EFC
+    public string Unit { get;  }
 
-    private OtherTwoPropsValueObject(string type, int amount)
-        => (Count, Unit) = (amount, type);
+    private OtherTwoPropsValueObject(string unit, int count)
+        => (Count, Unit) = (count, unit);
 
     private OtherTwoPropsValueObject() // EFC
     {
     }
 
-    public static OtherTwoPropsValueObject Create(string type, int amount)
-        => new OtherTwoPropsValueObject(type, amount);
+    public static OtherTwoPropsValueObject Create(string unit, int count)
+        => new OtherTwoPropsValueObject(unit, count);
 
     private bool Equals(OtherTwoPropsValueObject other)
     {

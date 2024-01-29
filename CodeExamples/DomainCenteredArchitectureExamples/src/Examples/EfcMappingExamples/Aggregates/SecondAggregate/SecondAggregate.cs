@@ -8,13 +8,16 @@ public class SecondAggregate
 
     internal TwoPropsValueObject twoValuedValueObject;
 
-    internal OtherTwoPropsValueObject otherTwoValuedValueObject;
+    internal OtherTwoPropsValueObject? otherTwoValuedValueObject;
+
     public SecondAggregate(MyId id)
     {
         Id = id;
     }
 
-    public void SetTwoValued(TwoPropsValueObject value) => twoValuedValueObject = value;
+    public void SetTwoValued(TwoPropsValueObject value)
+        => twoValuedValueObject = value;
 
-
+    public void SetOtherTwoValued(OtherTwoPropsValueObject value)
+        => otherTwoValuedValueObject = value;
 }
