@@ -44,7 +44,7 @@ The PowerPoint got large, and annoying to work with. I split it into smaller pie
 
 [Bunch of free resources](https://github.com/ddd-crew)
 
-
+[Nullability of Value Objects](https://enterprisecraftsmanship.com/posts/nulls-in-value-objects/)
 
 [Example of aggregate implementation](https://www.youtube.com/watch?v=weGLBPky43U)
 

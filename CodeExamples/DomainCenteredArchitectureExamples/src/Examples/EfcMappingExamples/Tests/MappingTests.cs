@@ -14,7 +14,8 @@ public class MappingTests
         Simple Foreign key.
         Strongly typed Foreing Key 
         Multi value vo. 
-        Nested entities. 
+        Nested entities.
+        List of multi valued VO 
         Enums. 
         Class enums thingy 
         List of simple FK references.
@@ -42,6 +43,7 @@ public class MappingTests
         await using MyDbContext context = SetupContext();
         MyId id = MyId.Create();
         SecondAggregate sa = new(id);
+        sa.SetTwoValued(TwoPropsValueObject.Create("dummy", 0));
         await SaveAndClear(sa, context);
         
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
@@ -85,7 +87,24 @@ public class MappingTests
     [Fact]
     public async Task PrivateValueObjectFieldOfTwoProperties()
     {
+        await using MyDbContext context = SetupContext();
+        MyId id = MyId.Create();
+        SecondAggregate sa = new(id);
+        TwoPropsValueObject twoPropsValueObject = TwoPropsValueObject.Create("Screws", 42);
+        sa.SetTwoValued(twoPropsValueObject);
         
+        await SaveAndClear(sa, context);
+        
+        SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
+        Assert.Equal(twoPropsValueObject.Amount, retrieved.twoValuedValueObject.Amount);
+        Assert.Equal(twoPropsValueObject.Type, retrieved.twoValuedValueObject.Type);
+    }
+
+    // This is an alternative to the above approach, which doesn't allow nullability
+    [Fact]
+    public async Task PrivateOwnedEntityFieldOfTwoProperties()
+    {
+        Assert.Fail("Implement this!");
     }
     
     private static MyDbContext SetupContext()

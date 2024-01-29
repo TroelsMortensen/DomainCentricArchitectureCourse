@@ -12,6 +12,9 @@ public class TwoPropsValueObject
     {
     }
 
+    public static TwoPropsValueObject Create(string type, int amount)
+        => new TwoPropsValueObject(type, amount);
+
     private bool Equals(TwoPropsValueObject other)
     {
         return Amount == other.Amount && Type == other.Type;
