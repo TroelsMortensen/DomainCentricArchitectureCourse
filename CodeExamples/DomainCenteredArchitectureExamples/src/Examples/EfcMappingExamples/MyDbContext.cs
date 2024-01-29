@@ -67,6 +67,7 @@ public class MyDbContext : DbContext
                 );
             }
         );
+        
 
         // -- Mapping a two valued Value Object as Owned Entity --
         // Alternative way to map a multi valued Value Object. You need private setters for your properties, though.
@@ -90,6 +91,6 @@ public class MyDbContext : DbContext
         );
         
         // closing comment: If you must allow null, use Owned Entity.
-        // If the same instance should be allowed in multiple fields of an entity, use Complex Type.
+        // If the same instance should be allowed in multiple fields of an entity (maybe even different entities), use Complex Type.
     }
 }
