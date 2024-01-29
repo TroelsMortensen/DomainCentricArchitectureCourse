@@ -2,8 +2,11 @@
 
 public class MyStringValueObject
 {
-    private MyStringValueObject(string input)
-        => Value = input;
+    // name argument the same as property, case-insensitive.
+    // Then EFC can figure out to use this constructor.
+    // Alternatively, you need a private no-arguments constructor
+    private MyStringValueObject(string value)
+        => Value = value;
 
     public string Value { get; }
 
@@ -12,10 +15,10 @@ public class MyStringValueObject
         return new MyStringValueObject(input);
     }
 
-    private MyStringValueObject() // EFC
-    {
-        
-    }
+    // I don't need this private constructor, because my other constructor takes an argument, which name matches the property name.
+    // private MyStringValueObject()
+    // {
+    // }
 
     private bool Equals(MyStringValueObject other)
     {

@@ -29,7 +29,7 @@ public class MappingTests
 
         Guid id = Guid.NewGuid();
         FirstAggregate fa = new(id);
-        await Save(fa, context);
+        await SaveAndClear(fa, context);
         
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
         
@@ -42,7 +42,7 @@ public class MappingTests
         await using MyDbContext context = SetupContext();
         MyId id = MyId.Create();
         SecondAggregate sa = new(id);
-        await Save(sa, context);
+        await SaveAndClear(sa, context);
         
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
         
@@ -60,7 +60,7 @@ public class MappingTests
         string value = "Hello world";
         fa.SetSomeStringValue(value);
 
-        await Save(fa, context);
+        await SaveAndClear(fa, context);
         
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
         
@@ -76,10 +76,10 @@ public class MappingTests
         MyStringValueObject vo = MyStringValueObject.Create("Hello world");
         fa.SetFirstVo(vo);
 
-        await Save(fa, context);
+        await SaveAndClear(fa, context);
         
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
-        Assert.Equal(vo, retrieved.firstVo);
+        Assert.Equal(vo, retrieved.firstValueObject);
     }
 
     [Fact]
@@ -96,7 +96,7 @@ public class MappingTests
         return context;
     }
     
-    private async Task Save<T>(T obj, MyDbContext context) where T : class
+    private async Task SaveAndClear<T>(T obj, MyDbContext context) where T : class
     {
         await context.Set<T>().AddAsync(obj);
         await context.SaveChangesAsync();
