@@ -7,7 +7,7 @@ using Xunit;
 
 namespace EfcMappingExamples.Tests;
 
-public class MappingTests
+public class EfcMappingTests
 {
     /*
       TODO:
