@@ -13,6 +13,7 @@ public class SecondAggregate
     public SecondAggregate(MyId id)
     {
         Id = id;
+        twoValuedValueObject = TwoPropsValueObject.Create("", 0); // setting dummy value, because otherwise I have to set this in all test, and it's annoying, and I'm lazy, and it's stupid I can't make it nullable.
     }
 
     public void SetTwoValued(TwoPropsValueObject value)

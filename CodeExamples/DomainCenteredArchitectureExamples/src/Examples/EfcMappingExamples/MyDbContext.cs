@@ -1,5 +1,6 @@
 ﻿using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
+using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,8 @@ public class MyDbContext : DbContext
     public DbSet<FirstAggregate> FirstAggregates => Set<FirstAggregate>();
     public DbSet<SecondAggregate> SecondAggregates => Set<SecondAggregate>();
 
+    public DbSet<ThirdAggregate> ThirdAggregates => Set<ThirdAggregate>();
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite(@"Data Source = Test.db");
@@ -67,7 +70,7 @@ public class MyDbContext : DbContext
                 );
             }
         );
-        
+
 
         // -- Mapping a two valued Value Object as Owned Entity --
         // Alternative way to map a multi valued Value Object. You need private setters for your properties, though.
@@ -89,8 +92,23 @@ public class MyDbContext : DbContext
                     });
             }
         );
-        
+
         // closing comment: If you must allow null, use Owned Entity.
         // If the same instance should be allowed in multiple fields of an entity (maybe even different entities), use Complex Type.
+
+
+        // ##### ThirdAggregate##### 
+        mBuilder.Entity<ThirdAggregate>()
+            .HasKey(m => m.Id);
+
+        // -- Mapping enum with string conversion --
+        // https://learn.microsoft.com/en-us/ef/core/modeling/value-conversions?tabs=data-annotations
+        // You can define your own conversion, or use a built in. See above link.
+        mBuilder.Entity<ThirdAggregate>()
+            .Property<Status>("currentStatus") // or instead of string arg, use "x => x.currentStatus", if your Context has access
+            .HasConversion(
+                status => status.ToString(), // converting the enum value to a string name for database
+                value => (Status)Enum.Parse(typeof(Status), value) // converting string from database back to enum
+            );
     }
 }
