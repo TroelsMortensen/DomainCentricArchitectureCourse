@@ -45,7 +45,7 @@ public class MyDbContext : DbContext
                 value => MyId.FromGuid(value)); // how to convert simple EFC value to strong ID.
 
 
-        // -- mapping a two valued Value Object --
+        // -- mapping a two valued Value Object as Complex Type--
         // inconveniently, this property cannot be nullable. DaFuq!?
         // https://github.com/dotnet/efcore/issues/31376
         // Maybe alternative? https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities
@@ -68,7 +68,7 @@ public class MyDbContext : DbContext
             }
         );
 
-        // -- Mapping a two valued Value Object as owned entity --
+        // -- Mapping a two valued Value Object as Owned Entity --
         // Alternative way to map a multi valued Value Object. You need private setters for your properties, though.
         // https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
 
@@ -88,5 +88,8 @@ public class MyDbContext : DbContext
                     });
             }
         );
+        
+        // closing comment: If you must allow null, use Owned Entity.
+        // If the same instance should be allowed in multiple fields of an entity, use Complex Type.
     }
 }
