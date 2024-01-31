@@ -95,12 +95,12 @@ Below are more general resources.
 
 ## Books
 
-### Un-categorized
+#### Un-categorized
 Patterns of Enterprices Application Architecture - by Martin Fowler
 
 An Atypical ASP.NET Core 5 Design Patterns Guide - by Carl-Hubo Marcotte
 
-### Domain Driven Design
+#### Domain Driven Design
 
 Domain-Driven Design Quickly - by Abel Avram & Floyd Marinescu
 
@@ -110,14 +110,14 @@ Hands-on Domain-Driven Design with .NET Core - Alexey Zimarev
 
 Learning Domain-Driven Design - by Vlad Khononov
 
-### Architecture
+#### Architecture
 Designing Hexagonal Architecture with Java - by Davi Vieria
 
 Get Your Hands Dirty On Clean Architecture - by Tom Hombergs
 
 Clean Architecture - by Robert C. Martin
 
-### Test
+#### Test
 Growing Object-Oriented Software, Guided by Tests - by Steve Freeman, Nat Pryce
 
 BDD in Action, Second Edition - by John Ferguson Smart, Jan Molak
@@ -126,10 +126,10 @@ The art of unit testing, second edition - by Roy Osherove
 
 Unit testing. Principles, practices, and patterns - by Vladimir Khorikov
 
-### Entity Framework Core
+#### Entity Framework Core
 Entity Framework Core IN ACTION, 2nd edition - by Jon P Smith
 
-### Web API
+#### Web API
 Building Web APIs with ASP.NET Core - by Valerio de Sanctis
 
 API Design Patterns - By JJ Geewax
@@ -137,12 +137,12 @@ API Design Patterns - By JJ Geewax
 
 ## Online courses
 
-### Domain-Driven Design
+#### Domain-Driven Design
 [Domain-Driven Design Fundamentals, Pluralsight course](https://app.pluralsight.com/library/courses/fundamentals-domain-driven-design/table-of-contents)
 
 [Getting Started: Domain-Driven Design, Dometrain course](https://app.dometrain.com/courses/enrolled/2167078)
 
-### Entity Framework Core
+#### Entity Framework Core
 [EF Core 6 and Domain-Driven Design Pluralsight Course](https://app.pluralsight.com/library/courses/ef-core-6-domain-driven-design/table-of-contents)
 
 ## Sample projects (not mine, but for inspiration to myself)
