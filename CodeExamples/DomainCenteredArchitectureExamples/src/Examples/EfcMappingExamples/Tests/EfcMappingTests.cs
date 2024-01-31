@@ -1,4 +1,5 @@
 ﻿using EfcMappingExamples.Aggregates.FirstAggregate;
+using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
@@ -11,7 +12,6 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Simple Foreign key.
         Strongly typed Foreing Key
         Nested entities.
         List of multi valued VO
@@ -29,7 +29,7 @@ public class EfcMappingTests
 
         Guid id = Guid.NewGuid();
         FirstAggregate fa = new(id);
-        await SaveAndClear(fa, context);
+        await SaveAndClearTask(fa, context);
 
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
 
@@ -43,7 +43,7 @@ public class EfcMappingTests
         MyId id = MyId.Create();
         SecondAggregate sa = new(id);
         sa.SetTwoValued(TwoPropsValueObject.Create("dummy", 0));
-        await SaveAndClear(sa, context);
+        await SaveAndClearTask(sa, context);
 
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
 
@@ -60,7 +60,7 @@ public class EfcMappingTests
         string value = "Hello world";
         fa.SetSomeStringValue(value);
 
-        await SaveAndClear(fa, context);
+        await SaveAndClearTask(fa, context);
 
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
 
@@ -76,7 +76,7 @@ public class EfcMappingTests
         MyStringValueObject vo = MyStringValueObject.Create("Hello world");
         fa.SetFirstVo(vo);
 
-        await SaveAndClear(fa, context);
+        await SaveAndClearTask(fa, context);
 
         FirstAggregate retrieved = await context.FirstAggregates.SingleAsync(x => x.Id == id);
         Assert.Equal(vo, retrieved.firstValueObject);
@@ -91,7 +91,7 @@ public class EfcMappingTests
         TwoPropsValueObject twoPropsValueObject = TwoPropsValueObject.Create("Screws", 42);
         sa.SetTwoValued(twoPropsValueObject);
 
-        await SaveAndClear(sa, context);
+        await SaveAndClearTask(sa, context);
 
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
         Assert.Equal(twoPropsValueObject.Amount, retrieved.twoValuedValueObject.Amount);
@@ -116,7 +116,7 @@ public class EfcMappingTests
         OtherTwoPropsValueObject otherTwoPropsValueObject = OtherTwoPropsValueObject.Create("kg", 42);
         sa.SetOtherTwoValued(otherTwoPropsValueObject);
 
-        await SaveAndClear(sa, context);
+        await SaveAndClearTask(sa, context);
 
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
         Assert.Equal(otherTwoPropsValueObject.Unit, retrieved.otherTwoValuedValueObject!.Unit);
@@ -132,22 +132,42 @@ public class EfcMappingTests
         Status newStatus = Status.Validated;
         ta.SetStatus(newStatus);
 
-        await SaveAndClear(ta, context);
+        await SaveAndClearTask(ta, context);
 
         ThirdAggregate retrieved = await context.ThirdAggregates.SingleAsync(x => x.Id == id);
         Assert.Equal(newStatus, retrieved.currentStatus);
     }
 
     [Fact]
-    public async Task SimpleTypeForeignKeyWithReferentialIntegrityRejectsInvalidValue()
+    public async Task SimpleTypeForeignKeyWithReferentialIntegrity_OneToMany_RejectsEmptyValue()
     {
         await using MyDbContext context = SetupContext();
         Guid id = Guid.NewGuid();
-        ThirdAggregate ta = new ThirdAggregate(id);
-        context.ThirdAggregates.Add(ta);
+        FourthAggregate ta = new FourthAggregate(id);
+        context.FourthAggregates.Add(ta);
         Action exp = () => context.SaveChanges();
 
         Assert.ThrowsAny<Exception>(exp);
+    }
+
+    [Fact]
+    public async Task SimpleTypeForeignKeyWithReferentialIntegrity_OneToMany_SuccessWhenValidFk()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid faGuid = Guid.NewGuid();
+        FirstAggregate fa = new FirstAggregate(faGuid);
+
+        await SaveAndClearTask(fa, context);
+        
+        Guid otherGuid = Guid.NewGuid();
+        FourthAggregate fourthAggregate = new(otherGuid);
+        fourthAggregate.SetFirstAggregateForeignKey(faGuid);
+
+        context.FourthAggregates.Add(fourthAggregate);
+
+        Exception exceptionThrown = Record.Exception(() => context.SaveChanges());
+        
+        Assert.Null(exceptionThrown);
     }
     
     #region Helper methods
@@ -160,7 +180,7 @@ public class EfcMappingTests
         return context;
     }
 
-    private async Task SaveAndClear<T>(T obj, MyDbContext context) where T : class
+    private async Task SaveAndClearTask<T>(T obj, MyDbContext context) where T : class
     {
         await context.Set<T>().AddAsync(obj);
         await context.SaveChangesAsync();
