@@ -6,6 +6,8 @@ public class ThirdAggregate
 
     internal Status currentStatus;
 
+    internal Guid firstAggregateFk;
+    
     public ThirdAggregate(Guid id)
     {
         Id = id;
@@ -13,6 +15,8 @@ public class ThirdAggregate
     }
 
     public void SetStatus(Status status) => currentStatus = status;
+
+    public void SetFirstAggregateForeignKey(Guid key) => firstAggregateFk = key;
 }
 
 public enum Status {

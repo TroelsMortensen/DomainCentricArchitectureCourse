@@ -15,7 +15,6 @@ public class EfcMappingTests
         Strongly typed Foreing Key
         Nested entities.
         List of multi valued VO
-        Enums.
         Class enums thingy
         List of simple FK references.
         List of strongly typed FK references.
@@ -100,8 +99,10 @@ public class EfcMappingTests
     }
 
     // This is an alternative to the above approach, which doesn't allow nullability
-    // We use "owned entity" for the value object
-    // This has another limitation though, you cannot have two fields of the same type, with the same value.
+    // Here we use "owned entity" for the value object
+    // This has another limitation though, you cannot have two fields of the same type, with the same instance.
+    // It's _probably_ not a problem. Generally. 
+    // The Value Objects are actually also stored as entities, with keys, which we just don't define.
     // https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities
     [Fact]
     public async Task PrivateOwnedEntityFieldOfTwoProperties()
@@ -118,8 +119,8 @@ public class EfcMappingTests
         await SaveAndClear(sa, context);
 
         SecondAggregate retrieved = await context.SecondAggregates.SingleAsync(x => x.Id == id);
-        Assert.Equal(otherTwoPropsValueObject.Unit, retrieved.otherTwoValuedValueObject.Unit);
-        Assert.Equal(otherTwoPropsValueObject.Count, retrieved.otherTwoValuedValueObject.Count);
+        Assert.Equal(otherTwoPropsValueObject.Unit, retrieved.otherTwoValuedValueObject!.Unit);
+        Assert.Equal(otherTwoPropsValueObject.Count, retrieved.otherTwoValuedValueObject!.Count);
     }
 
     [Fact]
@@ -137,6 +138,18 @@ public class EfcMappingTests
         Assert.Equal(newStatus, retrieved.currentStatus);
     }
 
+    [Fact]
+    public async Task SimpleTypeForeignKeyWithReferentialIntegrityRejectsInvalidValue()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid id = Guid.NewGuid();
+        ThirdAggregate ta = new ThirdAggregate(id);
+        context.ThirdAggregates.Add(ta);
+        Action exp = () => context.SaveChanges();
+
+        Assert.ThrowsAny<Exception>(exp);
+    }
+    
     #region Helper methods
 
     private static MyDbContext SetupContext()
