@@ -4,13 +4,13 @@ namespace EfcMappingExamples.Aggregates.SecondAggregate;
 
 public class SecondAggregate
 {
-    public MyId Id { get; private set; }
+    public SecondAggId Id { get; private set; }
 
     internal TwoPropsValueObject twoValuedValueObject;
 
     internal OtherTwoPropsValueObject? otherTwoValuedValueObject;
 
-    public SecondAggregate(MyId id)
+    public SecondAggregate(SecondAggId id)
     {
         Id = id;
         twoValuedValueObject = TwoPropsValueObject.Create("", 0); // setting dummy value, because otherwise I have to set this in all test, and it's annoying, and I'm lazy, and it's stupid I can't make it nullable.

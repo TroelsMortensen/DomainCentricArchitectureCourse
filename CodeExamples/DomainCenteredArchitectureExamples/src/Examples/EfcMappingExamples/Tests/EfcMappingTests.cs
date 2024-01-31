@@ -1,4 +1,5 @@
-﻿using EfcMappingExamples.Aggregates.FirstAggregate;
+﻿using EfcMappingExamples.Aggregates.FifthAggregate;
+using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
@@ -12,7 +13,7 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Strongly typed Foreing Key
+        Strongly typed Foreign Key
         Nested entities.
         List of multi valued VO
         Class enums thingy
@@ -40,7 +41,7 @@ public class EfcMappingTests
     public async Task StronglyTypedId()
     {
         await using MyDbContext context = SetupContext();
-        MyId id = MyId.Create();
+        SecondAggId id = SecondAggId.Create();
         SecondAggregate sa = new(id);
         sa.SetTwoValued(TwoPropsValueObject.Create("dummy", 0));
         await SaveAndClearTask(sa, context);
@@ -86,7 +87,7 @@ public class EfcMappingTests
     public async Task PrivateValueObjectFieldOfTwoPropertiesUsingComplexTypes()
     {
         await using MyDbContext context = SetupContext();
-        MyId id = MyId.Create();
+        SecondAggId id = SecondAggId.Create();
         SecondAggregate sa = new(id);
         TwoPropsValueObject twoPropsValueObject = TwoPropsValueObject.Create("Screws", 42);
         sa.SetTwoValued(twoPropsValueObject);
@@ -108,7 +109,7 @@ public class EfcMappingTests
     public async Task PrivateOwnedEntityFieldOfTwoProperties()
     {
         await using MyDbContext context = SetupContext();
-        MyId id = MyId.Create();
+        SecondAggId id = SecondAggId.Create();
         SecondAggregate sa = new(id);
         TwoPropsValueObject twoPropsValueObject = TwoPropsValueObject.Create("Screws", 42);
         sa.SetTwoValued(twoPropsValueObject);
@@ -158,7 +159,7 @@ public class EfcMappingTests
         FirstAggregate fa = new FirstAggregate(faGuid);
 
         await SaveAndClearTask(fa, context);
-        
+
         Guid otherGuid = Guid.NewGuid();
         FourthAggregate fourthAggregate = new(otherGuid);
         fourthAggregate.SetFirstAggregateForeignKey(faGuid);
@@ -166,10 +167,49 @@ public class EfcMappingTests
         context.FourthAggregates.Add(fourthAggregate);
 
         Exception exceptionThrown = Record.Exception(() => context.SaveChanges());
-        
+
         Assert.Null(exceptionThrown);
     }
+
+    [Fact]
+    public async Task SimpleTypeForeignKeyWithReferentialIntegrity_OneToOne_RejectsEmptyValue()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid id = Guid.NewGuid();
+        FifthAggregate ta = new FifthAggregate(id);
+        context.FifthAggregates.Add(ta);
+        Action exp = () => context.SaveChanges();
+
+        Assert.ThrowsAny<Exception>(exp);
+    }
+
+    [Fact]
+    public async Task SimpleTypeForeignKeyWithReferentialIntegrity_OneToOne_SuccessWhenValidFk()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid faGuid = Guid.NewGuid();
+        FirstAggregate fa = new FirstAggregate(faGuid);
+
+        await SaveAndClearTask(fa, context);
+
+        Guid otherGuid = Guid.NewGuid();
+        FifthAggregate fifthAggregate = new(otherGuid);
+        fifthAggregate.SetFirstAggregateForeignKey(faGuid);
+
+        context.FifthAggregates.Add(fifthAggregate);
+
+        Exception exceptionThrown = Record.Exception(() => context.SaveChanges());
+
+        Assert.Null(exceptionThrown);
+    }
+
+    [Fact]
+    public async Task StronglyTypedForeignKeyWithReferentialIntegrity_OneToMany_FailureWhenInvalidFkValue()
+    {
+        
+    }
     
+
     #region Helper methods
 
     private static MyDbContext SetupContext()

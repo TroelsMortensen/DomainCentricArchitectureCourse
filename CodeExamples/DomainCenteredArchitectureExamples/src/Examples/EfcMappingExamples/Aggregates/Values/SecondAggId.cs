@@ -1,30 +1,30 @@
 ﻿namespace EfcMappingExamples.Aggregates.Values;
 
-public class MyId
+public class SecondAggId
 {
     public Guid Get { get; }
 
-    public static MyId Create()
+    public static SecondAggId Create()
     {
-        return new MyId();
+        return new SecondAggId();
     }
     
-    private MyId()
+    private SecondAggId()
     {
         Get = Guid.NewGuid();
     }
 
-    public static MyId FromGuid(Guid guid)
+    public static SecondAggId FromGuid(Guid guid)
     {
-        return new MyId(guid);
+        return new SecondAggId(guid);
     }
 
-    private MyId(Guid id)
+    private SecondAggId(Guid id)
     {
         Get = id;
     }
 
-    protected bool Equals(MyId other)
+    protected bool Equals(SecondAggId other)
     {
         return Get.Equals(other.Get);
     }
@@ -34,7 +34,7 @@ public class MyId
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((MyId)obj);
+        return Equals((SecondAggId)obj);
     }
 
     public override int GetHashCode()

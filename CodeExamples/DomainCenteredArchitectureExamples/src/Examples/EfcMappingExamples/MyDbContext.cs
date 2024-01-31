@@ -1,4 +1,5 @@
-﻿using EfcMappingExamples.Aggregates.FirstAggregate;
+﻿using EfcMappingExamples.Aggregates.FifthAggregate;
+using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
@@ -14,6 +15,7 @@ public class MyDbContext : DbContext
 
     public DbSet<ThirdAggregate> ThirdAggregates => Set<ThirdAggregate>();
     public DbSet<FourthAggregate> FourthAggregates => Set<FourthAggregate>();
+    public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -47,10 +49,32 @@ public class MyDbContext : DbContext
 
         MapEnumWithStringConversion(mBuilder);
 
-        
+
         // ##### FourthAggregate##### 
 
         CreateForeignKeyConstraintOfOneToMany(mBuilder);
+
+        // ##### FifthAggregate##### 
+
+        CreateForeignKeyConstraintOfOneToOne(mBuilder);
+    }
+
+    private void CreateForeignKeyConstraintOfOneToOne(ModelBuilder mBuilder)
+    {
+        // In this example FourthAggregate references FirstAggregate.
+        // Explained here: https://stackoverflow.com/questions/20886049/ef-code-first-foreign-key-without-navigation-property
+        mBuilder.Entity<FifthAggregate>(entityTypeBuilder =>
+            {
+                // not strictly necessary. Can leave out for nullable FK
+                entityTypeBuilder.Property("firstAggregateFk")
+                    .IsRequired();
+
+                // making this "FirstAggregate 1:1 ThirdAggregate"
+                entityTypeBuilder.HasOne<FirstAggregate>()
+                    .WithOne()
+                    .HasForeignKey<FifthAggregate>("firstAggregateFk");
+            }
+        );
     }
 
     private void CreateForeignKeyConstraintOfOneToMany(ModelBuilder mBuilder)
@@ -145,7 +169,7 @@ public class MyDbContext : DbContext
             .Property(m => m.Id)
             .HasConversion(
                 id => id.Get, // how to convert ID type to simple value, EFC can understand
-                value => MyId.FromGuid(value)); // how to convert simple EFC value to strong ID.
+                value => SecondAggId.FromGuid(value)); // how to convert simple EFC value to strong ID.
     }
 
     private static void MapPrivateFieldValueObject(ModelBuilder mBuilder)
