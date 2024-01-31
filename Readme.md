@@ -1,4 +1,4 @@
-[Link to Books](https://github.com/TroelsMortensen/DomainCentricArchitectureCourse/edit/master/Readme.md)
+[Link to Books](https://github.com/TroelsMortensen/DomainCentricArchitectureCourse/edit/master/Readme.md#Books)
 
 # Domain Centered Architecture
 
