@@ -8,7 +8,12 @@ public class ThirdAggregate
 
     internal Status currentStatus;
 
+    internal int someNumber = 42;
+
     internal SecondAggId? secondAggregateFk;
+
+    internal EntityInThird? nestedEntity;
+
     public ThirdAggregate(Guid id)
     {
         Id = id;
@@ -18,6 +23,8 @@ public class ThirdAggregate
     public void SetStatus(Status status) => currentStatus = status;
 
     public void SetSecondAggFk(SecondAggId id) => secondAggregateFk = id;
+
+    public void SetNestedEntity(EntityInThird ent) => nestedEntity = ent;
 }
 
 public enum Status

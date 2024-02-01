@@ -288,6 +288,26 @@ public class EfcMappingTests
         Assert.Null(exception);
     }
 
+    [Fact]
+    public async Task SingleNestedEntityWithSimpleIdOnParent()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid thirdId = Guid.NewGuid();
+        ThirdAggregate third = new(thirdId);
+        Guid entGuid = Guid.NewGuid();
+        EntityInThird entity = new(entGuid);
+        third.SetNestedEntity(entity);
+
+        await SaveAndClearAsync(third, context);
+
+        ThirdAggregate retrieved = context.ThirdAggregates
+            .Include("nestedEntity")
+            .Single(t => t.Id == thirdId);
+
+        Assert.NotNull(retrieved.nestedEntity);
+        Assert.Equal(entGuid, retrieved.nestedEntity.Id);
+    }
+
     #region Helper methods
 
     private static MyDbContext SetupContext()

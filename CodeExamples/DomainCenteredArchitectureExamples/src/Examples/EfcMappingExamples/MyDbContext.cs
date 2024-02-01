@@ -48,7 +48,8 @@ public class MyDbContext : DbContext
 
         ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(mBuilder);
 
-        
+        ConfigureSingleNestedEntity(mBuilder);
+
         // ##### FourthAggregate##### 
 
         ConfigureForeignKeyConstraintOfOneToMany(mBuilder);
@@ -61,7 +62,17 @@ public class MyDbContext : DbContext
 
         ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
         // It should be simple enough to do the same as above with 1:1
+    }
 
+    private void ConfigureSingleNestedEntity(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<EntityInThird>().HasKey(e => e.Id);
+
+        // map like one to one
+        mBuilder.Entity<EntityInThird>()                // start with EntityInThird
+            .HasOne<ThirdAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
+            .WithOne("nestedEntity")                    // and the other side is also 1
+            .HasForeignKey<EntityInThird>("parentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
 
     }
 
@@ -191,7 +202,8 @@ public class MyDbContext : DbContext
                     aggregate => aggregate.twoValuedValueObject, propertyBuilder =>
                     {
                         propertyBuilder.Property(valueObject => valueObject.Amount)
-                            .HasColumnName("Amount"); // this just renames the column in the db from "twoValuedValueObject_Amount" to "Amount". Not strictly necessary.
+                            .HasColumnName(
+                                "Amount"); // this just renames the column in the db from "twoValuedValueObject_Amount" to "Amount". Not strictly necessary.
                         propertyBuilder.Property(valueObject => valueObject.Type)
                             .HasColumnName("Type");
                     }
