@@ -14,7 +14,6 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Nested entities.
         List of multi valued VO
         Class enums thingy
         List of simple FK references.
@@ -301,12 +300,18 @@ public class EfcMappingTests
         await SaveAndClearAsync(third, context);
 
         ThirdAggregate retrieved = context.ThirdAggregates
-            .Include("nestedEntity")
+            .Include("nestedEntity") // have to use string, because no access to "private" (internal) members. 
             .Single(t => t.Id == thirdId);
 
         Assert.NotNull(retrieved.nestedEntity);
         Assert.Equal(entGuid, retrieved.nestedEntity.Id);
     }
+    
+    // TODO Multiple nested entities with simple ID on parent.
+    
+    // TODO single nested entity with strong Id on parent.
+    
+    // TODO multiple nested entities with strong Id on parent.
 
     #region Helper methods
 
@@ -318,7 +323,7 @@ public class EfcMappingTests
         return context;
     }
 
-    private async Task SaveAndClearAsync<T>(T obj, MyDbContext context) where T : class
+    private static async Task SaveAndClearAsync<T>(T obj, MyDbContext context) where T : class
     {
         await context.Set<T>().AddAsync(obj);
         await context.SaveChangesAsync();
