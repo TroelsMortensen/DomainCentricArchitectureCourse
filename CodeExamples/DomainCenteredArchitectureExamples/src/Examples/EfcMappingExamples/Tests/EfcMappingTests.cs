@@ -2,6 +2,7 @@
 using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
+using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,6 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Strongly typed Foreign Key
         Nested entities.
         List of multi valued VO
         Class enums thingy
@@ -206,9 +206,36 @@ public class EfcMappingTests
     [Fact]
     public async Task StronglyTypedForeignKeyWithReferentialIntegrity_OneToMany_FailureWhenInvalidFkValue()
     {
-        
+        await using MyDbContext context = SetupContext();
+        Guid id = Guid.NewGuid();
+        SixthAggregate ta = new(id);
+        context.SixthAggregates.Add(ta);
+        Action exp = () => context.SaveChanges();
+
+        Assert.ThrowsAny<Exception>(exp);
     }
-    
+
+    [Fact]
+    public async Task StronglyTypedForeignKeyWithReferentialIntegrity_OneToMany_SuccessWhenValidFkValue()
+    {
+        await using MyDbContext context = SetupContext();
+        // insert Second Aggregate, i.e. fk target
+        SecondAggId strongId = SecondAggId.Create();
+        SecondAggregate sa = new(strongId);
+        sa.SetTwoValued(TwoPropsValueObject.Create("dummy", 0));
+        await SaveAndClearTask(sa, context);
+        
+        Guid id = Guid.NewGuid();
+        SixthAggregate sixth = new(id);
+        context.SixthAggregates.Add(sixth);
+        sixth.SetFirstAggregateForeignKey(strongId);
+        Action exp = () => context.SaveChanges();
+        
+        Exception exceptionThrown = Record.Exception(exp);
+        
+        Assert.Null(exceptionThrown);
+
+    }
 
     #region Helper methods
 

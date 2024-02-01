@@ -2,6 +2,7 @@
 using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
+using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ public class MyDbContext : DbContext
     public DbSet<ThirdAggregate> ThirdAggregates => Set<ThirdAggregate>();
     public DbSet<FourthAggregate> FourthAggregates => Set<FourthAggregate>();
     public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
+    public DbSet<SixthAggregate> SixthAggregates => Set<SixthAggregate>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -32,23 +34,17 @@ public class MyDbContext : DbContext
 
         MapPrivateFieldValueObject(mBuilder);
 
-
         // ##### SecondAggregate #####
 
         MapStronglyTypedId(mBuilder);
 
-
         MapTwoValuedValueObjectAsComplexType(mBuilder);
-
 
         MapTwoValuedValueObjectAsOwnedEntity(mBuilder);
 
-
         // ##### ThirdAggregate##### 
 
-
         MapEnumWithStringConversion(mBuilder);
-
 
         // ##### FourthAggregate##### 
 
@@ -57,6 +53,34 @@ public class MyDbContext : DbContext
         // ##### FifthAggregate##### 
 
         CreateForeignKeyConstraintOfOneToOne(mBuilder);
+
+        // ##### SixthAggregate##### 
+
+        CreateForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
+        // It should be simple enough to do the same as above with 1:1
+        
+        
+        
+    }
+
+    private void CreateForeignKeyConstraintOfOneToManyWithStronglyTypedId(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<SixthAggregate>(b =>
+            {
+                // seems to not be necessary.
+                // b.Property<SecondAggId>("secondAggregateFk")
+                //     .HasConversion(
+                //         id => id.Get, // how to convert ID type to simple value, EFC can understand
+                //         value => SecondAggId.FromGuid(value)); // how to convert simple EFC value to strong ID.
+
+                b.Property("secondAggregateFk")
+                    .IsRequired();
+
+                b.HasOne<SecondAggregate>()
+                    .WithMany()
+                    .HasForeignKey("secondAggregateFk");
+            }
+        );
     }
 
     private void CreateForeignKeyConstraintOfOneToOne(ModelBuilder mBuilder)
@@ -124,8 +148,10 @@ public class MyDbContext : DbContext
                     aggregate => aggregate.otherTwoValuedValueObject,
                     navBuilder =>
                     {
-                        navBuilder.Property(valueObject => valueObject.Count);
-                        navBuilder.Property(valueObject => valueObject.Unit);
+                        navBuilder.Property(valueObject => valueObject.Count)
+                            .HasColumnName("Count"); // Not strictly necessary. Just renames column
+                        navBuilder.Property(valueObject => valueObject.Unit)
+                            .HasColumnName("Unit");
                     });
             }
         );
@@ -152,8 +178,10 @@ public class MyDbContext : DbContext
                     // can also give it a string for the field name
                     aggregate => aggregate.twoValuedValueObject, propertyBuilder =>
                     {
-                        propertyBuilder.Property(valueObject => valueObject.Amount);
-                        propertyBuilder.Property(valueObject => valueObject.Type);
+                        propertyBuilder.Property(valueObject => valueObject.Amount)
+                            .HasColumnName("Amount"); // this just renames the column in the db from "twoValuedValueObject_Amount" to "Amount". Not strictly necessary.
+                        propertyBuilder.Property(valueObject => valueObject.Type)
+                            .HasColumnName("Type");
                     }
                 );
             }
