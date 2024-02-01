@@ -1,4 +1,6 @@
-﻿namespace EfcMappingExamples.Aggregates.ThirdAggregate;
+﻿using EfcMappingExamples.Aggregates.Values;
+
+namespace EfcMappingExamples.Aggregates.ThirdAggregate;
 
 public class ThirdAggregate
 {
@@ -6,6 +8,7 @@ public class ThirdAggregate
 
     internal Status currentStatus;
 
+    internal SecondAggId? secondAggregateFk;
     public ThirdAggregate(Guid id)
     {
         Id = id;
@@ -13,6 +16,8 @@ public class ThirdAggregate
     }
 
     public void SetStatus(Status status) => currentStatus = status;
+
+    public void SetSecondAggFk(SecondAggId id) => secondAggregateFk = id;
 }
 
 public enum Status

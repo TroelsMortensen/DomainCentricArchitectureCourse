@@ -46,6 +46,9 @@ public class MyDbContext : DbContext
 
         ConfigureEnumWithStringConversion(mBuilder);
 
+        ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(mBuilder);
+
+        
         // ##### FourthAggregate##### 
 
         ConfigureForeignKeyConstraintOfOneToMany(mBuilder);
@@ -58,9 +61,18 @@ public class MyDbContext : DbContext
 
         ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
         // It should be simple enough to do the same as above with 1:1
-        
-        
-        
+
+
+    }
+
+    private void ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<ThirdAggregate>(b =>
+        {
+            b.HasOne<SecondAggregate>()
+                .WithOne()
+                .HasForeignKey<ThirdAggregate>("secondAggregateFk");
+        });
     }
 
     private void ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(ModelBuilder mBuilder)
