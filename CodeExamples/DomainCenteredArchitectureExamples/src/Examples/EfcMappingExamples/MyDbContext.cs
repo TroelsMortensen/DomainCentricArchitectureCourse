@@ -28,42 +28,42 @@ public class MyDbContext : DbContext
     {
         // ##### FirstAggregate##### 
 
-        MapPkAsGuid(mBuilder);
+        ConfigurePkAsGuid(mBuilder);
 
-        MapPrivateFieldPrimitiveType(mBuilder);
+        ConfigurePrivateFieldPrimitiveType(mBuilder);
 
-        MapPrivateFieldValueObject(mBuilder);
+        ConfigurePrivateFieldValueObject(mBuilder);
 
         // ##### SecondAggregate #####
 
-        MapStronglyTypedId(mBuilder);
+        ConfigureStronglyTypedId(mBuilder);
 
-        MapTwoValuedValueObjectAsComplexType(mBuilder);
+        ConfigureTwoValuedValueObjectAsComplexType(mBuilder);
 
-        MapTwoValuedValueObjectAsOwnedEntity(mBuilder);
+        ConfigureTwoValuedValueObjectAsOwnedEntity(mBuilder);
 
         // ##### ThirdAggregate##### 
 
-        MapEnumWithStringConversion(mBuilder);
+        ConfigureEnumWithStringConversion(mBuilder);
 
         // ##### FourthAggregate##### 
 
-        CreateForeignKeyConstraintOfOneToMany(mBuilder);
+        ConfigureForeignKeyConstraintOfOneToMany(mBuilder);
 
         // ##### FifthAggregate##### 
 
-        CreateForeignKeyConstraintOfOneToOne(mBuilder);
+        ConfigureForeignKeyConstraintOfOneToOne(mBuilder);
 
         // ##### SixthAggregate##### 
 
-        CreateForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
+        ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
         // It should be simple enough to do the same as above with 1:1
         
         
         
     }
 
-    private void CreateForeignKeyConstraintOfOneToManyWithStronglyTypedId(ModelBuilder mBuilder)
+    private void ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(ModelBuilder mBuilder)
     {
         mBuilder.Entity<SixthAggregate>(b =>
             {
@@ -83,7 +83,7 @@ public class MyDbContext : DbContext
         );
     }
 
-    private void CreateForeignKeyConstraintOfOneToOne(ModelBuilder mBuilder)
+    private void ConfigureForeignKeyConstraintOfOneToOne(ModelBuilder mBuilder)
     {
         // In this example FourthAggregate references FirstAggregate.
         // Explained here: https://stackoverflow.com/questions/20886049/ef-code-first-foreign-key-without-navigation-property
@@ -101,7 +101,7 @@ public class MyDbContext : DbContext
         );
     }
 
-    private void CreateForeignKeyConstraintOfOneToMany(ModelBuilder mBuilder)
+    private void ConfigureForeignKeyConstraintOfOneToMany(ModelBuilder mBuilder)
     {
         // In this example FourthAggregate references FirstAggregate.
         // Explained here: https://stackoverflow.com/questions/20886049/ef-code-first-foreign-key-without-navigation-property
@@ -118,7 +118,7 @@ public class MyDbContext : DbContext
         });
     }
 
-    private static void MapEnumWithStringConversion(ModelBuilder mBuilder)
+    private static void ConfigureEnumWithStringConversion(ModelBuilder mBuilder)
     {
         // -- Mapping enum with string conversion --
         // https://learn.microsoft.com/en-us/ef/core/modeling/value-conversions?tabs=data-annotations
@@ -131,7 +131,7 @@ public class MyDbContext : DbContext
             );
     }
 
-    private static void MapTwoValuedValueObjectAsOwnedEntity(ModelBuilder mBuilder)
+    private static void ConfigureTwoValuedValueObjectAsOwnedEntity(ModelBuilder mBuilder)
     {
         // -- Mapping a two valued Value Object as Owned Entity --
         // Alternative way to map a multi valued Value Object. You need private setters for your properties, though.
@@ -160,7 +160,7 @@ public class MyDbContext : DbContext
         // If the same instance should be allowed in multiple fields of an entity (maybe even different entities), use Complex Type.
     }
 
-    private static void MapTwoValuedValueObjectAsComplexType(ModelBuilder mBuilder)
+    private static void ConfigureTwoValuedValueObjectAsComplexType(ModelBuilder mBuilder)
     {
         // -- mapping a two valued Value Object as Complex Type--
         // inconveniently, this property cannot be nullable. DaFuq!?
@@ -188,7 +188,7 @@ public class MyDbContext : DbContext
         );
     }
 
-    private static void MapStronglyTypedId(ModelBuilder mBuilder)
+    private static void ConfigureStronglyTypedId(ModelBuilder mBuilder)
     {
         // -- mapping strongly typed ID --
         mBuilder.Entity<SecondAggregate>()
@@ -200,7 +200,7 @@ public class MyDbContext : DbContext
                 value => SecondAggId.FromGuid(value)); // how to convert simple EFC value to strong ID.
     }
 
-    private static void MapPrivateFieldValueObject(ModelBuilder mBuilder)
+    private static void ConfigurePrivateFieldValueObject(ModelBuilder mBuilder)
     {
         // -- Mapping private field Value Object --
         mBuilder.Entity<FirstAggregate>()
@@ -208,14 +208,14 @@ public class MyDbContext : DbContext
             .Property(vo => vo.Value); // specifying the value from the Value Object to EFC.
     }
 
-    private static void MapPrivateFieldPrimitiveType(ModelBuilder mBuilder)
+    private static void ConfigurePrivateFieldPrimitiveType(ModelBuilder mBuilder)
     {
         // -- Mapping private field primitive type --
         mBuilder.Entity<FirstAggregate>()
             .Property<string>("someStringValue");
     }
 
-    private static void MapPkAsGuid(ModelBuilder mBuilder)
+    private static void ConfigurePkAsGuid(ModelBuilder mBuilder)
     {
         // -- Mapping simple ID of type Guid --
         mBuilder.Entity<FirstAggregate>()
