@@ -4,7 +4,7 @@ namespace EfcMappingExamples.Aggregates.ThirdAggregate;
 
 public class ThirdAggregate
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } // if this has private set, EFC will discover it as Id. If no private set, it must be configured, and must have private constructor
 
     internal Status currentStatus;
 

@@ -2,6 +2,7 @@
 using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
+using EfcMappingExamples.Aggregates.SeventhAggregate;
 using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
@@ -223,17 +224,16 @@ public class EfcMappingTests
         SecondAggregate sa = new(strongId);
         sa.SetTwoValued(TwoPropsValueObject.Create("dummy", 0));
         await SaveAndClearAsync(sa, context);
-        
+
         Guid id = Guid.NewGuid();
         SixthAggregate sixth = new(id);
         context.SixthAggregates.Add(sixth);
         sixth.SetFirstAggregateForeignKey(strongId);
         Action exp = () => context.SaveChanges();
-        
-        Exception exceptionThrown = Record.Exception(exp);
-        
-        Assert.Null(exceptionThrown);
 
+        Exception exceptionThrown = Record.Exception(exp);
+
+        Assert.Null(exceptionThrown);
     }
 
     [Fact]
@@ -274,13 +274,13 @@ public class EfcMappingTests
         SecondAggId secondAggId = SecondAggId.Create();
         SecondAggregate second = new(secondAggId);
         await SaveAndClearAsync(second, context);
-        
+
         Guid thirdId = Guid.NewGuid();
         ThirdAggregate third = new ThirdAggregate(thirdId);
         third.SetSecondAggFk(secondAggId);
-        
+
         context.ThirdAggregates.Add(third);
-        
+
 
         Action exp = () => context.SaveChanges();
         Exception? exception = Record.Exception(exp);
@@ -306,11 +306,61 @@ public class EfcMappingTests
         Assert.NotNull(retrieved.nestedEntity);
         Assert.Equal(entGuid, retrieved.nestedEntity.Id);
     }
-    
+
     // TODO Multiple nested entities with simple ID on parent.
-    
+    [Fact]
+    public async Task MultipleNestedEntitiesWithSimpleIdOnParent_CanLoadEntities()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid seventhId = Guid.NewGuid();
+        SeventhAggregate seventh = new(seventhId);
+
+        EntityInThird one = new(Guid.NewGuid());
+        EntityInThird two = new(Guid.NewGuid());
+        EntityInThird three = new(Guid.NewGuid());
+        seventh.AddEntity(one);
+        seventh.AddEntity(two);
+        seventh.AddEntity(three);
+
+        await SaveAndClearAsync(seventh, context);
+
+        SeventhAggregate retrieved = context.SeventhAggregates
+            .Include("nestedEntities")
+            .Single(s => s.Id == seventhId);
+
+        Assert.Equal(3, retrieved.nestedEntities.Count);
+        Assert.Contains(retrieved.nestedEntities, e => e.Id == one.Id);
+        Assert.Contains(retrieved.nestedEntities, e => e.Id == two.Id);
+        Assert.Contains(retrieved.nestedEntities, e => e.Id == three.Id);
+    }
+
+    [Fact]
+    public async Task MultipleNestedEntitiesWithSimpleIdOnParent_EntitiesStoredInOwnTable()
+    {
+        await using MyDbContext context = SetupContext();
+        Guid seventhId = Guid.NewGuid();
+        SeventhAggregate seventh = new(seventhId);
+
+        EntityInThird one = new(Guid.NewGuid());
+        EntityInThird two = new(Guid.NewGuid());
+        EntityInThird three = new(Guid.NewGuid());
+        seventh.AddEntity(one);
+        seventh.AddEntity(two);
+        seventh.AddEntity(three);
+
+        await SaveAndClearAsync(seventh, context);
+
+        EntityInThird? oneRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == one.Id);
+        EntityInThird? twoRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == two.Id);
+        EntityInThird? threeRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == three.Id);
+
+        Assert.NotNull(oneRetrieved);
+        Assert.NotNull(twoRetrieved);
+        Assert.NotNull(threeRetrieved);
+    }
+
     // TODO single nested entity with strong Id on parent.
-    
+
     // TODO multiple nested entities with strong Id on parent.
 
     #region Helper methods

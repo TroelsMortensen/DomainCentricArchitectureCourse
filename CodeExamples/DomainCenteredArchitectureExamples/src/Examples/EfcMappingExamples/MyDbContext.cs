@@ -2,6 +2,7 @@
 using EfcMappingExamples.Aggregates.FirstAggregate;
 using EfcMappingExamples.Aggregates.FourthAggregate;
 using EfcMappingExamples.Aggregates.SecondAggregate;
+using EfcMappingExamples.Aggregates.SeventhAggregate;
 using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
@@ -18,6 +19,7 @@ public class MyDbContext : DbContext
     public DbSet<FourthAggregate> FourthAggregates => Set<FourthAggregate>();
     public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
     public DbSet<SixthAggregate> SixthAggregates => Set<SixthAggregate>();
+    public DbSet<SeventhAggregate> SeventhAggregates => Set<SeventhAggregate>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -61,7 +63,20 @@ public class MyDbContext : DbContext
         // ##### SixthAggregate##### 
 
         ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
-        // It should be simple enough to do the same as above with 1:1
+        // It should be simple enough to do the same as above with 1:1. Did I do this?
+        
+        // ##### SeventhAggregate##### 
+        ConfigureManyNestedEntitiesWithGuids(mBuilder);
+    }
+
+    private void ConfigureManyNestedEntitiesWithGuids(ModelBuilder mBuilder)
+    {
+        // map like one to many
+        mBuilder.Entity<EntityInThird>()                // start with EntityInThird
+            .HasOne<SeventhAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
+            .WithMany("nestedEntities")                    // and the other side is many
+            .HasForeignKey("seventhParentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
+
     }
 
     private void ConfigureSingleNestedEntity(ModelBuilder mBuilder)
@@ -247,5 +262,8 @@ public class MyDbContext : DbContext
 
         mBuilder.Entity<ThirdAggregate>()
             .HasKey(m => m.Id);
+
+        mBuilder.Entity<SeventhAggregate>()
+            .HasKey(x => x.Id);
     }
 }
