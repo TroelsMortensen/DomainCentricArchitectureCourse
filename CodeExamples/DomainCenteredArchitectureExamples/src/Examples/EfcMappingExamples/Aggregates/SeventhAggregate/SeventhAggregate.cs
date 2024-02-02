@@ -6,7 +6,7 @@ public class SeventhAggregate
 {
     public Guid Id { get; }
 
-    internal List<EntityInThird> nestedEntities;
+    internal List<SomeEntity> nestedEntities;
     
     public SeventhAggregate(Guid id)
     {
@@ -19,5 +19,5 @@ public class SeventhAggregate
         
     }
 
-    public void AddEntity(EntityInThird ent) => nestedEntities.Add(ent);
+    public void AddEntity(SomeEntity ent) => nestedEntities.Add(ent);
 }

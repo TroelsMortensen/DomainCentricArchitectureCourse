@@ -43,7 +43,11 @@ public class MyDbContext : DbContext
         ConfigureTwoValuedValueObjectAsComplexType(mBuilder);
 
         ConfigureTwoValuedValueObjectAsOwnedEntity(mBuilder);
+        
+        ConfigureSingleNestedEntityWithStrongParentId(mBuilder);
 
+        ConfigureManyNestedEntitiesWithStrongParentId(mBuilder);
+        
         // ##### ThirdAggregate##### 
 
         ConfigureEnumWithStringConversion(mBuilder);
@@ -69,10 +73,29 @@ public class MyDbContext : DbContext
         ConfigureManyNestedEntitiesWithGuids(mBuilder);
     }
 
+    private void ConfigureManyNestedEntitiesWithStrongParentId(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<OtherEntity>().HasKey(x => x.Id);
+        
+        // map like one to many
+        mBuilder.Entity<SecondAggregate>()                  // start with SecondAggregate
+            .HasMany<OtherEntity>("nestedEntities")          // Say it has a * relationship to OtherEntity
+            .WithOne()                                      // and the other side is 1
+            .HasForeignKey("secondParentId");              // and the foreign key is defined on the child, i.e. SomeEntity.
+    }
+
+    private void ConfigureSingleNestedEntityWithStrongParentId(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<SecondAggregate>()
+            .HasOne<SomeEntity>("nestedEntity")
+            .WithOne()
+            .HasForeignKey<SomeEntity>("secondParentId");
+    }
+
     private void ConfigureManyNestedEntitiesWithGuids(ModelBuilder mBuilder)
     {
         // map like one to many
-        mBuilder.Entity<EntityInThird>()                // start with EntityInThird
+        mBuilder.Entity<SomeEntity>()                // start with SomeEntity
             .HasOne<SeventhAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
             .WithMany("nestedEntities")                    // and the other side is many
             .HasForeignKey("seventhParentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
@@ -81,13 +104,13 @@ public class MyDbContext : DbContext
 
     private void ConfigureSingleNestedEntity(ModelBuilder mBuilder)
     {
-        mBuilder.Entity<EntityInThird>().HasKey(e => e.Id);
+        mBuilder.Entity<SomeEntity>().HasKey(e => e.Id);
 
         // map like one to one
-        mBuilder.Entity<EntityInThird>()                // start with EntityInThird
+        mBuilder.Entity<SomeEntity>()                // start with SomeEntity
             .HasOne<ThirdAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
             .WithOne("nestedEntity")                    // and the other side is also 1
-            .HasForeignKey<EntityInThird>("parentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
+            .HasForeignKey<SomeEntity>("thirdParentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
 
     }
 

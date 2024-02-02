@@ -1,17 +1,17 @@
 ﻿namespace EfcMappingExamples.Aggregates.ThirdAggregate;
 
-public class EntityInThird
+public class SomeEntity
 {
     public Guid Id { get; }
 
     internal string someString = "Hello there";
 
-    public EntityInThird(Guid id)
+    public SomeEntity(Guid id)
     {
         Id = id;
     }
 
-    private EntityInThird() // for efc
+    private SomeEntity() // for efc
     {
         
     }

@@ -294,8 +294,8 @@ public class EfcMappingTests
         Guid thirdId = Guid.NewGuid();
         ThirdAggregate third = new(thirdId);
         Guid entGuid = Guid.NewGuid();
-        EntityInThird entity = new(entGuid);
-        third.SetNestedEntity(entity);
+        SomeEntity someEntity = new(entGuid);
+        third.SetNestedEntity(someEntity);
 
         await SaveAndClearAsync(third, context);
 
@@ -307,7 +307,7 @@ public class EfcMappingTests
         Assert.Equal(entGuid, retrieved.nestedEntity.Id);
     }
 
-    // TODO Multiple nested entities with simple ID on parent.
+    // Multiple nested entities with simple ID on parent.
     [Fact]
     public async Task MultipleNestedEntitiesWithSimpleIdOnParent_CanLoadEntities()
     {
@@ -315,9 +315,9 @@ public class EfcMappingTests
         Guid seventhId = Guid.NewGuid();
         SeventhAggregate seventh = new(seventhId);
 
-        EntityInThird one = new(Guid.NewGuid());
-        EntityInThird two = new(Guid.NewGuid());
-        EntityInThird three = new(Guid.NewGuid());
+        SomeEntity one = new(Guid.NewGuid());
+        SomeEntity two = new(Guid.NewGuid());
+        SomeEntity three = new(Guid.NewGuid());
         seventh.AddEntity(one);
         seventh.AddEntity(two);
         seventh.AddEntity(three);
@@ -341,27 +341,70 @@ public class EfcMappingTests
         Guid seventhId = Guid.NewGuid();
         SeventhAggregate seventh = new(seventhId);
 
-        EntityInThird one = new(Guid.NewGuid());
-        EntityInThird two = new(Guid.NewGuid());
-        EntityInThird three = new(Guid.NewGuid());
+        SomeEntity one = new(Guid.NewGuid());
+        SomeEntity two = new(Guid.NewGuid());
+        SomeEntity three = new(Guid.NewGuid());
         seventh.AddEntity(one);
         seventh.AddEntity(two);
         seventh.AddEntity(three);
 
         await SaveAndClearAsync(seventh, context);
 
-        EntityInThird? oneRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == one.Id);
-        EntityInThird? twoRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == two.Id);
-        EntityInThird? threeRetrieved = context.Set<EntityInThird>().SingleOrDefault(e => e.Id == three.Id);
+        SomeEntity? oneRetrieved = context.Set<SomeEntity>().SingleOrDefault(e => e.Id == one.Id);
+        SomeEntity? twoRetrieved = context.Set<SomeEntity>().SingleOrDefault(e => e.Id == two.Id);
+        SomeEntity? threeRetrieved = context.Set<SomeEntity>().SingleOrDefault(e => e.Id == three.Id);
 
         Assert.NotNull(oneRetrieved);
         Assert.NotNull(twoRetrieved);
         Assert.NotNull(threeRetrieved);
     }
 
-    // TODO single nested entity with strong Id on parent.
+    // single nested entity with strong Id on parent.
 
-    // TODO multiple nested entities with strong Id on parent.
+    [Fact]
+    public async Task SingleNestedEntityWithStrongIdOnParent_CanLoadNestedEntity()
+    {
+        await using MyDbContext ctx = SetupContext();
+        SomeEntity ent = new SomeEntity(Guid.NewGuid());
+        SecondAggId secondId = SecondAggId.Create();
+        SecondAggregate second = new(secondId);
+        second.SetNestedEntity(ent);
+
+        await SaveAndClearAsync(second, ctx);
+
+        SecondAggregate retrieved = ctx.SecondAggregates
+            .Include("nestedEntity")
+            .Single(s => s.Id == secondId);
+
+        Assert.NotNull(retrieved.nestedEntity);
+        Assert.Equal(ent.Id, retrieved.nestedEntity.Id);
+    }
+
+    // multiple nested entities with strong Id on parent.
+
+    [Fact]
+    public async Task ManyNestedEntityWithStrongIdOnParent_CanLoadNestedEntities()
+    {
+        await using MyDbContext ctx = SetupContext();
+        OtherEntity ent1 = new(Guid.NewGuid());
+        OtherEntity ent2 = new(Guid.NewGuid());
+        OtherEntity ent3 = new(Guid.NewGuid());
+        SecondAggId secondId = SecondAggId.Create();
+        SecondAggregate second = new(secondId);
+
+        second.AddManyNestedEntities(ent1, ent2, ent3);
+
+        await SaveAndClearAsync(second, ctx);
+
+        SecondAggregate retrieved = ctx.SecondAggregates
+            .Include("nestedEntities")
+            .Single(s => s.Id == secondId);
+
+        Assert.NotEmpty(retrieved.nestedEntities);
+        Assert.Contains(retrieved.nestedEntities, x => x.Id == ent1.Id);
+        Assert.Contains(retrieved.nestedEntities, x => x.Id == ent2.Id);
+        Assert.Contains(retrieved.nestedEntities, x => x.Id == ent3.Id);
+    }
 
     #region Helper methods
 

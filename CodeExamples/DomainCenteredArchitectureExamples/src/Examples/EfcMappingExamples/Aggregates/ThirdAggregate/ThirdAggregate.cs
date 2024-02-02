@@ -12,7 +12,7 @@ public class ThirdAggregate
 
     internal SecondAggId? secondAggregateFk;
 
-    internal EntityInThird? nestedEntity;
+    internal SomeEntity? nestedEntity;
 
     public ThirdAggregate(Guid id)
     {
@@ -24,7 +24,7 @@ public class ThirdAggregate
 
     public void SetSecondAggFk(SecondAggId id) => secondAggregateFk = id;
 
-    public void SetNestedEntity(EntityInThird ent) => nestedEntity = ent;
+    public void SetNestedEntity(SomeEntity ent) => nestedEntity = ent;
 }
 
 public enum Status
