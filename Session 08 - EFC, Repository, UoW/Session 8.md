@@ -44,3 +44,7 @@ https://andrewlock.net/strongly-typed-ids-in-ef-core-using-strongly-typed-entity
 [Persisting private members](https://learn.microsoft.com/en-us/ef/core/modeling/backing-field?tabs=fluent-api)
 
 [Value objects and EFC](https://medium.com/c-sharp-progarmming/value-objects-and-their-usage-with-entity-framework-a434f1414103)
+
+https://thehonestcoder.com/ddd-ef-core-8/
+
+https://www.youtube.com/watch?v=yFPuLp8QX1g

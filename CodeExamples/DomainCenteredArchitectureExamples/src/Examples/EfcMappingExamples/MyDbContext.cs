@@ -85,7 +85,8 @@ public class MyDbContext : DbContext
     private void ConfigureAHasListOfGuidsReferencingB(ModelBuilder mBuilder)
     {
         // Could not find solution with non-reference type Guid.
-        // I introduce a wrapper, value object like class. 
+        // I introduce a wrapper, value object like class, but it can be simpler.
+        // A similar approach will be used for list of strong Id, I guess.
         mBuilder.Entity<EntityA>().HasKey("Id");
         mBuilder.Entity<EntityB>().HasKey("Id");
 
@@ -102,8 +103,8 @@ public class MyDbContext : DbContext
             .HasOne<EntityB>()
             .WithMany()
             .HasForeignKey(x => x.FkToB);
-        // TODO 
-
+        
+        // TODO can I do this with list of complex type?
     }
 
 
@@ -115,7 +116,7 @@ public class MyDbContext : DbContext
         mBuilder.Entity<SecondAggregate>()                  // start with SecondAggregate
             .HasMany<OtherEntity>("nestedEntities")          // Say it has a * relationship to OtherEntity
             .WithOne()                                      // and the other side is 1
-            .HasForeignKey("secondParentId");              // and the foreign key is defined on the child, i.e. SomeEntity.
+            .HasForeignKey("secondParentId");              // and the foreign key is defined on the child, i.e. OtherEntity.
     }
 
     private void ConfigureSingleNestedEntityWithStrongParentId(ModelBuilder mBuilder)

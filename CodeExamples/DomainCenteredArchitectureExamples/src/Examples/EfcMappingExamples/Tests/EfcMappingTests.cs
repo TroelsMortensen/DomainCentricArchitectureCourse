@@ -18,9 +18,9 @@ public class EfcMappingTests
       TODO:
         List of multi valued VO
         Class enums thingy
-        List of strongly typed FK references.
         Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
         Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
+        collections of primitives: https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew#primitive-collection-properties
      */
 
     [Fact]
@@ -407,7 +407,7 @@ public class EfcMappingTests
     }
 
     // List of Value Objects.
-
+    // https://thehonestcoder.com/ddd-ef-core-8/
     [Fact]
     public async Task ListOfValueObjects()
     {
@@ -463,6 +463,9 @@ public class EfcMappingTests
         Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b3.Id);
     }
 
+    // TODO         List of strongly typed FK references.
+
+    
     #region Helper methods
 
     private static MyDbContext SetupContext()
