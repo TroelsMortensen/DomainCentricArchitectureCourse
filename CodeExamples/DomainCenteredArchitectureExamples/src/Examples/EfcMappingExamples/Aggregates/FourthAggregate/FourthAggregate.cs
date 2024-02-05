@@ -1,4 +1,6 @@
-﻿namespace EfcMappingExamples.Aggregates.FourthAggregate;
+﻿using EfcMappingExamples.Aggregates.FirstAggregate;
+
+namespace EfcMappingExamples.Aggregates.FourthAggregate;
 
 public class FourthAggregate
 {
@@ -6,10 +8,12 @@ public class FourthAggregate
 
     internal Guid firstAggregateFk;
 
+
     public FourthAggregate(Guid id)
     {
         Id = id;
     }
 
     public void SetFirstAggregateForeignKey(Guid key) => firstAggregateFk = key;
+
 }

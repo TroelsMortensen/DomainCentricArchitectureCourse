@@ -2,7 +2,7 @@
 
 public class OtherTwoPropsValueObject
 {
-    public int Count { get;  } // I need private setters because of EFC
+    public int Count { get;  } 
     public string Unit { get;  }
 
     private OtherTwoPropsValueObject(string unit, int count)

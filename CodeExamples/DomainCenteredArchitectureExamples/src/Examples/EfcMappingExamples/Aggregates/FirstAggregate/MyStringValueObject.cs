@@ -37,4 +37,10 @@ public class MyStringValueObject
     {
         return Value.GetHashCode();
     }
+
+    public static bool operator ==(MyStringValueObject left, MyStringValueObject right)
+        => left.Equals(right);
+
+    public static bool operator !=(MyStringValueObject left, MyStringValueObject right)
+        => !(left == right);
 }

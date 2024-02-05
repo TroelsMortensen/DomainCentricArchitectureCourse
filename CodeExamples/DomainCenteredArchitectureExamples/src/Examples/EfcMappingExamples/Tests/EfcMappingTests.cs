@@ -6,6 +6,7 @@ using EfcMappingExamples.Aggregates.SeventhAggregate;
 using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
+using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -17,7 +18,6 @@ public class EfcMappingTests
       TODO:
         List of multi valued VO
         Class enums thingy
-        List of simple FK references.
         List of strongly typed FK references.
         Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
         Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
@@ -404,6 +404,52 @@ public class EfcMappingTests
         Assert.Contains(retrieved.nestedEntities, x => x.Id == ent1.Id);
         Assert.Contains(retrieved.nestedEntities, x => x.Id == ent2.Id);
         Assert.Contains(retrieved.nestedEntities, x => x.Id == ent3.Id);
+    }
+
+    // TODO List of Value Objects.
+
+    [Fact]
+    public async Task ListOfValueObjects()
+    {
+        await using MyDbContext ctx = SetupContext();
+
+        MyStringValueObject vo1 = MyStringValueObject.Create("Hello");
+        MyStringValueObject vo2 = MyStringValueObject.Create("world");
+        MyStringValueObject vo3 = MyStringValueObject.Create("again");
+
+        SeventhAggregate seventh = new(Guid.NewGuid());
+
+        seventh.AddValues(vo1, vo2, vo3);
+        await SaveAndClearAsync(seventh, ctx);
+
+        SeventhAggregate retrieved = ctx.SeventhAggregates.Single(x => x.Id == seventh.Id);
+
+        Assert.NotEmpty(retrieved.values);
+        Assert.Contains(retrieved.values, x => x == vo1);
+        Assert.Contains(retrieved.values, x => x == vo2);
+        Assert.Contains(retrieved.values, x => x == vo3);
+    }
+
+    // TODO    List of simple FK references.
+
+    [Fact]
+    public async Task ListOfGuidFkReferences()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityB b1 = new(Guid.NewGuid());
+        EntityB b2 = new(Guid.NewGuid());
+        EntityB b3 = new(Guid.NewGuid());
+
+        EntityA a1 = new(Guid.NewGuid());
+        a1.AddFks(b1.Id, b2.Id, b3.Id);
+
+        await SaveAndClearAsync(a1, ctx);
+
+        EntityA retrieved = ctx.EntityAs
+            .Include("foreignKeysToB")
+            .Single(x => x.Id == a1.Id);
+        
+        Assert.NotEmpty(retrieved.foreignKeysToB);
     }
 
     #region Helper methods

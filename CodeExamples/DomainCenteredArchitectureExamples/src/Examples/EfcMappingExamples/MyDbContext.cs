@@ -6,6 +6,7 @@ using EfcMappingExamples.Aggregates.SeventhAggregate;
 using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
+using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfcMappingExamples;
@@ -20,6 +21,9 @@ public class MyDbContext : DbContext
     public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
     public DbSet<SixthAggregate> SixthAggregates => Set<SixthAggregate>();
     public DbSet<SeventhAggregate> SeventhAggregates => Set<SeventhAggregate>();
+
+    public DbSet<EntityA> EntityAs => Set<EntityA>();
+    public DbSet<EntityB> EntityBs => Set<EntityB>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -71,7 +75,22 @@ public class MyDbContext : DbContext
         
         // ##### SeventhAggregate##### 
         ConfigureManyNestedEntitiesWithGuids(mBuilder);
+
+        ConfigureListValueObjects(mBuilder);
+
+        // ##### Cases ######
+        ConfigureAHasListOfGuidsReferencingB(mBuilder);
     }
+
+    private void ConfigureAHasListOfGuidsReferencingB(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<EntityA>().HasKey("Id");
+        mBuilder.Entity<EntityB>().HasKey("Id");
+        
+        // TODO 
+            
+    }
+
 
     private void ConfigureManyNestedEntitiesWithStrongParentId(ModelBuilder mBuilder)
     {
@@ -249,6 +268,30 @@ public class MyDbContext : DbContext
             }
         );
     }
+    
+    private void ConfigureListValueObjects(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<SeventhAggregate>()
+            .OwnsMany<MyStringValueObject>("values", vo =>
+            {
+                vo.HasKey("SeventhAggregateId", "Value");
+                vo.Property<Guid>("SeventhAggregateId");
+                vo.Property<string>("Value");
+            });
+
+
+        // mBuilder.Entity<SeventhAggregate>()
+        // .OwnsMany<MyStringValueObject>("values")
+        // .Property(vo => vo.Value);
+        // mBuilder.Entity<SecondAggregate>(b =>
+        // {
+        //     b.
+        // });
+        // throw new NotImplementedException();
+        // Læs her om collection:
+        // https://thehonestcoder.com/ddd-ef-core-8/
+        // afsnit: "Storing Value Object Collections"
+    }
 
     private static void ConfigureStronglyTypedId(ModelBuilder mBuilder)
     {
@@ -269,6 +312,8 @@ public class MyDbContext : DbContext
             .OwnsOne<MyStringValueObject>("firstValueObject")
             .Property(vo => vo.Value); // specifying the value from the Value Object to EFC.
     }
+    
+
 
     private static void ConfigurePrivateFieldPrimitiveType(ModelBuilder mBuilder)
     {
