@@ -84,11 +84,26 @@ public class MyDbContext : DbContext
 
     private void ConfigureAHasListOfGuidsReferencingB(ModelBuilder mBuilder)
     {
+        // Could not find solution with non-reference type Guid.
+        // I introduce a wrapper, value object like class. 
         mBuilder.Entity<EntityA>().HasKey("Id");
         mBuilder.Entity<EntityB>().HasKey("Id");
-        
+
+        mBuilder.Entity<EntityBFk>().Property<Guid>("parentIdFk");
+        mBuilder.Entity<EntityBFk>().HasKey("parentIdFk", "FkToB");
+
+        mBuilder.Entity<EntityA>()
+            .HasMany<EntityBFk>("foreignKeysToB")
+            .WithOne()
+            .HasForeignKey("parentIdFk")
+            .OnDelete(DeleteBehavior.Cascade);
+
+        mBuilder.Entity<EntityBFk>()
+            .HasOne<EntityB>()
+            .WithMany()
+            .HasForeignKey(x => x.FkToB);
         // TODO 
-            
+
     }
 
 
@@ -303,6 +318,8 @@ public class MyDbContext : DbContext
             .HasConversion(
                 id => id.Get, // how to convert ID type to simple value, EFC can understand
                 value => SecondAggId.FromGuid(value)); // how to convert simple EFC value to strong ID.
+        
+        // more about value conversions: https://learn.microsoft.com/en-us/ef/core/modeling/value-conversions?tabs=data-annotations
     }
 
     private static void ConfigurePrivateFieldValueObject(ModelBuilder mBuilder)

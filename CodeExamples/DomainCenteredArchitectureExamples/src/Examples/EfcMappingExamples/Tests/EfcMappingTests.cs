@@ -406,7 +406,7 @@ public class EfcMappingTests
         Assert.Contains(retrieved.nestedEntities, x => x.Id == ent3.Id);
     }
 
-    // TODO List of Value Objects.
+    // List of Value Objects.
 
     [Fact]
     public async Task ListOfValueObjects()
@@ -436,20 +436,31 @@ public class EfcMappingTests
     public async Task ListOfGuidFkReferences()
     {
         await using MyDbContext ctx = SetupContext();
+        
+        // adding reference entities
         EntityB b1 = new(Guid.NewGuid());
         EntityB b2 = new(Guid.NewGuid());
         EntityB b3 = new(Guid.NewGuid());
 
+        ctx.EntityBs.AddRange(b1, b2, b3);
+        await ctx.SaveChangesAsync();
+        ctx.ChangeTracker.Clear();
+        
+        
         EntityA a1 = new(Guid.NewGuid());
         a1.AddFks(b1.Id, b2.Id, b3.Id);
 
         await SaveAndClearAsync(a1, ctx);
 
+        
         EntityA retrieved = ctx.EntityAs
             .Include("foreignKeysToB")
             .Single(x => x.Id == a1.Id);
         
         Assert.NotEmpty(retrieved.foreignKeysToB);
+        Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b1.Id);
+        Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b2.Id);
+        Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b3.Id);
     }
 
     #region Helper methods

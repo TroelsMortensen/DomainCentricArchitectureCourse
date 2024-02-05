@@ -6,7 +6,7 @@ public class EntityA
 
     private string someValue = "42";
 
-    internal List<Guid> foreignKeysToB;
+    internal List<EntityBFk> foreignKeysToB;
 
     public EntityA(Guid id)
     {
@@ -16,8 +16,9 @@ public class EntityA
 
     private EntityA()
     {
-        
     }
-    
-    public void AddFks(params Guid[] fks) => foreignKeysToB.AddRange(fks);
+
+    public void AddFks(params Guid[] fks) => foreignKeysToB.AddRange(
+        fks.Select(x => new EntityBFk(x))
+    );
 }
