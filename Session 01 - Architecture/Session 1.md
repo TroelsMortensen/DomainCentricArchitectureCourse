@@ -11,6 +11,7 @@
 
 ## Preparation
 
+* You should refresh the adapter design pattern.
 * [Optionally get an overview of arhictecture](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together)
 * [Or this short video on Clean Architecture](https://www.youtube.com/watch?v=1OLSE6tX71Y)
 
