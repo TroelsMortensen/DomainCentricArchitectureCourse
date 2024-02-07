@@ -20,8 +20,6 @@ namespace EfcMappingExamples.Tests;
 public class EfcMappingTests
 {
     /*
-      TODO:
-        list of nested value objects.
         collections of primitives: https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew#primitive-collection-properties
      */
 
