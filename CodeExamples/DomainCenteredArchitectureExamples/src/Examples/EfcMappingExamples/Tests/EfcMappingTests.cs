@@ -8,6 +8,7 @@ using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
+using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -18,7 +19,6 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Class enums thingy
         Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
         Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
         collections of primitives: https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew#primitive-collection-properties
@@ -539,6 +539,21 @@ public class EfcMappingTests
         Assert.NotEmpty(retrieved.values);
         Assert.Contains(retrieved.values, x => x.Equals(vo1));
         Assert.Contains(retrieved.values, x => x.Equals(vo2));
+    }
+    
+    // Class enums thingy
+
+    [Fact]
+    public async Task ClassAsEnum()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityH h = new(Guid.NewGuid());
+
+        await SaveAndClearAsync(h, ctx);
+
+        EntityH retrieved = ctx.EntityHs.Single(x => x.Id == h.Id);
+        
+        Assert.Equal(MyStatusEnum.First, retrieved.status);
     }
     
     #region Helper methods

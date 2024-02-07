@@ -8,6 +8,7 @@ using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
+using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.FHasListOfStrongFksReferencingGByAmichai;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ public class MyDbContext : DbContext
     public DbSet<EntityC> EntityCs => Set<EntityC>();
     public DbSet<EntityD> EntityDs => Set<EntityD>();
     public DbSet<EntityE> EntityEs => Set<EntityE>();
+    public DbSet<EntityH> EntityHs => Set<EntityH>();
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -93,6 +95,20 @@ public class MyDbContext : DbContext
         ConfigureFHasListOfStrongFksReferencingGByAmichai(mBuilder);
 
         ConfigureEHasListOfMultiValuedValueObjects(mBuilder);
+
+        ConfigureEnumAsClass(mBuilder);
+    }
+
+    private void ConfigureEnumAsClass(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<EntityH>(b =>
+        {
+            b.HasKey(x => x.Id);
+            b.OwnsOne<MyStatusEnum>("status", e =>
+            {
+                e.Property("backingValue").HasColumnName("status");
+            });
+        });
     }
 
     private void ConfigureFHasListOfStrongFksReferencingGByAmichai(ModelBuilder mBuilder)
