@@ -9,6 +9,7 @@ using EfcMappingExamples.Aggregates.Values;
 using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
+using EfcMappingExamples.Cases.FHasListOfStrongFksReferencingGByAmichai;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfcMappingExamples;
@@ -29,8 +30,7 @@ public class MyDbContext : DbContext
     public DbSet<EntityC> EntityCs => Set<EntityC>();
     public DbSet<EntityD> EntityDs => Set<EntityD>();
     public DbSet<EntityE> EntityEs => Set<EntityE>();
-    
-    
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -88,8 +88,8 @@ public class MyDbContext : DbContext
         // ##### Cases ######
         ConfigureAHasListOfGuidsReferencingB(mBuilder);
 
-        ConfigureCHasListOfStrongFksReferencingD(mBuilder);
-        
+        ConfigureCHasListOfStrongFksReferencingDUsingWrapper(mBuilder);
+
         ConfigureFHasListOfStrongFksReferencingGByAmichai(mBuilder);
 
         ConfigureEHasListOfMultiValuedValueObjects(mBuilder);
@@ -97,7 +97,44 @@ public class MyDbContext : DbContext
 
     private void ConfigureFHasListOfStrongFksReferencingGByAmichai(ModelBuilder mBuilder)
     {
-        // TODO
+        
+        // This doesn't work. I do not get FK constraints in both directions.
+        
+        // I end up having to define an FK on MenuId, but this class is itself the FK.
+        
+        // mBuilder.Entity<EntityMenu>(b =>
+        // {
+        //     b.HasKey(menu => menu.Id);
+        //     b.Property(menu => menu.Id)
+        //         .ValueGeneratedNever()
+        //         .HasConversion(
+        //             id => id.Value,
+        //             value => MenuId.Create(value)
+        //         );
+        // });
+        //
+        // mBuilder.Entity<EntityHost>(b =>
+        // {
+        //     b.HasKey(host => host.Id);
+        //     b.Property(host => host.Id)
+        //         .HasConversion(
+        //             id => id.Value,
+        //             value => HostId.Create(value)
+        //         );
+        //
+        //     b.OwnsMany<MenuId>("menuIds", mib =>
+        //     {
+        //         mib.ToTable("HostMenuIds");
+        //         mib.HasKey("Id");
+        //         mib.Property(x => x.Value)
+        //             .HasColumnName("EntityMenuId");
+        //        
+        //         // lastly, create reference to EntityMenu
+        //         mib.HasOne<EntityMenu>()
+        //             .WithMany()
+        //             .HasForeignKey("HostMenuFk");
+        //     });
+        // });
     }
 
     private void ConfigureEHasListOfMultiValuedValueObjects(ModelBuilder mBuilder)
@@ -113,11 +150,9 @@ public class MyDbContext : DbContext
                 vob.Property(vo => vo.SecondValue);
             });
         });
-
-
     }
 
-    private void ConfigureCHasListOfStrongFksReferencingD(ModelBuilder mBuilder)
+    private void ConfigureCHasListOfStrongFksReferencingDUsingWrapper(ModelBuilder mBuilder)
     {
         // First Ids on both
         mBuilder.Entity<EntityC>().HasKey(x => x.Id);
@@ -328,7 +363,8 @@ public class MyDbContext : DbContext
     private static void ConfigureTwoValuedValueObjectAsComplexType(ModelBuilder mBuilder)
     {
         // -- mapping a two valued Value Object as Complex Type--
-        // inconveniently, this property cannot be nullable. DaFuq!?
+        // inconveniently, this property cannot be nullable. DaFuq!? And I can't have lists of this type. 
+        // It's a half-baked feature. Not super useful for now..
         // https://github.com/dotnet/efcore/issues/31376
         // Maybe alternative? https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities
         // though also with limits.

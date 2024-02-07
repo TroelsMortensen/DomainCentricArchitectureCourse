@@ -492,6 +492,31 @@ public class EfcMappingTests
         Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d2.Id.Value);
         Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d3.Id.Value);
     }
+
+    [Fact]
+    public async Task ListOfStrongIdFkReferences_FailWithInvalidFk()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityC c = new EntityC(Guid.NewGuid());
+        c.AddFk(StrongIdForEntityD.Create());
+
+        ctx.EntityCs.Add(c);
+        
+        Action exp = () => ctx.SaveChanges();
+        Exception? exception = Record.Exception(exp);
+
+        Assert.NotNull(exception);
+    }
+    
+    // List of strongly typed FK references, by Amichai.
+    // https://www.youtube.com/watch?v=B3Iq346KwUQ
+    // This does not create the correct constraints.
+
+    [Fact]
+    public async Task ListOfStrongIdFkReferencesByAmichai()
+    {
+        // ... can't make this work, currently.
+    }
     
     // List of multi valued VO
     [Fact]
