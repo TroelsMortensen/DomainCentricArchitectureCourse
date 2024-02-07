@@ -512,6 +512,8 @@ public class EfcMappingTests
             .Single(x => x.Id == e.Id);
         
         Assert.NotEmpty(retrieved.values);
+        Assert.Contains(retrieved.values, x => x.Equals(vo1));
+        Assert.Contains(retrieved.values, x => x.Equals(vo2));
     }
     
     #region Helper methods
