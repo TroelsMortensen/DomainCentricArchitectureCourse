@@ -7,6 +7,8 @@ using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
+using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
+using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -16,7 +18,6 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        List of multi valued VO
         Class enums thingy
         Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
         Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
@@ -430,7 +431,7 @@ public class EfcMappingTests
         Assert.Contains(retrieved.values, x => x == vo3);
     }
 
-    // TODO    List of simple FK references.
+    // List of simple FK references.
 
     [Fact]
     public async Task ListOfGuidFkReferences()
@@ -454,7 +455,7 @@ public class EfcMappingTests
 
         
         EntityA retrieved = ctx.EntityAs
-            .Include("foreignKeysToB")
+            .Include("foreignKeysToB") // I have to include, because this was not done with Owned Entity Types.
             .Single(x => x.Id == a1.Id);
         
         Assert.NotEmpty(retrieved.foreignKeysToB);
@@ -463,8 +464,55 @@ public class EfcMappingTests
         Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b3.Id);
     }
 
-    // TODO         List of strongly typed FK references.
+    // List of strongly typed FK references.
+    [Fact]
+    public async Task ListOfStrongIdFkReferences()
+    {
+        await using MyDbContext ctx = SetupContext();
 
+        EntityD d1 = new EntityD(StrongIdForEntityD.Create());
+        EntityD d2 = new EntityD(StrongIdForEntityD.Create());
+        EntityD d3 = new EntityD(StrongIdForEntityD.Create());
+
+        await ctx.EntityDs.AddRangeAsync(d1, d2, d3);
+        await ctx.SaveChangesAsync();
+        ctx.ChangeTracker.Clear();
+
+        EntityC c = new EntityC(Guid.NewGuid());
+        c.AddFk(d1.Id);
+        c.AddFk(d2.Id);
+        c.AddFk(d3.Id);
+
+        await SaveAndClearAsync(c, ctx);
+
+        EntityC retrieved = ctx.EntityCs.Include("foreignKeysToD").Single(x => x.Id == c.Id);
+        
+        Assert.NotEmpty(retrieved.foreignKeysToD);
+        Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d1.Id.Value);
+        Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d2.Id.Value);
+        Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d3.Id.Value);
+    }
+    
+    // List of multi valued VO
+    [Fact]
+    public async Task ListOfMultiValuedValueObjects()
+    {
+        await using MyDbContext ctx = SetupContext();
+
+        ValueObjectE vo1 = ValueObjectE.Create("Hello", 42);
+        ValueObjectE vo2 = ValueObjectE.Create("World", 47);
+
+        EntityE e = new(Guid.NewGuid());
+        e.AddValues(vo1, vo2);
+
+        await SaveAndClearAsync(e, ctx);
+
+        EntityE retrieved = ctx.EntityEs
+            .Include("values")
+            .Single(x => x.Id == e.Id);
+        
+        Assert.NotEmpty(retrieved.values);
+    }
     
     #region Helper methods
 

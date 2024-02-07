@@ -17,4 +17,8 @@
       <PackageReference Include="xunit" Version="2.6.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Cases\FHasListOfStrongFksReferencingGByAmichai\" />
+    </ItemGroup>
+
 </Project>

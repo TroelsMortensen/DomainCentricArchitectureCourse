@@ -7,6 +7,8 @@ using EfcMappingExamples.Aggregates.SixthAggregate;
 using EfcMappingExamples.Aggregates.ThirdAggregate;
 using EfcMappingExamples.Aggregates.Values;
 using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
+using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
+using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfcMappingExamples;
@@ -24,6 +26,11 @@ public class MyDbContext : DbContext
 
     public DbSet<EntityA> EntityAs => Set<EntityA>();
     public DbSet<EntityB> EntityBs => Set<EntityB>();
+    public DbSet<EntityC> EntityCs => Set<EntityC>();
+    public DbSet<EntityD> EntityDs => Set<EntityD>();
+    public DbSet<EntityE> EntityEs => Set<EntityE>();
+    
+    
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -47,11 +54,11 @@ public class MyDbContext : DbContext
         ConfigureTwoValuedValueObjectAsComplexType(mBuilder);
 
         ConfigureTwoValuedValueObjectAsOwnedEntity(mBuilder);
-        
+
         ConfigureSingleNestedEntityWithStrongParentId(mBuilder);
 
         ConfigureManyNestedEntitiesWithStrongParentId(mBuilder);
-        
+
         // ##### ThirdAggregate##### 
 
         ConfigureEnumWithStringConversion(mBuilder);
@@ -72,7 +79,7 @@ public class MyDbContext : DbContext
 
         ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
         // It should be simple enough to do the same as above with 1:1. Did I do this?
-        
+
         // ##### SeventhAggregate##### 
         ConfigureManyNestedEntitiesWithGuids(mBuilder);
 
@@ -80,6 +87,67 @@ public class MyDbContext : DbContext
 
         // ##### Cases ######
         ConfigureAHasListOfGuidsReferencingB(mBuilder);
+
+        ConfigureCHasListOfStrongFksReferencingD(mBuilder);
+        
+        ConfigureFHasListOfStrongFksReferencingGByAmichai(mBuilder);
+
+        ConfigureEHasListOfMultiValuedValueObjects(mBuilder);
+    }
+
+    private void ConfigureFHasListOfStrongFksReferencingGByAmichai(ModelBuilder mBuilder)
+    {
+        // TODO
+    }
+
+    private void ConfigureEHasListOfMultiValuedValueObjects(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<EntityE>(b =>
+        {
+            b.HasKey(x => x.Id);
+            b.OwnsMany<ValueObjectE>("values", vob =>
+            {
+                vob.Property<int>("Pk").ValueGeneratedOnAdd();
+                vob.HasKey("Pk");
+                vob.Property(vo => vo.FirstValue);
+                vob.Property(vo => vo.SecondValue);
+            });
+        });
+
+
+    }
+
+    private void ConfigureCHasListOfStrongFksReferencingD(ModelBuilder mBuilder)
+    {
+        // First Ids on both
+        mBuilder.Entity<EntityC>().HasKey(x => x.Id);
+        mBuilder.Entity<EntityD>().HasKey(x => x.Id);
+
+        // Then the conversion from strong ID to simple type
+        mBuilder.Entity<EntityD>() // here we define the conversion for the ID
+            .Property(m => m.Id)
+            .HasConversion(
+                id => id.Value, // how to convert ID type to simple value, EFC can understand
+                value => StrongIdForEntityD.FromGuid(value)); // how to convert simple EFC value to strong ID.
+
+        // Now we configure the join table
+        mBuilder.Entity<ReferenceFromCtoD>(x =>
+        {
+            x.Property<Guid>("FkBackToC");
+            x.HasKey("FkBackToC", "FkToD");
+            x.HasOne<EntityC>()
+                .WithMany("foreignKeysToD")
+                .HasForeignKey("FkBackToC");
+
+            x.Property(m => m.FkToD)
+                .HasConversion(
+                    id => id.Value, // how to convert ID type to simple value, EFC can understand
+                    value => StrongIdForEntityD.FromGuid(value)); // how to convert simple EFC value to strong ID.
+
+            x.HasOne<EntityD>()
+                .WithMany()
+                .HasForeignKey(y => y.FkToD);
+        });
     }
 
     private void ConfigureAHasListOfGuidsReferencingB(ModelBuilder mBuilder)
@@ -103,7 +171,7 @@ public class MyDbContext : DbContext
             .HasOne<EntityB>()
             .WithMany()
             .HasForeignKey(x => x.FkToB);
-        
+
         // TODO can I do this with list of complex type?
     }
 
@@ -111,12 +179,12 @@ public class MyDbContext : DbContext
     private void ConfigureManyNestedEntitiesWithStrongParentId(ModelBuilder mBuilder)
     {
         mBuilder.Entity<OtherEntity>().HasKey(x => x.Id);
-        
+
         // map like one to many
-        mBuilder.Entity<SecondAggregate>()                  // start with SecondAggregate
-            .HasMany<OtherEntity>("nestedEntities")          // Say it has a * relationship to OtherEntity
-            .WithOne()                                      // and the other side is 1
-            .HasForeignKey("secondParentId");              // and the foreign key is defined on the child, i.e. OtherEntity.
+        mBuilder.Entity<SecondAggregate>() // start with SecondAggregate
+            .HasMany<OtherEntity>("nestedEntities") // Say it has a * relationship to OtherEntity
+            .WithOne() // and the other side is 1
+            .HasForeignKey("secondParentId"); // and the foreign key is defined on the child, i.e. OtherEntity.
     }
 
     private void ConfigureSingleNestedEntityWithStrongParentId(ModelBuilder mBuilder)
@@ -130,11 +198,11 @@ public class MyDbContext : DbContext
     private void ConfigureManyNestedEntitiesWithGuids(ModelBuilder mBuilder)
     {
         // map like one to many
-        mBuilder.Entity<SomeEntity>()                // start with SomeEntity
-            .HasOne<SeventhAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
-            .WithMany("nestedEntities")                    // and the other side is many
-            .HasForeignKey("seventhParentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
-
+        mBuilder.Entity<SomeEntity>() // start with SomeEntity
+            .HasOne<SeventhAggregate>() // Say it has a 1 relationship to ThirdAggregate
+            .WithMany("nestedEntities") // and the other side is many
+            .HasForeignKey(
+                "seventhParentId"); // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
     }
 
     private void ConfigureSingleNestedEntity(ModelBuilder mBuilder)
@@ -142,11 +210,11 @@ public class MyDbContext : DbContext
         mBuilder.Entity<SomeEntity>().HasKey(e => e.Id);
 
         // map like one to one
-        mBuilder.Entity<SomeEntity>()                // start with SomeEntity
-            .HasOne<ThirdAggregate>()                   // Say it has a 1 relationship to ThirdAggregate
-            .WithOne("nestedEntity")                    // and the other side is also 1
-            .HasForeignKey<SomeEntity>("thirdParentId");  // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
-
+        mBuilder.Entity<SomeEntity>() // start with SomeEntity
+            .HasOne<ThirdAggregate>() // Say it has a 1 relationship to ThirdAggregate
+            .WithOne("nestedEntity") // and the other side is also 1
+            .HasForeignKey<
+                SomeEntity>("thirdParentId"); // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
     }
 
     private void ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(ModelBuilder mBuilder)
@@ -161,6 +229,7 @@ public class MyDbContext : DbContext
 
     private void ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(ModelBuilder mBuilder)
     {
+        // Here FK is added to many side, so each entity has an fk to parent.
         mBuilder.Entity<SixthAggregate>(b =>
             {
                 // seems to not be necessary.
@@ -253,7 +322,7 @@ public class MyDbContext : DbContext
         );
 
         // closing comment: If you must allow null, use Owned Entity.
-        // If the same instance should be allowed in multiple fields of an entity (maybe even different entities), use Complex Type.
+        // If the same value object instance should be allowed in multiple fields of an entity (maybe even different entities), use Complex Type.
     }
 
     private static void ConfigureTwoValuedValueObjectAsComplexType(ModelBuilder mBuilder)
@@ -284,14 +353,14 @@ public class MyDbContext : DbContext
             }
         );
     }
-    
+
     private void ConfigureListValueObjects(ModelBuilder mBuilder)
     {
         mBuilder.Entity<SeventhAggregate>()
             .OwnsMany<MyStringValueObject>("values", vo =>
             {
-                vo.HasKey("SeventhAggregateId", "Value");
-                vo.Property<Guid>("SeventhAggregateId");
+                vo.HasKey("SeventhAggregateId", "Value"); // making composite key af value and fk back to parent
+                vo.Property<Guid>("SeventhAggregateId"); // adding shadow property. This works because of naming convention...?
                 vo.Property<string>("Value");
             });
 
@@ -319,7 +388,7 @@ public class MyDbContext : DbContext
             .HasConversion(
                 id => id.Get, // how to convert ID type to simple value, EFC can understand
                 value => SecondAggId.FromGuid(value)); // how to convert simple EFC value to strong ID.
-        
+
         // more about value conversions: https://learn.microsoft.com/en-us/ef/core/modeling/value-conversions?tabs=data-annotations
     }
 
@@ -330,7 +399,6 @@ public class MyDbContext : DbContext
             .OwnsOne<MyStringValueObject>("firstValueObject")
             .Property(vo => vo.Value); // specifying the value from the Value Object to EFC.
     }
-    
 
 
     private static void ConfigurePrivateFieldPrimitiveType(ModelBuilder mBuilder)
