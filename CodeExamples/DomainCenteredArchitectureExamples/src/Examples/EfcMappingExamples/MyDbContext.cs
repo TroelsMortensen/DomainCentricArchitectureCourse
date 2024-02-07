@@ -11,6 +11,8 @@ using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.FHasListOfStrongFksReferencingGByAmichai;
+using EfcMappingExamples.Cases.ListOfNestedValueObjects;
+using EfcMappingExamples.Cases.NestedValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace EfcMappingExamples;
@@ -32,6 +34,8 @@ public class MyDbContext : DbContext
     public DbSet<EntityD> EntityDs => Set<EntityD>();
     public DbSet<EntityE> EntityEs => Set<EntityE>();
     public DbSet<EntityH> EntityHs => Set<EntityH>();
+    public DbSet<EntityJ> EntityJs => Set<EntityJ>();
+    public DbSet<EntityK> EntityKs => Set<EntityK>();
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -97,6 +101,59 @@ public class MyDbContext : DbContext
         ConfigureEHasListOfMultiValuedValueObjects(mBuilder);
 
         ConfigureEnumAsClass(mBuilder);
+
+        ConfigureSingleNestedValueObjects(mBuilder);
+
+        ConfigureListOfNestedValueObjects(mBuilder);
+    }
+
+    private void ConfigureListOfNestedValueObjects(ModelBuilder mBuilder)
+    {
+        mBuilder.Entity<EntityK>(b =>
+        {
+            b.HasKey(x => x.Id);
+
+            b.OwnsMany<TopValueObject>("values", vob =>
+            {
+                vob.Property<int>("Id").ValueGeneratedOnAdd();
+                vob.HasKey("Id");
+                vob.OwnsOne<FirstNestedVO>("First", fvo =>
+                {
+                    fvo.Property(x => x.Stuff);
+                    fvo.Property(x => x.Number);
+                });
+                vob.OwnsOne<SecondNestedVO>("Second", svo =>
+                {
+                    svo.Property(x => x.Type);
+                });
+            });
+        });
+    }
+
+    // https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities
+    private void ConfigureSingleNestedValueObjects(ModelBuilder mBuilder)
+    {
+        // cannot have nullable?
+        mBuilder.Entity<EntityJ>(b =>
+        {
+            b.HasKey(x => x.Id);
+            b.OwnsOne<TopValueObject>("myValue", vob =>
+            {
+                vob.ToTable("TopValueObjects"); // include this line, if the Value Object must be nullable.
+            
+                vob.OwnsOne<FirstNestedVO>("First", fvo =>
+                {
+                    fvo.Property(x => x.Stuff);
+                    fvo.Property(x => x.Number);
+                });
+                vob.OwnsOne<SecondNestedVO>("Second", svo =>
+                {
+                    svo.Property(x => x.Type);
+                });
+                
+            });
+            b.Navigation("myValue"); // add is .required(), if this value is required. Otherwise this line can be deleted.
+        });
     }
 
     private void ConfigureEnumAsClass(ModelBuilder mBuilder)
@@ -104,20 +161,16 @@ public class MyDbContext : DbContext
         mBuilder.Entity<EntityH>(b =>
         {
             b.HasKey(x => x.Id);
-            b.OwnsOne<MyStatusEnum>("status", e =>
-            {
-                e.Property("backingValue").HasColumnName("status");
-            });
+            b.OwnsOne<MyStatusEnum>("status", e => { e.Property("backingValue").HasColumnName("status"); });
         });
     }
 
     private void ConfigureFHasListOfStrongFksReferencingGByAmichai(ModelBuilder mBuilder)
     {
-        
         // This doesn't work. I do not get FK constraints in both directions.
-        
+
         // I end up having to define an FK on MenuId, but this class is itself the FK.
-        
+
         // mBuilder.Entity<EntityMenu>(b =>
         // {
         //     b.HasKey(menu => menu.Id);

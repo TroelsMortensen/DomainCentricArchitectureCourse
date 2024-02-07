@@ -10,6 +10,8 @@ using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
+using EfcMappingExamples.Cases.ListOfNestedValueObjects;
+using EfcMappingExamples.Cases.NestedValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -19,8 +21,7 @@ public class EfcMappingTests
 {
     /*
       TODO:
-        Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
-        Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
+        list of nested value objects.
         collections of primitives: https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew#primitive-collection-properties
      */
 
@@ -437,7 +438,7 @@ public class EfcMappingTests
     public async Task ListOfGuidFkReferences()
     {
         await using MyDbContext ctx = SetupContext();
-        
+
         // adding reference entities
         EntityB b1 = new(Guid.NewGuid());
         EntityB b2 = new(Guid.NewGuid());
@@ -446,18 +447,18 @@ public class EfcMappingTests
         ctx.EntityBs.AddRange(b1, b2, b3);
         await ctx.SaveChangesAsync();
         ctx.ChangeTracker.Clear();
-        
-        
+
+
         EntityA a1 = new(Guid.NewGuid());
         a1.AddFks(b1.Id, b2.Id, b3.Id);
 
         await SaveAndClearAsync(a1, ctx);
 
-        
+
         EntityA retrieved = ctx.EntityAs
             .Include("foreignKeysToB") // I have to include, because this was not done with Owned Entity Types.
             .Single(x => x.Id == a1.Id);
-        
+
         Assert.NotEmpty(retrieved.foreignKeysToB);
         Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b1.Id);
         Assert.Contains(retrieved.foreignKeysToB, x => x.FkToB == b2.Id);
@@ -486,7 +487,7 @@ public class EfcMappingTests
         await SaveAndClearAsync(c, ctx);
 
         EntityC retrieved = ctx.EntityCs.Include("foreignKeysToD").Single(x => x.Id == c.Id);
-        
+
         Assert.NotEmpty(retrieved.foreignKeysToD);
         Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d1.Id.Value);
         Assert.Contains(retrieved.foreignKeysToD, x => x.FkToD.Value == d2.Id.Value);
@@ -501,13 +502,13 @@ public class EfcMappingTests
         c.AddFk(StrongIdForEntityD.Create());
 
         ctx.EntityCs.Add(c);
-        
+
         Action exp = () => ctx.SaveChanges();
         Exception? exception = Record.Exception(exp);
 
         Assert.NotNull(exception);
     }
-    
+
     // List of strongly typed FK references, by Amichai.
     // https://www.youtube.com/watch?v=B3Iq346KwUQ
     // This does not create the correct constraints.
@@ -517,7 +518,7 @@ public class EfcMappingTests
     {
         // ... can't make this work, currently.
     }
-    
+
     // List of multi valued VO
     [Fact]
     public async Task ListOfMultiValuedValueObjects()
@@ -535,13 +536,13 @@ public class EfcMappingTests
         EntityE retrieved = ctx.EntityEs
             .Include("values")
             .Single(x => x.Id == e.Id);
-        
+
         Assert.NotEmpty(retrieved.values);
         Assert.Contains(retrieved.values, x => x.Equals(vo1));
         Assert.Contains(retrieved.values, x => x.Equals(vo2));
     }
-    
-    // Class enums thingy
+
+    // Class as enum
 
     [Fact]
     public async Task ClassAsEnum()
@@ -552,10 +553,55 @@ public class EfcMappingTests
         await SaveAndClearAsync(h, ctx);
 
         EntityH retrieved = ctx.EntityHs.Single(x => x.Id == h.Id);
-        
+
         Assert.Equal(MyStatusEnum.First, retrieved.status);
     }
-    
+
+    // Nested single value object
+    // Value object of other value objects: Money (Amount, Currency), https://devblogs.microsoft.com/dotnet/announcing-ef8-rc1/#nested-complex-types
+    // Vo af vo. Dvs nested. Money, amount, currency, tal før og efter decimal, find formelle navne på dem
+
+    [Fact]
+    public async Task NestedValueObjects()
+    {
+        await using MyDbContext ctx = SetupContext();
+        FirstNestedVO first = FirstNestedVO.Create("Stuff", 42);
+        SecondNestedVO second = SecondNestedVO.Create("Type");
+        TopValueObject top = TopValueObject.Create(first, second);
+
+        EntityJ j = new EntityJ(Guid.NewGuid());
+        j.SetValue(top);
+        await SaveAndClearAsync(j, ctx);
+
+        EntityJ retrieved = ctx.EntityJs.Single(x => x.Id == j.Id);
+        Assert.Equal(retrieved.myValue.First.Number, first.Number);
+        Assert.Equal(retrieved.myValue.First.Stuff, first.Stuff);
+        Assert.Equal(retrieved.myValue.Second.Type, second.Type);
+    }
+
+    [Fact]
+    public async Task ListOfNestedValueObjects()
+    {
+        await using MyDbContext ctx = SetupContext();
+        
+        FirstNestedVO first1 = FirstNestedVO.Create("Stuff", 42);
+        SecondNestedVO second1 = SecondNestedVO.Create("Type");
+        TopValueObject top1 = TopValueObject.Create(first1, second1);
+        
+        FirstNestedVO first2 = FirstNestedVO.Create("Stuff2", 422);
+        SecondNestedVO second2 = SecondNestedVO.Create("Type2");
+        TopValueObject top2 = TopValueObject.Create(first2, second2);
+        
+        EntityK k = new EntityK(Guid.NewGuid());
+        k.AddValues(top1, top2);
+
+        await SaveAndClearAsync(k, ctx);
+
+        EntityK retrieved = ctx.EntityKs.Single(x => x.Id == k.Id);
+        
+        Assert.NotEmpty(retrieved.values);
+    }
+
     #region Helper methods
 
     private static MyDbContext SetupContext()
