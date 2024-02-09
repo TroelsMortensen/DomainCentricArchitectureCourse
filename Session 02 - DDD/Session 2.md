@@ -18,8 +18,12 @@ We are using the yield keyword:
 Optional: You may choose to use reflection in part of your implementation, so here's an overview:
 * [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challenge-part of future assignment.
 
+Optional: Use enumeration classes instead of enums. There are different ways to handle this:
+* [Enumeration class](https://lostechies.com/jimmybogard/2008/08/12/enumeration-classes/)
+* [Other example](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types)
+
 ## Material
-The PowerPoint got large, and annoying to work with. I split it into smaller pieces:
+The PowerPoint got large, and annoying to work with. I split it into smaller pieces. So now it's annoying for you instead:
 
 1) [Intro](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EVvcb1HiSDRMqaBDiaP3mbYBWdVp3j-cdu5bWb0KH3rzeg?e=9EtnUM)
 2) [DDD Overview](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EVvcb1HiSDRMqaBDiaP3mbYBWdVp3j-cdu5bWb0KH3rzeg?e=9EtnUM)
