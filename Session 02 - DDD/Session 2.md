@@ -12,6 +12,9 @@
 We're going to do implementation with generics, make sure you have a decent understanding of this topic:
 * [Gain a basic understanding of generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
 
+We are using the yield keyword:
+* [yield return](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield)
+
 Optional: You may choose to use reflection in part of your implementation, so here's an overview:
 * [Gain a basic understanding of reflection](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/viewing-type-information) <- This should cover how to extract properties of a class. Needed for challenge-part of future assignment.
 

@@ -10,8 +10,10 @@ using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
+using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -600,21 +602,49 @@ public class EfcMappingTests
         Assert.NotEmpty(retrieved.values);
     }
 
+    [Fact]
+    public async Task GuidAsPk()
+    {
+        await using MyDbContext ctx = SetupContext();
+        Guid id = Guid.NewGuid();
+        EntityL entity = new(id);
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityL? retrieved = ctx.EntityLs.SingleOrDefault(x => x.Id == id);
+        Assert.NotNull(retrieved);
+    }
+
+    [Fact]
+    public async Task StrongIdAsPk()
+    {
+        await using MyDbContext ctx = SetupContext();
+        
+        MId id = MId.Create();
+        EntityM entity = new(id);
+        
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityM? retrieved = ctx.EntityMs.SingleOrDefault(x => x.Id.Equals(id));
+        Assert.NotNull(retrieved);
+    }
+    
     #region Helper methods
 
     private static MyDbContext SetupContext()
     {
-        MyDbContext context = new();
+        DbContextOptionsBuilder<MyDbContext> optionsBuilder = new();
+        optionsBuilder.UseSqlite(@"Data Source = Test.db");
+        MyDbContext context = new(optionsBuilder.Options);
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
         return context;
     }
 
-    private static async Task SaveAndClearAsync<T>(T obj, MyDbContext context) where T : class
+    private static async Task SaveAndClearAsync<T>(T entity, MyDbContext context) where T : class
     {
-        await context.Set<T>().AddAsync(obj);
+        await context.Set<T>().AddAsync(entity);
         await context.SaveChangesAsync();
-        context.ChangeTracker.Clear(); // making sure nothing is tracked.
+        context.ChangeTracker.Clear();
     }
 
     #endregion

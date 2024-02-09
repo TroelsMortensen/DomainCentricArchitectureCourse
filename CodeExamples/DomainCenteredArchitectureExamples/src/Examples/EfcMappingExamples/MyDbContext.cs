@@ -11,13 +11,16 @@ using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.FHasListOfStrongFksReferencingGByAmichai;
+using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EfcMappingExamples;
 
-public class MyDbContext : DbContext
+public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
 {
     public DbSet<FirstAggregate> FirstAggregates => Set<FirstAggregate>();
     public DbSet<SecondAggregate> SecondAggregates => Set<SecondAggregate>();
@@ -36,12 +39,9 @@ public class MyDbContext : DbContext
     public DbSet<EntityH> EntityHs => Set<EntityH>();
     public DbSet<EntityJ> EntityJs => Set<EntityJ>();
     public DbSet<EntityK> EntityKs => Set<EntityK>();
+    public DbSet<EntityL> EntityLs => Set<EntityL>();
+    public DbSet<EntityM> EntityMs => Set<EntityM>();
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite(@"Data Source = Test.db");
-    }
 
     protected override void OnModelCreating(ModelBuilder mBuilder)
     {
@@ -105,6 +105,27 @@ public class MyDbContext : DbContext
         ConfigureSingleNestedValueObjects(mBuilder);
 
         ConfigureListOfNestedValueObjects(mBuilder);
+
+        GuidAsPk(mBuilder.Entity<EntityL>());
+
+        StrongId(mBuilder.Entity<EntityM>());
+    }
+
+    private void StrongId(EntityTypeBuilder<EntityM> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder
+            .Property(m => m.Id)
+            .HasConversion(
+                mId => mId.Value,
+                dbValue => MId.FromGuid(dbValue)
+            );
+    }
+
+    private void GuidAsPk(EntityTypeBuilder<EntityL> entityBuilder)
+    {
+        entityBuilder.HasKey(entity => entity.Id);
     }
 
     private void ConfigureListOfNestedValueObjects(ModelBuilder mBuilder)
@@ -122,10 +143,7 @@ public class MyDbContext : DbContext
                     fvo.Property(x => x.Stuff);
                     fvo.Property(x => x.Number);
                 });
-                vob.OwnsOne<SecondNestedVO>("Second", svo =>
-                {
-                    svo.Property(x => x.Type);
-                });
+                vob.OwnsOne<SecondNestedVO>("Second", svo => { svo.Property(x => x.Type); });
             });
         });
     }
@@ -140,17 +158,13 @@ public class MyDbContext : DbContext
             b.OwnsOne<TopValueObject>("myValue", vob =>
             {
                 vob.ToTable("TopValueObjects"); // include this line, if the Value Object must be nullable.
-            
+
                 vob.OwnsOne<FirstNestedVO>("First", fvo =>
                 {
                     fvo.Property(x => x.Stuff);
                     fvo.Property(x => x.Number);
                 });
-                vob.OwnsOne<SecondNestedVO>("Second", svo =>
-                {
-                    svo.Property(x => x.Type);
-                });
-                
+                vob.OwnsOne<SecondNestedVO>("Second", svo => { svo.Property(x => x.Type); });
             });
             b.Navigation("myValue"); // add is .required(), if this value is required. Otherwise this line can be deleted.
         });
@@ -226,6 +240,7 @@ public class MyDbContext : DbContext
         // First Ids on both
         mBuilder.Entity<EntityC>().HasKey(x => x.Id);
         mBuilder.Entity<EntityD>().HasKey(x => x.Id);
+
 
         // Then the conversion from strong ID to simple type
         mBuilder.Entity<EntityD>() // here we define the conversion for the ID
