@@ -13,6 +13,8 @@ using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -583,22 +585,22 @@ public class EfcMappingTests
     public async Task ListOfNestedValueObjects()
     {
         await using MyDbContext ctx = SetupContext();
-        
+
         FirstNestedVO first1 = FirstNestedVO.Create("Stuff", 42);
         SecondNestedVO second1 = SecondNestedVO.Create("Type");
         TopValueObject top1 = TopValueObject.Create(first1, second1);
-        
+
         FirstNestedVO first2 = FirstNestedVO.Create("Stuff2", 422);
         SecondNestedVO second2 = SecondNestedVO.Create("Type2");
         TopValueObject top2 = TopValueObject.Create(first2, second2);
-        
+
         EntityK k = new EntityK(Guid.NewGuid());
         k.AddValues(top1, top2);
 
         await SaveAndClearAsync(k, ctx);
 
         EntityK retrieved = ctx.EntityKs.Single(x => x.Id == k.Id);
-        
+
         Assert.NotEmpty(retrieved.values);
     }
 
@@ -618,14 +620,44 @@ public class EfcMappingTests
     public async Task StrongIdAsPk()
     {
         await using MyDbContext ctx = SetupContext();
-        
+
         MId id = MId.Create();
         EntityM entity = new(id);
-        
+
         await SaveAndClearAsync(entity, ctx);
 
         EntityM? retrieved = ctx.EntityMs.SingleOrDefault(x => x.Id.Equals(id));
         Assert.NotNull(retrieved);
+    }
+
+    [Fact]
+    public async Task NonNullableSinglePrimitiveValuedValueObject()
+    {
+        await using MyDbContext ctx = SetupContext();
+        ValueObjectN value = ValueObjectN.Create("Hello world");
+        EntityN entity = new(Guid.NewGuid());
+        entity.SetValue(value);
+
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityN retrieved = ctx.EntityNs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(value.Value, retrieved.someValue.Value);
+    }
+
+    [Fact]
+    public async Task NullableSinglePrimitiveValuedValueObject()
+    {
+        await using MyDbContext ctx = SetupContext();
+        ValueObjectO value = ValueObjectO.Create("Hello world");
+        EntityO entity = new(Guid.NewGuid());
+        entity.SetValue(value);
+
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityO retrieved = ctx.EntityOs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(value.Value, retrieved.someValue.Value);
     }
     
     #region Helper methods

@@ -10,10 +10,11 @@ using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
-using EfcMappingExamples.Cases.FHasListOfStrongFksReferencingGByAmichai;
 using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -41,7 +42,20 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<EntityK> EntityKs => Set<EntityK>();
     public DbSet<EntityL> EntityLs => Set<EntityL>();
     public DbSet<EntityM> EntityMs => Set<EntityM>();
+    public DbSet<EntityN> EntityNs => Set<EntityN>();
+    public DbSet<EntityO> EntityOs => Set<EntityO>();
 
+    public MyDbContext() : this(new DbContextOptions<MyDbContext>())
+    {
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlite(@"Data Source = Test.db");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder mBuilder)
     {
@@ -109,6 +123,31 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         GuidAsPk(mBuilder.Entity<EntityL>());
 
         StrongId(mBuilder.Entity<EntityM>());
+
+        ConfigureNonNullableSinglePrimitiveValuedValueObject(mBuilder.Entity<EntityN>());
+        ConfigureNullableSinglePrimitiveValuedValueObject(mBuilder.Entity<EntityO>());
+    }
+
+    private void ConfigureNullableSinglePrimitiveValuedValueObject(EntityTypeBuilder<EntityO> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder
+            .OwnsOne<ValueObjectO>("someValue")
+            .Property(vo => vo.Value);
+    }
+
+    private void ConfigureNonNullableSinglePrimitiveValuedValueObject(EntityTypeBuilder<EntityN> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.ComplexProperty<ValueObjectN>(
+            "someValue",
+            propBuilder =>
+            {
+                propBuilder.Property(vo => vo.Value);
+            }
+        );
     }
 
     private void StrongId(EntityTypeBuilder<EntityM> entityBuilder)
