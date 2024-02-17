@@ -6,7 +6,8 @@
 
 
 ## Preparation before class
-...
+
+Optionally see 4 minute video with quick overview of the basic idea: [Short intro video](https://www.youtube.com/watch?v=cqNGAo-9pUE)
 
 ## Material
 
