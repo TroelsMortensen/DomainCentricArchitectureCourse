@@ -11,6 +11,10 @@ Again, we'll need to use generics, so make sure you know the basics:
 I will also use a record at some point:
 * [Records in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
 
+General C# tricks:
+* [Expression body](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
+* [Omitting type name](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator)
+
 ## Material
 
 [Link to today's PowerPoint](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EftpSTON6qFMguhI5-gqCzkB_Dga_xPl071Kg_5eK2uN2A?e=7dmwyl)
