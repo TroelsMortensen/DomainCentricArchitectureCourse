@@ -10,6 +10,8 @@
 
 You may google introductions to xUnit.NET. I will also give an overview in class.
 
+[Optional, Unit tests are useless](https://www.reddit.com/r/dotnet/s/51Ng5fSfpE)
+
 ## Material
 
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EVvkxpx8sg9Csh-mbwhIRd8BRVX7OGT22UrgqWyos7fuGA?e=Kuh1T3)
