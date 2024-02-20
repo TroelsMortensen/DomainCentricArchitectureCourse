@@ -15,6 +15,9 @@ General C# tricks:
 * [Expression body](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
 * [Omitting type name](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator)
 
+Discussion about Result on reddit.
+* [Is it worth with?](https://www.reddit.com/r/csharp/s/U3Z1cT0imF)
+
 ## Material
 
 [Link to today's PowerPoint](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EftpSTON6qFMguhI5-gqCzkB_Dga_xPl071Kg_5eK2uN2A?e=7dmwyl)
