@@ -11,8 +11,9 @@ Again, we'll need to use generics, so make sure you know the basics:
 I will also use a record at some point:
 * [Records in C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
 
-Reddit discussion:
-* [Is the Result worth it?](https://www.reddit.com/r/csharp/s/U3Z1cT0imF)
+General C# tricks:
+* [Expression body](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members)
+* [Omitting type name](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/new-operator)
 
 ## Material
 
