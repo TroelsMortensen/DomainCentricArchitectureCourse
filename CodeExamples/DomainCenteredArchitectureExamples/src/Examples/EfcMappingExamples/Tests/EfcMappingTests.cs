@@ -13,16 +13,27 @@ using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.NonNullableMultiValuedValueObject;
+using EfcMappingExamples.Cases.NonNullableNestedValueObjects;
 using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.NullableMultiValuedValueObject;
+using EfcMappingExamples.Cases.NullableNestedValueObjects;
 using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace EfcMappingExamples.Tests;
 
 public class EfcMappingTests
 {
+    private readonly ITestOutputHelper testOutputHelper;
+
+    public EfcMappingTests(ITestOutputHelper testOutputHelper)
+    {
+        this.testOutputHelper = testOutputHelper;
+    }
     /*
         collections of primitives: https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew#primitive-collection-properties
      */
@@ -644,6 +655,15 @@ public class EfcMappingTests
         Assert.NotNull(retrieved.someValue);
         Assert.Equal(value.Value, retrieved.someValue.Value);
     }
+    [Fact]
+    public async Task NonNullableSinglePrimitiveValuedValueObject_FailWhenNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityN entity = new(Guid.NewGuid());
+        await ctx.EntityNs.AddAsync(entity);
+        
+        Assert.Throws<InvalidOperationException>(() => ctx.SaveChanges());
+    }
 
     [Fact]
     public async Task NullableSinglePrimitiveValuedValueObject()
@@ -658,6 +678,165 @@ public class EfcMappingTests
         EntityO retrieved = ctx.EntityOs.Single(x => x.Id == entity.Id);
         Assert.NotNull(retrieved.someValue);
         Assert.Equal(value.Value, retrieved.someValue.Value);
+    }
+    
+    [Fact]
+    public async Task NullableSinglePrimitiveValuedValueObject_SaveWhenNulled()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityO entity = new(Guid.NewGuid());
+
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityO retrieved = ctx.EntityOs.Single(x => x.Id == entity.Id);
+        Assert.Null(retrieved.someValue);
+    }
+
+    [Fact]
+    public async Task NonNullableMultiPrimitiveValuedValueObject()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityP entity = new(Guid.NewGuid());
+        ValueObjectP valueObject = ValueObjectP.Create("Hello world", 42);
+        entity.SetValue(valueObject);
+
+        await SaveAndClearAsync(entity, ctx);
+
+        EntityP retrieved = ctx.EntityPs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First, retrieved.someValue.First);
+        Assert.Equal(valueObject.Second, retrieved.someValue.Second);
+    }
+
+
+    [Fact]
+    public async Task NullableMultiValuedValueObject_NoneAreNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityQ entity = new(Guid.NewGuid());
+        ValueObjectQ valueObject = ValueObjectQ.Create("Hello world", 42);
+        entity.SetValue(valueObject);
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityQ retrieved = ctx.EntityQs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First, retrieved.someValue.First);
+        Assert.Equal(valueObject.Second, retrieved.someValue.Second);
+    }
+
+    [Fact]
+    public async Task NullableMultiValuedValueObject_EntityPropertyIsNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityQ entity = new(Guid.NewGuid());
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityQ retrieved = ctx.EntityQs.Single(x => x.Id == entity.Id);
+        Assert.Null(retrieved.someValue);
+    }
+    
+    [Fact]
+    public async Task NullableMultiValuedValueObject_OneValueObjectPropertyIsNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityQ entity = new(Guid.NewGuid());
+        entity.SetValue(ValueObjectQ.Create("Hello world", null));
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityQ retrieved = ctx.EntityQs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Null(retrieved.someValue!.Second);
+        Assert.Equal("Hello world", retrieved.someValue!.First);
+    }
+
+    [Fact]
+    public async Task NonNullableNestedValueObject()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityR entity = new(Guid.NewGuid());
+        NestedValueObjectR2 nested1 = NestedValueObjectR2.Create(42);
+        NestedValueObjectR1 nested2 = NestedValueObjectR1.Create("Hello world");
+        ValueObjectR valueObject = ValueObjectR.Create(nested2, nested1);
+        entity.SetValue(valueObject);
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityR retrieved = ctx.EntityRs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First.Value, retrieved.someValue.First.Value);
+        Assert.Equal(valueObject.Second.Value, retrieved.someValue.Second.Value);
+    }
+
+    [Fact]
+    public async Task NullableNestedValueObject_AllNonNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityS entity = new(Guid.NewGuid());
+        NestedValueObjectS1 nested1 = NestedValueObjectS1.Create("Hello world");
+        NestedValueObjectS2 nested2 = NestedValueObjectS2.Create(42);
+        ValueObjectS valueObject = ValueObjectS.Create(nested1, nested2);
+        
+        entity.SetValue(valueObject);
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityS retrieved = ctx.EntitySs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First!.Value, retrieved.someValue.First!.Value);
+        Assert.Equal(valueObject.Second!.Value, retrieved.someValue.Second!.Value);
+    }
+    
+    [Fact]
+    public async Task NullableNestedValueObject_NullProp()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityS entity = new(Guid.NewGuid());
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityS retrieved = ctx.EntitySs.Single(x => x.Id == entity.Id);
+        Assert.Null(retrieved.someValue);
+    }
+    
+    [Fact]
+    public async Task NullableNestedValueObject_OneNestedValueIsNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityS entity = new(Guid.NewGuid());
+        NestedValueObjectS1 nested1 = NestedValueObjectS1.Create("Hello world");
+        NestedValueObjectS2 nested2 = null; // <<<----
+        ValueObjectS valueObject = ValueObjectS.Create(nested1, nested2);
+        
+        entity.SetValue(valueObject);
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityS retrieved = ctx.EntitySs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First!.Value, retrieved.someValue.First!.Value);
+        Assert.Null(retrieved.someValue.Second);
+    }
+    
+    [Fact]
+    public async Task NullableNestedValueObject_OnePropertyOnNestedValueIsNull()
+    {
+        await using MyDbContext ctx = SetupContext();
+        EntityS entity = new(Guid.NewGuid());
+        NestedValueObjectS1 nested1 = NestedValueObjectS1.Create("Hello world");
+        NestedValueObjectS2 nested2 = NestedValueObjectS2.Create(null); // <<<----
+        ValueObjectS valueObject = ValueObjectS.Create(nested1, nested2);
+        
+        entity.SetValue(valueObject);
+        
+        await SaveAndClearAsync(entity, ctx);
+        
+        EntityS retrieved = ctx.EntitySs.Single(x => x.Id == entity.Id);
+        Assert.NotNull(retrieved.someValue);
+        Assert.Equal(valueObject.First!.Value, retrieved.someValue.First!.Value);
+        Assert.Null(retrieved.someValue.Second);
     }
     
     #region Helper methods
@@ -680,4 +859,5 @@ public class EfcMappingTests
     }
 
     #endregion
+
 }

@@ -13,7 +13,11 @@ using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
 using EfcMappingExamples.Cases.GuidAsPk;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
+using EfcMappingExamples.Cases.NonNullableMultiValuedValueObject;
+using EfcMappingExamples.Cases.NonNullableNestedValueObjects;
 using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.NullableMultiValuedValueObject;
+using EfcMappingExamples.Cases.NullableNestedValueObjects;
 using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +48,10 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<EntityM> EntityMs => Set<EntityM>();
     public DbSet<EntityN> EntityNs => Set<EntityN>();
     public DbSet<EntityO> EntityOs => Set<EntityO>();
+    public DbSet<EntityP> EntityPs => Set<EntityP>();
+    public DbSet<EntityQ> EntityQs => Set<EntityQ>();
+    public DbSet<EntityR> EntityRs => Set<EntityR>();
+    public DbSet<EntityS> EntitySs => Set<EntityS>();
 
     public MyDbContext() : this(new DbContextOptions<MyDbContext>())
     {
@@ -120,12 +128,89 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
 
         ConfigureListOfNestedValueObjects(mBuilder);
 
-        GuidAsPk(mBuilder.Entity<EntityL>());
+        ConfigureGuidAsPk(mBuilder.Entity<EntityL>());
 
-        StrongId(mBuilder.Entity<EntityM>());
+        ConfigureStronglyTypedId(mBuilder.Entity<EntityM>());
 
         ConfigureNonNullableSinglePrimitiveValuedValueObject(mBuilder.Entity<EntityN>());
+
         ConfigureNullableSinglePrimitiveValuedValueObject(mBuilder.Entity<EntityO>());
+
+        ConfigureNonNullableMultiPrimitiveValuedValueObject(mBuilder.Entity<EntityP>());
+
+        ConfigureNullableMultiPrimitiveValuedValueObject(mBuilder.Entity<EntityQ>());
+
+        ConfigureNonNullableNestedValueObjects(mBuilder.Entity<EntityR>());
+        
+        ConfigureNullableNestedValueObjects(mBuilder.Entity<EntityS>());
+    }
+
+    private void ConfigureNullableNestedValueObjects(EntityTypeBuilder<EntityS> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+        
+        entityBuilder.OwnsOne<ValueObjectS>("someValue", ownedNavigationBuilder =>
+        {
+            ownedNavigationBuilder.ToTable("ValueObjectS");
+            
+            ownedNavigationBuilder.OwnsOne<NestedValueObjectS1>("First", fvo =>
+            {
+                fvo.Property(x => x.Value)
+                    .HasColumnName("First");
+            });
+            ownedNavigationBuilder.OwnsOne<NestedValueObjectS2>("Second", svo =>
+            {
+                svo.Property(x => x.Value)
+                    .HasColumnName("Second");
+            });
+        });
+
+        entityBuilder.Navigation("someValue");
+    }
+
+    private void ConfigureNonNullableNestedValueObjects(EntityTypeBuilder<EntityR> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.ComplexProperty<ValueObjectR>("someValue", propBuilder =>
+        {
+            propBuilder.ComplexProperty(x => x.First)
+                .Property(x => x.Value)
+                .HasColumnName("First");
+
+            propBuilder.ComplexProperty(x => x.Second)
+                .Property(x => x.Value)
+                .HasColumnName("Second");
+
+        });
+    }
+
+    private void ConfigureNullableMultiPrimitiveValuedValueObject(EntityTypeBuilder<EntityQ> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.OwnsOne<ValueObjectQ>("someValue", ownedNavigationBuilder =>
+        {
+            ownedNavigationBuilder.Property(valueObject => valueObject.First)
+                .HasColumnName("First");
+
+            ownedNavigationBuilder.Property(valueObjectP => valueObjectP.Second)
+                .HasColumnName("Second");
+        });
+    }
+
+    private void ConfigureNonNullableMultiPrimitiveValuedValueObject(EntityTypeBuilder<EntityP> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.ComplexProperty<ValueObjectP>("someValue", propBuilder =>
+        {
+            propBuilder.Property(valueObject => valueObject.First)
+                .HasColumnName("First");
+
+            propBuilder.Property(valueObjectP => valueObjectP.Second)
+                .HasColumnName("Second");
+        });
     }
 
     private void ConfigureNullableSinglePrimitiveValuedValueObject(EntityTypeBuilder<EntityO> entityBuilder)
@@ -134,7 +219,8 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
 
         entityBuilder
             .OwnsOne<ValueObjectO>("someValue")
-            .Property(vo => vo.Value);
+            .Property(vo => vo.Value)
+            .HasColumnName("value");
     }
 
     private void ConfigureNonNullableSinglePrimitiveValuedValueObject(EntityTypeBuilder<EntityN> entityBuilder)
@@ -145,12 +231,13 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             "someValue",
             propBuilder =>
             {
-                propBuilder.Property(vo => vo.Value);
+                propBuilder.Property(vo => vo.Value)
+                    .HasColumnName("value");
             }
         );
     }
 
-    private void StrongId(EntityTypeBuilder<EntityM> entityBuilder)
+    private void ConfigureStronglyTypedId(EntityTypeBuilder<EntityM> entityBuilder)
     {
         entityBuilder.HasKey(x => x.Id);
 
@@ -162,7 +249,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             );
     }
 
-    private void GuidAsPk(EntityTypeBuilder<EntityL> entityBuilder)
+    private void ConfigureGuidAsPk(EntityTypeBuilder<EntityL> entityBuilder)
     {
         entityBuilder.HasKey(entity => entity.Id);
     }
