@@ -6,7 +6,9 @@
 * Using EFC for data access (with SQLite)
 
 ## Preparation before class
-We will be using Entity Framework Core. It will give some introduction, but you may want to refresh a few things. You could skim through [this website](https://www.learnentityframeworkcore.com/)
+We will be using Entity Framework Core. I will give some introduction, but you may want to refresh a few things. You could skim through [this website](https://www.learnentityframeworkcore.com/).
+
+[Is the repository pattern a good idea? Reddit discussion](https://www.reddit.com/r/dotnet/s/yvos61F7ni)
 
 ## Material
 

@@ -10,8 +10,11 @@ using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
+using EfcMappingExamples.Cases.GuidAsFk;
 using EfcMappingExamples.Cases.GuidAsPk;
+using EfcMappingExamples.Cases.ListOfGuidForeignKeys;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
+using EfcMappingExamples.Cases.ListOfValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
 using EfcMappingExamples.Cases.NonNullableMultiValuedValueObject;
 using EfcMappingExamples.Cases.NonNullableNestedValueObjects;
@@ -19,6 +22,7 @@ using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.NullableMultiValuedValueObject;
 using EfcMappingExamples.Cases.NullableNestedValueObjects;
 using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.StronglyTypedForeignKey;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -52,6 +56,14 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<EntityQ> EntityQs => Set<EntityQ>();
     public DbSet<EntityR> EntityRs => Set<EntityR>();
     public DbSet<EntityS> EntitySs => Set<EntityS>();
+    public DbSet<EntityT> EntityTs => Set<EntityT>();
+    public DbSet<EntityU> EntityUs => Set<EntityU>();
+    public DbSet<EntityV> EntityVs => Set<EntityV>();
+    public DbSet<EntityY> EntityYs => Set<EntityY>();
+    public DbSet<EntityX> EntityXs => Set<EntityX>();
+    public DbSet<Entity1> Entity1s => Set<Entity1>();
+    public DbSet<Entity2> Entity2s => Set<Entity2>();
+
 
     public MyDbContext() : this(new DbContextOptions<MyDbContext>())
     {
@@ -111,7 +123,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         // ##### SeventhAggregate##### 
         ConfigureManyNestedEntitiesWithGuids(mBuilder);
 
-        ConfigureListValueObjects(mBuilder);
+        ConfigureListValueObjectsOnSeventhAgg(mBuilder);
 
         // ##### Cases ######
         ConfigureAHasListOfGuidsReferencingB(mBuilder);
@@ -141,18 +153,71 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         ConfigureNullableMultiPrimitiveValuedValueObject(mBuilder.Entity<EntityQ>());
 
         ConfigureNonNullableNestedValueObjects(mBuilder.Entity<EntityR>());
-        
+
         ConfigureNullableNestedValueObjects(mBuilder.Entity<EntityS>());
+
+        ConfigureListValueObjects(mBuilder.Entity<EntityT>());
+
+        ConfigureGuidAsFk(mBuilder.Entity<EntityU>(), mBuilder.Entity<EntityV>());
+
+        ConfigureStronglyTypedFk(mBuilder.Entity<EntityX>(), mBuilder.Entity<EntityY>());
+        
+        ConfigureListOfGuidsAsFks(mBuilder.Entity<Entity1>(), mBuilder.Entity<Entity2>());
+    }
+
+    private void ConfigureListOfGuidsAsFks(EntityTypeBuilder<Entity1> entityBuilder1, EntityTypeBuilder<Entity2> entityBuilder2)
+    { 
+        
+    }
+
+    private void ConfigureStronglyTypedFk(EntityTypeBuilder<EntityX> entityBuilderX, EntityTypeBuilder<EntityY> entityBuilderY)
+    {
+        entityBuilderX.HasKey(x => x.Id);
+
+        entityBuilderY.HasKey(y => y.Id);
+        entityBuilderY.Property(y => y.Id)
+            .HasConversion(
+                yId => yId.Value,
+                dbValue => YId.FromGuid(dbValue)
+            );
+
+        entityBuilderX.HasOne<EntityY>()
+            .WithMany()
+            .HasForeignKey("foreignKeyToY");
+    }
+
+    private void ConfigureGuidAsFk(EntityTypeBuilder<EntityU> entityUBuilder, EntityTypeBuilder<EntityV> entityVBuilder)
+    {
+        entityUBuilder.HasKey(x => x.Id);
+        entityVBuilder.HasKey(x => x.Id);
+
+        entityUBuilder.Property<Guid>("entityVId");
+
+        entityUBuilder.HasOne<EntityV>()
+            .WithMany()
+            .HasForeignKey("entityVId");
+    }
+
+    private void ConfigureListValueObjects(EntityTypeBuilder<EntityT> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.OwnsMany<ValueObjectT>("someValues", vob =>
+        {
+            vob.Property<int>("Id").ValueGeneratedOnAdd();
+            vob.HasKey("Id");
+            vob.Property(x => x.Value);
+        });
     }
 
     private void ConfigureNullableNestedValueObjects(EntityTypeBuilder<EntityS> entityBuilder)
     {
         entityBuilder.HasKey(x => x.Id);
-        
+
         entityBuilder.OwnsOne<ValueObjectS>("someValue", ownedNavigationBuilder =>
         {
             ownedNavigationBuilder.ToTable("ValueObjectS");
-            
+
             ownedNavigationBuilder.OwnsOne<NestedValueObjectS1>("First", fvo =>
             {
                 fvo.Property(x => x.Value)
@@ -181,7 +246,6 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             propBuilder.ComplexProperty(x => x.Second)
                 .Property(x => x.Value)
                 .HasColumnName("Second");
-
         });
     }
 
@@ -600,7 +664,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         );
     }
 
-    private void ConfigureListValueObjects(ModelBuilder mBuilder)
+    private void ConfigureListValueObjectsOnSeventhAgg(ModelBuilder mBuilder)
     {
         mBuilder.Entity<SeventhAggregate>()
             .OwnsMany<MyStringValueObject>("values", vo =>
