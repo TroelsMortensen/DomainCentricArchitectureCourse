@@ -7,7 +7,6 @@
 
 ## Preparation before class
 
-
 We are going to use ASP.NET's DI Container, IServiceProvider, you may [look at this](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iserviceprovider-and-how-is-it-built). But we won't do anything fancy with it.
 
 I will introduce the [Decorator pattern](https://www.bytehide.com/blog/decorator-pattern-csharp), though simpler.
