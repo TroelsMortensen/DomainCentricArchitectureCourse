@@ -5,20 +5,18 @@ public class MyStatusEnum
     public static MyStatusEnum First { get; } = new("First");
     public static MyStatusEnum Second { get; } = new("Second");
     public static MyStatusEnum Third { get; } = new("Third");
-    
+
     private readonly string backingValue;
+
     private MyStatusEnum(string value)
         => backingValue = value;
 
     private MyStatusEnum()
     {
-        
     }
-    
+
     private bool Equals(MyStatusEnum other)
-    {
-        return backingValue == other.backingValue;
-    }
+        => backingValue == other.backingValue;
 
     public override bool Equals(object? obj)
     {
@@ -29,7 +27,5 @@ public class MyStatusEnum
     }
 
     public override int GetHashCode()
-    {
-        return backingValue.GetHashCode();
-    }
+        => backingValue.GetHashCode();
 }

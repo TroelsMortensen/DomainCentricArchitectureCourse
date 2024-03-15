@@ -4,8 +4,6 @@ public class EntityC
 {
     public Guid Id { get; }
 
-    private string someValue = "42";
-
     internal List<ReferenceFromCtoD> foreignKeysToD;
 
     public EntityC(Guid id)
@@ -14,23 +12,17 @@ public class EntityC
         foreignKeysToD = new();
     }
 
-    public void AddFk(StrongIdForEntityD id) => foreignKeysToD.Add(new(id));
-
-    private EntityC()
-    {
-    }
+    public void AddFk(DId id) => foreignKeysToD.Add(id);
 }
 
 public class ReferenceFromCtoD
 {
-    public StrongIdForEntityD FkToD { get; set; }
+    public DId FkToD { get; set; }
 
-    private ReferenceFromCtoD() // EFC
-    {
-    }
+    public static implicit operator ReferenceFromCtoD(DId fk) => new(fk);
 
-    public ReferenceFromCtoD(StrongIdForEntityD fk)
-    {
-        FkToD = fk;
-    }
+    public static implicit operator DId(ReferenceFromCtoD reference) => reference.FkToD;
+
+    private ReferenceFromCtoD(DId fk) => FkToD = fk;
+    private ReferenceFromCtoD(){}
 }

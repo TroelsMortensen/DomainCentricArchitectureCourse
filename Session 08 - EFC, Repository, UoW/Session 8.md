@@ -8,6 +8,8 @@
 ## Preparation before class
 We will be using Entity Framework Core. I will give some introduction, but you may want to refresh a few things. You could skim through [this website](https://www.learnentityframeworkcore.com/).
 
+Microsoft has [some information](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implementation-entity-framework-core) on Repository and Unit of Work. It will not exactly match our approach, but still introduce the idea.
+
 [Is the repository pattern a good idea? Reddit discussion](https://www.reddit.com/r/dotnet/s/yvos61F7ni)
 
 ## Material

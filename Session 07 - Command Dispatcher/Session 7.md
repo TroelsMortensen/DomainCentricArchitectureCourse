@@ -7,8 +7,10 @@
 
 ## Preparation before class
 
-Nothing.\
+
 We are going to use ASP.NET's DI Container, you may look at this. But we won't do anything fancy with it.
+
+I will introduce the [Decorator pattern](https://www.bytehide.com/blog/decorator-pattern-csharp), though simpler.
 
 ## Material
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EQEIc5Qo98dBmCFIn4MO-eoBrHCwGRaKwHCl1lLJ4rwUBQ?e=3AinK5)

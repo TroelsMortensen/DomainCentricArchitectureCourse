@@ -10,9 +10,10 @@ using EfcMappingExamples.Cases.AHasListOfGuidsReferencingB;
 using EfcMappingExamples.Cases.CHasListOfStrongIdReferencingD;
 using EfcMappingExamples.Cases.ClassAsEnum;
 using EfcMappingExamples.Cases.EHasListOfMultiValuedValueObjects;
+using EfcMappingExamples.Cases.Enums;
 using EfcMappingExamples.Cases.GuidAsFk;
 using EfcMappingExamples.Cases.GuidAsPk;
-using EfcMappingExamples.Cases.ListOfGuidForeignKeys;
+using EfcMappingExamples.Cases.ListOfNestedEntities;
 using EfcMappingExamples.Cases.ListOfNestedValueObjects;
 using EfcMappingExamples.Cases.ListOfValueObjects;
 using EfcMappingExamples.Cases.NestedValueObjects;
@@ -22,6 +23,7 @@ using EfcMappingExamples.Cases.NonNullableSingleValuedValueObject;
 using EfcMappingExamples.Cases.NullableMultiValuedValueObject;
 using EfcMappingExamples.Cases.NullableNestedValueObjects;
 using EfcMappingExamples.Cases.NullableSingleValuedValueObject;
+using EfcMappingExamples.Cases.SingleNestedEntity;
 using EfcMappingExamples.Cases.StronglyTypedForeignKey;
 using EfcMappingExamples.Cases.StronglyTypedId;
 using Microsoft.EntityFrameworkCore;
@@ -31,14 +33,14 @@ namespace EfcMappingExamples;
 
 public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
 {
-    public DbSet<FirstAggregate> FirstAggregates => Set<FirstAggregate>();
-    public DbSet<SecondAggregate> SecondAggregates => Set<SecondAggregate>();
-
-    public DbSet<ThirdAggregate> ThirdAggregates => Set<ThirdAggregate>();
-    public DbSet<FourthAggregate> FourthAggregates => Set<FourthAggregate>();
-    public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
-    public DbSet<SixthAggregate> SixthAggregates => Set<SixthAggregate>();
-    public DbSet<SeventhAggregate> SeventhAggregates => Set<SeventhAggregate>();
+    // public DbSet<FirstAggregate> FirstAggregates => Set<FirstAggregate>();
+    // public DbSet<SecondAggregate> SecondAggregates => Set<SecondAggregate>();
+    //
+    // public DbSet<ThirdAggregate> ThirdAggregates => Set<ThirdAggregate>();
+    // public DbSet<FourthAggregate> FourthAggregates => Set<FourthAggregate>();
+    // public DbSet<FifthAggregate> FifthAggregates => Set<FifthAggregate>();
+    // public DbSet<SixthAggregate> SixthAggregates => Set<SixthAggregate>();
+    // public DbSet<SeventhAggregate> SeventhAggregates => Set<SeventhAggregate>();
 
     public DbSet<EntityA> EntityAs => Set<EntityA>();
     public DbSet<EntityB> EntityBs => Set<EntityB>();
@@ -61,8 +63,10 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     public DbSet<EntityV> EntityVs => Set<EntityV>();
     public DbSet<EntityY> EntityYs => Set<EntityY>();
     public DbSet<EntityX> EntityXs => Set<EntityX>();
-    public DbSet<Entity1> Entity1s => Set<Entity1>();
-    public DbSet<Entity2> Entity2s => Set<Entity2>();
+    public DbSet<EntityChildA> EntityChildAs => Set<EntityChildA>();
+    public DbSet<EntityRootA> EntityRootAs => Set<EntityRootA>();
+    public DbSet<EntityChildB> EntityChildBs => Set<EntityChildB>();
+    public DbSet<EntityRootB> EntityRootBs => Set<EntityRootB>();
 
 
     public MyDbContext() : this(new DbContextOptions<MyDbContext>())
@@ -79,62 +83,20 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
 
     protected override void OnModelCreating(ModelBuilder mBuilder)
     {
-        // ##### FirstAggregate##### 
-
-        ConfigurePkAsGuid(mBuilder);
-
-        ConfigurePrivateFieldPrimitiveType(mBuilder);
-
-        ConfigurePrivateFieldValueObject(mBuilder);
-
-        // ##### SecondAggregate #####
-
-        ConfigureStronglyTypedId(mBuilder);
-
-        ConfigureTwoValuedValueObjectAsComplexType(mBuilder);
-
-        ConfigureTwoValuedValueObjectAsOwnedEntity(mBuilder);
-
-        ConfigureSingleNestedEntityWithStrongParentId(mBuilder);
-
-        ConfigureManyNestedEntitiesWithStrongParentId(mBuilder);
-
-        // ##### ThirdAggregate##### 
-
-        ConfigureEnumWithStringConversion(mBuilder);
-
-        ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(mBuilder);
-
-        ConfigureSingleNestedEntity(mBuilder);
-
-        // ##### FourthAggregate##### 
-
-        ConfigureForeignKeyConstraintOfOneToMany(mBuilder);
-
-        // ##### FifthAggregate##### 
-
-        ConfigureForeignKeyConstraintOfOneToOne(mBuilder);
-
-        // ##### SixthAggregate##### 
-
-        ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
-        // It should be simple enough to do the same as above with 1:1. Did I do this?
-
-        // ##### SeventhAggregate##### 
-        ConfigureManyNestedEntitiesWithGuids(mBuilder);
-
-        ConfigureListValueObjectsOnSeventhAgg(mBuilder);
-
+        // ConfigureForeignKeyConstraintOfOneToOneWithStronglyTypedId(mBuilder);
+        // ConfigureForeignKeyConstraintOfOneToMany(mBuilder);
+        // ConfigureForeignKeyConstraintOfOneToOne(mBuilder);
+        // ConfigureForeignKeyConstraintOfOneToManyWithStronglyTypedId(mBuilder);
         // ##### Cases ######
-        ConfigureAHasListOfGuidsReferencingB(mBuilder);
+        ConfigureListOfGuidsAsForeignKeys(mBuilder);
 
-        ConfigureCHasListOfStrongFksReferencingDUsingWrapper(mBuilder);
+        ConfigureListOfStronglyTypedForeignKeys(mBuilder);
 
         ConfigureFHasListOfStrongFksReferencingGByAmichai(mBuilder);
 
         ConfigureEHasListOfMultiValuedValueObjects(mBuilder);
 
-        ConfigureEnumAsClass(mBuilder);
+        ConfigureEnumAsClass(mBuilder.Entity<EntityH>());
 
         ConfigureSingleNestedValueObjects(mBuilder);
 
@@ -161,14 +123,53 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         ConfigureGuidAsFk(mBuilder.Entity<EntityU>(), mBuilder.Entity<EntityV>());
 
         ConfigureStronglyTypedFk(mBuilder.Entity<EntityX>(), mBuilder.Entity<EntityY>());
-        
-        ConfigureListOfGuidsAsFks(mBuilder.Entity<Entity1>(), mBuilder.Entity<Entity2>());
+
+        ConfigureEnumWithConversion(mBuilder.Entity<Entity1>());
+
+        ConfigureSingleNestedEntity(mBuilder.Entity<EntityChildA>(), mBuilder.Entity<EntityRootA>());
+
+        ConfigureListOfNestedEntities(mBuilder.Entity<EntityChildB>(), mBuilder.Entity<EntityRootB>());
     }
 
-    private void ConfigureListOfGuidsAsFks(EntityTypeBuilder<Entity1> entityBuilder1, EntityTypeBuilder<Entity2> entityBuilder2)
-    { 
-        
+    private void ConfigureListOfNestedEntities(
+        EntityTypeBuilder<EntityChildB> entityBuilderChild,
+        EntityTypeBuilder<EntityRootB> entityBuilderRoot)
+    {
+        entityBuilderChild.HasKey(x => x.Id);
+        entityBuilderRoot.HasKey(x => x.Id);
+
+        entityBuilderRoot
+            .HasMany<EntityChildB>("children")
+            .WithOne()
+            .HasForeignKey("parentId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
+
+    private void ConfigureSingleNestedEntity(
+        EntityTypeBuilder<EntityChildA> entityBuilderChild,
+        EntityTypeBuilder<EntityRootA> entityBuilderRoot)
+    {
+        entityBuilderChild.HasKey(x => x.Id);
+        entityBuilderRoot.HasKey(x => x.Id);
+
+        entityBuilderRoot
+            .HasOne<EntityChildA>("child")
+            .WithOne()
+            .HasForeignKey<EntityChildA>("parentId")
+            .OnDelete(DeleteBehavior.Cascade);
+    }
+
+    private void ConfigureEnumWithConversion(EntityTypeBuilder<Entity1> entityBuilder)
+    {
+        entityBuilder.HasKey(x => x.Id);
+
+        entityBuilder.Property<MyEnum>("status")
+            .HasConversion(
+                status => status.ToString(),
+                value => (MyEnum)Enum.Parse(typeof(MyEnum), value)
+            );
+    }
+
 
     private void ConfigureStronglyTypedFk(EntityTypeBuilder<EntityX> entityBuilderX, EntityTypeBuilder<EntityY> entityBuilderY)
     {
@@ -360,13 +361,16 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         });
     }
 
-    private void ConfigureEnumAsClass(ModelBuilder mBuilder)
+    private void ConfigureEnumAsClass(EntityTypeBuilder<EntityH> entityBuilder)
     {
-        mBuilder.Entity<EntityH>(b =>
-        {
-            b.HasKey(x => x.Id);
-            b.OwnsOne<MyStatusEnum>("status", e => { e.Property("backingValue").HasColumnName("status"); });
-        });
+        entityBuilder.HasKey(x => x.Id);
+        entityBuilder.ComplexProperty<MyStatusEnum>("status",
+            propBuilder =>
+            {
+                propBuilder.Property("backingValue")
+                    .HasColumnName("status");
+            }
+        );
     }
 
     private void ConfigureFHasListOfStrongFksReferencingGByAmichai(ModelBuilder mBuilder)
@@ -425,7 +429,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         });
     }
 
-    private void ConfigureCHasListOfStrongFksReferencingDUsingWrapper(ModelBuilder mBuilder)
+    private void ConfigureListOfStronglyTypedForeignKeys(ModelBuilder mBuilder)
     {
         // First Ids on both
         mBuilder.Entity<EntityC>().HasKey(x => x.Id);
@@ -437,7 +441,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             .Property(m => m.Id)
             .HasConversion(
                 id => id.Value, // how to convert ID type to simple value, EFC can understand
-                value => StrongIdForEntityD.FromGuid(value)); // how to convert simple EFC value to strong ID.
+                value => DId.FromGuid(value)); // how to convert simple EFC value to strong ID.
 
         // Now we configure the join table
         mBuilder.Entity<ReferenceFromCtoD>(x =>
@@ -451,7 +455,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
             x.Property(m => m.FkToD)
                 .HasConversion(
                     id => id.Value, // how to convert ID type to simple value, EFC can understand
-                    value => StrongIdForEntityD.FromGuid(value)); // how to convert simple EFC value to strong ID.
+                    value => DId.FromGuid(value)); // how to convert simple EFC value to strong ID.
 
             x.HasOne<EntityD>()
                 .WithMany()
@@ -459,29 +463,28 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
         });
     }
 
-    private void ConfigureAHasListOfGuidsReferencingB(ModelBuilder mBuilder)
+    // Could not find solution with non-reference type Guid.
+    // I introduce a wrapper, value object like class, but it can be simpler.
+    // A similar approach will be used for list of strong Id, I guess.
+    private void ConfigureListOfGuidsAsForeignKeys(ModelBuilder mBuilder)
     {
-        // Could not find solution with non-reference type Guid.
-        // I introduce a wrapper, value object like class, but it can be simpler.
-        // A similar approach will be used for list of strong Id, I guess.
         mBuilder.Entity<EntityA>().HasKey("Id");
         mBuilder.Entity<EntityB>().HasKey("Id");
 
-        mBuilder.Entity<EntityBFk>().Property<Guid>("parentIdFk");
-        mBuilder.Entity<EntityBFk>().HasKey("parentIdFk", "FkToB");
+        mBuilder.Entity<EntityBForeignKey>().Property<Guid>("FkToA");
+        mBuilder.Entity<EntityBForeignKey>().HasKey("FkToA", "FkToB");
 
         mBuilder.Entity<EntityA>()
-            .HasMany<EntityBFk>("foreignKeysToB")
+            .HasMany<EntityBForeignKey>("foreignKeysToB")
             .WithOne()
-            .HasForeignKey("parentIdFk")
+            .HasForeignKey("FkToA")
             .OnDelete(DeleteBehavior.Cascade);
 
-        mBuilder.Entity<EntityBFk>()
+        mBuilder.Entity<EntityBForeignKey>()
             .HasOne<EntityB>()
             .WithMany()
             .HasForeignKey(x => x.FkToB);
-
-        // TODO can I do this with list of complex type?
+        // .OnDelete(DeleteBehavior.SetNull);
     }
 
 
@@ -514,7 +517,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
                 "seventhParentId"); // and the foreign key is defined on the child, i.e. EntityInThird. It's a shadow prop, called parentId. I.e. it does not exist, but EFC should create it.
     }
 
-    private void ConfigureSingleNestedEntity(ModelBuilder mBuilder)
+    private void ConfigureSingleNestedEntity_Old(ModelBuilder mBuilder)
     {
         mBuilder.Entity<SomeEntity>().HasKey(e => e.Id);
 
@@ -711,10 +714,10 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     }
 
 
-    private static void ConfigurePrivateFieldPrimitiveType(ModelBuilder mBuilder)
+    private static void ConfigurePrivateFieldPrimitiveType(EntityTypeBuilder<FirstAggregate> entityBuilder)
     {
         // -- Mapping private field primitive type --
-        mBuilder.Entity<FirstAggregate>()
+        entityBuilder
             .Property<string>("someStringValue");
     }
 
