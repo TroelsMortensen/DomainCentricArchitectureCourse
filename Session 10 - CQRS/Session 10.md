@@ -7,7 +7,9 @@
 
 ## Preparation before class
 
-Optionally see 4 minute video with quick overview of the basic idea: [Short intro video](https://www.youtube.com/watch?v=cqNGAo-9pUE)
+You need to know what a [partial class is](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
+
+Optionally see 4 minute video with quick overview of the basic idea of CQRS: [Short intro video](https://www.youtube.com/watch?v=cqNGAo-9pUE)
 
 ## Material
 
