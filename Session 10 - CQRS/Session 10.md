@@ -11,6 +11,8 @@ You need to know what a [partial class is](https://learn.microsoft.com/en-us/dot
 
 Optionally see 4 minute video with quick overview of the basic idea of CQRS: [Short intro video](https://www.youtube.com/watch?v=cqNGAo-9pUE)
 
+We will be using the `dynamic` keyword, you may [look into it](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic).
+
 ## Material
 
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ef7oKyBh9GREpP70LKVeTtQBHepscWFhqTahuzKgBVx2iA?e=UWHNcT)
