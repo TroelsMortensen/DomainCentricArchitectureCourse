@@ -29,3 +29,7 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-command-side-of-
 Dependency Injection Container:
 
 https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-8.0
+
+Mediatr
+
+https://cezarypiatek.github.io/post/why-i-dont-use-mediatr-for-cqrs/
