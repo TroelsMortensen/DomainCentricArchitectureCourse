@@ -52,3 +52,7 @@ https://andrewlock.net/strongly-typed-ids-in-ef-core-using-strongly-typed-entity
 https://thehonestcoder.com/ddd-ef-core-8/
 
 https://www.youtube.com/watch?v=yFPuLp8QX1g
+
+Database testing
+
+https://learn.microsoft.com/en-us/ef/core/testing/

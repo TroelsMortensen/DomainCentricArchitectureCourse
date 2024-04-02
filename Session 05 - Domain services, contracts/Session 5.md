@@ -17,3 +17,5 @@ Nothing new, just keep implementing your Domain Model. You have probably encount
 
 ## Resources
 
+https://aspnetboilerplate.com/Pages/Documents/Domain-Services
+

@@ -145,6 +145,9 @@ API Design Patterns - By JJ Geewax
 #### Entity Framework Core
 [EF Core 6 and Domain-Driven Design Pluralsight Course](https://app.pluralsight.com/library/courses/ef-core-6-domain-driven-design/table-of-contents)
 
+## Other
+[DDD series](https://m.youtube.com/playlist?list=PLYpjLpq5ZDGtR5nMKGDCa031hx1jVuHXn)
+
 ## Sample projects (not mine, but for inspiration to myself)
 https://github.com/jasontaylordev/CleanArchitecture
 

@@ -27,4 +27,4 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my
 https://www.youtube.com/watch?v=F3xNCfP3Xew
 
 
-Reverse engineering in EFC
+[Reverse engineering in EFC](https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/?tabs=dotnet-core-cli)
