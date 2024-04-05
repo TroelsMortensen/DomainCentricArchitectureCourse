@@ -33,3 +33,6 @@ https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?
 Mediatr
 
 https://cezarypiatek.github.io/post/why-i-dont-use-mediatr-for-cqrs/
+
+
+[Reasons for and against Mediatr](https://codeopinion.com/why-use-mediatr-3-reasons-why-and-1-reason-not/)
