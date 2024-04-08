@@ -16,6 +16,12 @@ Microsoft has [some information](https://learn.microsoft.com/en-us/dotnet/archit
 
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/ES3tCcXnLtdCpseWxddJKhoBIXzS_jEvPTzjhnwRgOAm2g?e=eeeTU9)
 
+Tools:
+
+[Sql visualizer](https://troelsmortensen.github.io/SqlScriptVisualizer/)
+
+[EFC Configuration](https://troelsmortensen.github.io/CodeLabs/Tutorials/DddWithEfc/Page.html)
+
 ## Assignment 7
 
 [Link to assignment 7](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/Ecvgs8KOxIdPh18Sdc0kWooBFTjbj-hpWQy4YKsyz8CF4w?e=qegN4Z)
