@@ -44,6 +44,8 @@ https://www.youtube.com/watch?v=Bz5JCbWnaHo
 
 #### EFC Mapping
 
+My guide is constructed based in part on the following resources:
+
 https://david-masters.medium.com/entity-framework-core-7-strongly-typed-ids-together-with-auto-increment-columns-fd9715e331f3
 
 https://thomaslevesque.com/2020/12/23/csharp-9-records-as-strongly-typed-ids-part-4-entity-framework-core-integration/
