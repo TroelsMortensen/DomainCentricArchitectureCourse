@@ -4,7 +4,7 @@ Implementation of the Presentation layer.
 ### Topics
 * REPR pattern: Request End-Point Response
 * Fluent interface
-* Object Mapper
+* Object Mapper (aka object to object converter)
 
 ## Preparation before class
 You may want to refresh how Web APIs work in ASP.NET.

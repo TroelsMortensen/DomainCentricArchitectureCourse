@@ -42,6 +42,8 @@
 
 [Evolving the hexagon](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together)
 
+[Hexgonal in 10 minutes](https://www.youtube.com/watch?v=k_GkYMd8Ouc)
+
 ### Onion
 
 https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
