@@ -14,7 +14,7 @@ You may want to refresh how Web APIs work in ASP.NET. [For example here](https:/
 [Link to today's slides]()
 
 ## Assignment 9
-[Link to assignment 9]()
+[Link to assignment 9](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EXjaySgtVtxCra4dPRWPSGEB0nOqtpshbxQqUshxdunj-Q?e=sazOlY)
 
 ## Sources
 https://ardalis.com/mvc-controllers-are-dinosaurs-embrace-api-endpoints/
