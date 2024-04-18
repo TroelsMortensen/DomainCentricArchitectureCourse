@@ -11,7 +11,7 @@ You may want to refresh how Web APIs work in ASP.NET. [For example here](https:/
 
 
 ## Material
-[Link to today's slides]()
+[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EcGyi5_x6JxPsVryMARuiXoBaSPA2eFvI_XijsHN__rVMw?e=35SRYl)
 
 ## Assignment 9
 [Link to assignment 9](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EXjaySgtVtxCra4dPRWPSGEB0nOqtpshbxQqUshxdunj-Q?e=sazOlY)
@@ -39,4 +39,6 @@ https://www.youtube.com/watch?v=layTLQJ5xYw
 
 [REPR (Request-Endpoint-Response) Pattern Will Make Your APIs Clean](https://www.youtube.com/watch?v=layTLQJ5xYw&t=458s)
 
-[Integration testing a web api](https://juliocasal.com/blog/Dont-Unit-Test-Your-AspNetCore-API.html)
+[Official integration testing a web api](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-8.0)
+
+[Article on integration testing a web api](https://juliocasal.com/blog/Dont-Unit-Test-Your-AspNetCore-API.html)
