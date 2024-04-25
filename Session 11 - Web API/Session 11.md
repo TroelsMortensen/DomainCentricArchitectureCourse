@@ -9,6 +9,13 @@ Implementation of the Presentation layer.
 ## Preparation before class
 You may want to refresh how Web APIs work in ASP.NET. [For example here](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio).
 
+Or watch [this quick overview of Web APIs](https://www.youtube.com/watch?v=b9qj3mK5JEM)
+
+[This video](https://www.youtube.com/watch?v=_lgDdzRvYO0) shows how to test your Web API. We will apply a similar approach.
+
+In today's class we'll essentially do outside-in testing. After the presentation, you might watch [this video](https://www.youtube.com/watch?v=prLRI3VEVq4) on doing TDD outside-in.
+
+
 
 ## Material
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EcGyi5_x6JxPsVryMARuiXoBaSPA2eFvI_XijsHN__rVMw?e=35SRYl)
