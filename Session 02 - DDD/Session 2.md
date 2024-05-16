@@ -39,6 +39,7 @@ The PowerPoint got large, and annoying to work with. I split it into smaller pie
 [Link to assignment 2, Concrete Domain Model](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/Ed3mVu9vXNdDi5FSc5OWNKgBeI0HTDS6F8Ch3_UhOkAAqw?e=U4h6P3)
 
 ## Resources
+[Modelling types with records](https://www.youtube.com/watch?v=DW0BgHc6TRQ)
 
 [Ubiquitous language article](https://www.lullabot.com/articles/naming-content-types-using-ubiquitous-language)
 [Ubiquitous language video](https://youtu.be/_zWMjMUHinc?si=MXmy1VnDivOGWoQO)
