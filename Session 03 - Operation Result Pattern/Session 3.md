@@ -29,4 +29,4 @@ Discussion about Result on reddit.
 
 [Quick introduction to basic implementation](https://medium.com/@cummingsi1993/the-operation-result-pattern-a-simple-guide-fe10ff959080)
 
-[What is a smart constructor}(https://gieseanw.wordpress.com/2023/11/30/smart-constructors/)
+[What is a smart constructor](https://gieseanw.wordpress.com/2023/11/30/smart-constructors/)
