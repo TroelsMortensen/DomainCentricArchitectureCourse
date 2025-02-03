@@ -9,7 +9,7 @@ The course focuses on various approaches to organizing an application. We will t
 
 I will introduce:
 * Domain Driven Development (DDD)
-* Test/Behaviour Driven Development (TDD/BDD)
+* Test Driven Development (TDD)
 * Various architectural styles
 * Various architectural patterns
 
@@ -17,7 +17,7 @@ The course theories will be applied to create a complete Web Service. Each week 
 We will use a "big-bang" development approach (inside-out when considering hexagonal, onion, clean), due to the nature of the course, and the order of the topics.
 
 # Before we start
-Install the latest .NET version (.NET8 at the time of writing), along with your preferred IDE.
+Install the latest .NET version (.NET9 at the time of writing), along with your preferred IDE.
 
 # Session Schedule
 The following is a session plan. Each header links to more details for that specific session.
@@ -48,40 +48,40 @@ Introduction to TDD, implement the domain model with TDD.
 Mainly project work, a bit about domain services and contracts.
 
 
-## [Session 6 - Commands and Handlers pattern](Session%2006%20-%20Application%20ring/Session%206.md)
+## Session 6 - Assigment work
+No new input.
+
+## [Session 7 - Commands and Handlers pattern](Session%2006%20-%20Application%20ring/Session%206.md)
 
 Implement use cases (application ring/layer) with command objects/handlers (and "placeholder" repositories).
 
 
-## [Session 7 - Command Dispatcher](Session%2007%20-%20Command%20Dispatcher/Session%207.md)
+## [Session 8 - Command Dispatcher](Session%2007%20-%20Command%20Dispatcher/Session%207.md)
 
 Implement the command dispatcher pattern as a way to interact with the application layer.
 
 
 
-## [Session 8 - EFC, Repository and Unit of Work pattern](Session%2008%20-%20EFC,%20Repository,%20UoW/Session%208.md)
+## [Session 9 - EFC, Repository and Unit of Work pattern](Session%2008%20-%20EFC,%20Repository,%20UoW/Session%208.md)
 
 Implement data storage, with Entity Framework Core.
 
 
-## [Session 9 - Assignment work](Session%2009%20-%20Assignment%20work/Session%209.md)
+## [Session 10 - Assignment work](Session%2009%20-%20Assignment%20work/Session%209.md)
 
 Just keep working on persistence.
 
-## [Session 10 - CQRS](Session%2010%20-%20CQRS/Session%2010.md)
+## [Session 11 - CQRS](Session%2010%20-%20CQRS/Session%2010.md)
 
 Introducing the query side of the application. Now we can get data out of the Web Service.
 
 
 
-## [Session 11 - Web API, Presentation ring](Session%2011%20-%20Web%20API/Session%2011.md) 
+## [Session 12 - Web API, Presentation ring](Session%2011%20-%20Web%20API/Session%2011.md) 
 
 We apply the REPR pattern, implemented with Fluent Interface, and use Object Converter pattern for some convenience.
 
-
-## [Session 12 - Assignment work / Exam](Session%2012%20-%20Exam/Session%2012.md)
-
-Exam info. Work on assignment from previous session
+Exam info. 
 
 
 # Course Sources

@@ -21,11 +21,15 @@
 * [Link to markdown cheat sheet slides]()
 
 ## Project cases:
-(Currently only one)
+
 
 #### VIA Event Association
 * [Description](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EdMfAsHIhkFNro1NuY50bq8B6bbz2HHZxC9ME5vMde6A6Q?e=PQ7AeU)
 * [Requirements](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/Ec0BsJx7X7BGhF4QHEK3dJkBYMNL8QKkUFf9xLE13Q6LJw?e=pCr1fT)
+
+#### VIA Padel Club
+* [Description](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EekD-geF7HVKnfw4E0Zxp1YBy0tB23mpCMtywa5Z1xg9yw?e=oCUX06)
+* [Requirements](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EbOFrxjPaBZNkSZa-lEQYv0BiEX8b8F0ZaHwstYeTLSdOQ?e=lf9JUj)
 
 ## Assignment 1
 [Link to assignment 1, Domain Model](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EX9E9pKpAlFIs9YF-RY8UmwB-1phLxv8iAr6Wusj0jDpAQ?e=bjFwnf)
