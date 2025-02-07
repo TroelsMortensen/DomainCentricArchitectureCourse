@@ -18,7 +18,7 @@
 ## Material
 
 * [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ec1BerQsJiBIttrvhF30ifgBJy8TweP6CAEEyD_ARHybWA?e=Rp3hUu)
-* [Link to markdown cheat sheet slides]()
+* [Link to markdown cheat sheet slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EZF8ZE20SgNNkkdbfhoEHIwBV_a1_pfL4DscqTe-ePHE8w?e=YsjAhX)
 
 ## Project cases:
 
