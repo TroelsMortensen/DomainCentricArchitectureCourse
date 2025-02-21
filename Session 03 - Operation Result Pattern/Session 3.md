@@ -20,7 +20,7 @@ Discussion about Result on reddit.
 
 ## Material
 
-[Link to today's PowerPoint](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EftpSTON6qFMguhI5-gqCzkB_Dga_xPl071Kg_5eK2uN2A?e=7dmwyl)
+[Link to today's PowerPoint](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EftpSTON6qFMguhI5-gqCzkB_Dga_xPl071Kg_5eK2uN2A?e=Sd9XvR)
 
 ## Assignment 3
 [Link to assignment 3, Operation Result pattern](https://viaucdk-my.sharepoint.com/:w:/g/personal/trmo_viauc_dk/EXaYqWIrBdlHkxUnkJusix8BKHWcsFuiam8zIKAeiuDrAA?e=ffYymn)
