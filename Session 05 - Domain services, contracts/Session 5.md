@@ -9,7 +9,7 @@
 Nothing, really.
 
 ## Material
-[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ee3Bu-kEtitBt2I1UfbhS2gB2EK0uPjz_3v9xWk7BVUBig?e=sPtNsQ)
+[Link to today's slides]([https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ee3Bu-kEtitBt2I1UfbhS2gB2EK0uPjz_3v9xWk7BVUBig?e=sPtNsQ](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ecrjgva-lglEo1o0APCU1RIB-co7WrW7fwYdNTe-csxH6A?e=GvAX6N))
 
 ## Assignment 5?
 
