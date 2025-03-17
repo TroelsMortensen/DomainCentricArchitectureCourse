@@ -11,6 +11,8 @@ Nothing, really.
 ## Material
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ee3Bu-kEtitBt2I1UfbhS2gB2EK0uPjz_3v9xWk7BVUBig?e=sPtNsQ)
 
+[Thoughts on where to put async stuff](https://enterprisecraftsmanship.com/posts/domain-model-purity-lazy-loading/)
+
 ## Assignment 5?
 
 Nothing new, just keep implementing your Domain Model. You have probably encountered situations, where you need a service or a contract.
