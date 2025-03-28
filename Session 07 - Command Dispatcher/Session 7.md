@@ -12,7 +12,7 @@ We are going to use ASP.NET's DI Container, IServiceProvider, you may [look at t
 I will introduce the [Decorator pattern](https://www.bytehide.com/blog/decorator-pattern-csharp), though simpler.
 
 ## Material
-[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EQEIc5Qo98dBmCFIn4MO-eoBrHCwGRaKwHCl1lLJ4rwUBQ?e=3AinK5)
+[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EZ2I3gaFe_lMgw36C229Sy0BEYH35sb88PK8GkU8cDTbbA?e=8KdCaP)
 
 ## Assignment 6
 
