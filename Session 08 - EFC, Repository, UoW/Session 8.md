@@ -14,7 +14,7 @@ Microsoft has [some information](https://learn.microsoft.com/en-us/dotnet/archit
 
 ## Material
 
-[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/ES3tCcXnLtdCpseWxddJKhoBIXzS_jEvPTzjhnwRgOAm2g?e=eeeTU9)
+[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/EYs76nAuq-9Gkz1m1Q9hyMEBCYIp-Nb0jlRfiAoyVSwxhw?e=HFcbgy)
 
 Tools:
 
