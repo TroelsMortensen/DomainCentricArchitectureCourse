@@ -17,6 +17,9 @@ General C# tricks:
 
 Discussion about Result on reddit.
 * [Is it worth with?](https://www.reddit.com/r/csharp/s/U3Z1cT0imF)
+* Zoran Horvat has (at the time of writing) two great videos on the Result:
+  * [Introduction](https://youtu.be/LXF-rRWaIxc?si=5Cxi3RmLPezaR7gn)
+  * [Extention functions](https://youtu.be/8uoifFX1I3U?si=Mv_RvIv6JQ3IGvmD)
 
 ## Material
 
