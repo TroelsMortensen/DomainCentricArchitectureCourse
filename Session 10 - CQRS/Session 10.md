@@ -21,6 +21,7 @@ We will use [records](https://learn.microsoft.com/en-us/dotnet/csharp/language-r
 
 ## Assignment 
 [Link to assigment 8](https://viaucdk-my.sharepoint.com/:f:/g/personal/trmo_viauc_dk/Em0kdXyG0c9AhLEOux4x6-sBbQdjPwqCtLZasypyfVp0lw?e=XS2iKW)
+For me, this link does not work in Edge. But it works in Chrome.
 
 This time it's a folder, with:
 * Assignment description
