@@ -17,7 +17,7 @@ We will use [records](https://learn.microsoft.com/en-us/dotnet/csharp/language-r
 
 ## Material
 
-[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/Ef7oKyBh9GREpP70LKVeTtQBHepscWFhqTahuzKgBVx2iA?e=UWHNcT)
+[Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/ET_kZuqpinlHpNxWtfd2Li4BFWP7e3t_3YUdN_-JcytbaA?e=RuCbkG)
 
 ## Assignment 
 [Link to assigment 8](https://viaucdk-my.sharepoint.com/:f:/g/personal/trmo_viauc_dk/Em0kdXyG0c9AhLEOux4x6-sBbQdjPwqCtLZasypyfVp0lw?e=XS2iKW)
