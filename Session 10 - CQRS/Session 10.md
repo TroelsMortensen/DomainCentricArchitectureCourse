@@ -15,6 +15,8 @@ We may be using the `dynamic` keyword, you may [look into it](https://learn.micr
 
 We will use [records](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record) for some data modelling.
 
+We will use [TypedResults](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses?view=aspnetcore-9.0#typedresults-vs-results) for returns from the web api endpoints.
+
 ## Material
 
 [Link to today's slides](https://viaucdk-my.sharepoint.com/:p:/g/personal/trmo_viauc_dk/ET_kZuqpinlHpNxWtfd2Li4BFWP7e3t_3YUdN_-JcytbaA?e=RuCbkG)
