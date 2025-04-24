@@ -37,5 +37,6 @@ https://blogs.cuttingedge.it/steven/posts/2011/meanwhile-on-the-query-side-of-my
 
 https://www.youtube.com/watch?v=F3xNCfP3Xew
 
+[Why use TypedResult](https://blog.variant.no/better-openapi-in-minimal-api-with-typedresults-f1bf90f029af)
 
 [Reverse engineering in EFC](https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/?tabs=dotnet-core-cli)
